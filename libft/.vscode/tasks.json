@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"id": "shell,/usr/bin/make execute --file=/home/kdh/.vscode/extensions/franneck94.c-cpp-runner-1.5.4/templates/Makefile --directory=FILE_DIR --quiet COMPILATION_MODE=Debug EXECUTABLE_NAME=outDebug LANGUAGE_MODE=C,",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"label": "C_Cpp_Runner: Run: libft",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
