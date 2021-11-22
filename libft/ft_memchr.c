@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   memchr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 02:21:24 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/11 03:42:57 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/22 12:47:16 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/22 12:54:06 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-void    *memchr(const void *s, int c, unsigned int n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-    unsigned int    i;
-    char            *temp;
+	size_t	i;
 
-    temp = s;
-    i = 0;
-    while (i < n && temp[i] != 0)
-    {
-        if (c == temp[i])
-            return (temp + i);
-        i++;
-    }
-    return (NULL);
+	i = 0
+	while (i < n)
+	{
+		if (((const unsigned char *)s)[i] == c)
+			return (s + i)
+	}
+	return (NULL);
 }

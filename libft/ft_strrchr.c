@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncmp.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:40:02 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/22 12:47:05 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/22 12:36:46 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/22 12:39:45 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*strrchr(const char *s, int c)
 {
-	size_t	i;
+	char	*temp;
 
-	i = 0;
-	while ((i < n) && (*s1 || *s2))
+	while (*s)
 	{
-		if (*s1 != *s2)
-			break ;
-		i++;
+		if (*s == c)
+			temp = s;
+		s++;
 	}
-	return (*s1 - *s2);
+	return (temp);
 }

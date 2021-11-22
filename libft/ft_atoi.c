@@ -6,14 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/11 00:02:33 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/22 15:21:29 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int ft_isdigit(int c)
-{
-    return (c >= '0' || c <= '9');
-}
+#include "libft.h"
 
 int ft_atoi(const char *nptr)
 {
