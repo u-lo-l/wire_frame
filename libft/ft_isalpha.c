@@ -6,19 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:18:37 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/19 23:49:50 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/24 22:41:26 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_is_upper(int c)
-{
-	return (c >= 'A' && c <= 'Z');
-}
-
-static int	ft_islower(int c)
-{
-	return (c >= 'a' && c <= 'z');
-}
+#include "libft.h"
 
 int	ft_isalpha(int c)
 {

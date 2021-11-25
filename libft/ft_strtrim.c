@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 15:11:00 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 15:24:50 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/24 23:40:26 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,26 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	count;
-	size_t	origin_len;
-	size_t	set_len;
+	size_t	begin;
+	size_t	end;
+	size_t	s1_len;
 	char	*trimed_str;
 
-
-
-	
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	s1_len = ft_strlen(s1);
+	begin = 0;
+	while (ft_strchr(set, s1[begin]) != NULL)
+		begin++;
+	end = 0;
+	while (ft_strchr(set, s1[s1_len - end - 1]) != NULL)
+		end++;
+	trimed_str = malloc(sizeof(char) * (s1_len - begin - end + 1));
+	if (trimed_str == NULL)
+		return (NULL);
+	ft_strncpy(trimed_str, (s1 + begin), s1_len - begin - end);
+	trimed_str[s1_len - begin - end] = 0;
+	return (trimed_str);
 }

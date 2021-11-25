@@ -6,19 +6,19 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:28:23 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/19 20:43:09 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/24 22:41:15 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void    ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    char    *temp;
-    size_t  i;
-    
-    temp = s;
-    i = 0;
-    while (i < n)
-        temp[i++] = 0;
+	char	*temp;
+	size_t	i;
+	
+	temp = s;
+	i = 0;
+	while (i < n)
+		temp[i++] = 0;
 }

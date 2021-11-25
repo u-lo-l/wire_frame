@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:24:40 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:46:10 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/25 01:03:19 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/25 01:29:28 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+#include <stdlib.h>
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 'a' - 'A';
-	return (c);
+	char	*result;
+	int		i;
+	int		size;
+
+	if (s == NULL || f == NULL)
+		return (NULL);
+	size = ft_strlen(s);
+	result = malloc(sizeof(char) * (size + 1));
+	if (result == NULL)
+		return (NULL);
+	while (i < size)
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	return (result);
 }

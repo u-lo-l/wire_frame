@@ -6,16 +6,16 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 21:33:33 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/22 16:53:22 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/24 22:44:13 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 typedef unsigned char uchar_t;
 
-void    *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-    size_t i;
+	size_t	i;
 	
 	i = 0;
     while (i < n)

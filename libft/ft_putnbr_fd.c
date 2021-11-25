@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 12:24:40 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:46:10 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/25 01:42:58 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/25 01:59:30 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+#include<limits.h>
+
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 'a' - 'A';
-	return (c);
+	unsigned int	nbr;
+	int				minus;
+	if (fd < 0)
+		return ;
+	if (n < 0)
+	{
+		minus = 1;
+		ft_putchar_fd('-', fd);
+		nbr = -n;
+	}
+	else
+		nbr = n;
+	if (nbr / 10)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd(nbr % 10 + '0', fd);
 }
