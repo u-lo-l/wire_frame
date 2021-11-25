@@ -6,11 +6,16 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:40:19 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 19:31:35 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || c == ' ');
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -19,18 +24,18 @@ int	ft_atoi(const char *nptr)
 
 	sign = 1;
 	nbr = 0;
-	while (*nptr == ' ')
+	while (ft_is_space(*nptr))
 		nptr++;
 	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*nptr == '-')
-            sign = -1;
-        nptr++;
-    }
-    while (ft_isdigit(*nptr))
-    {
-        nbr = nbr * 10 + (*nptr - '0');
-        nptr++;
-    }
-    return (sign * nbr);
+			sign = -1;
+		nptr++;
+	}
+	while (ft_isdigit(*nptr))
+	{
+		nbr = nbr * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (sign * nbr);
 }

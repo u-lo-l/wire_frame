@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:31:23 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:44:35 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 17:57:31 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*strchr(const char *s, int c)
 	while (*s != c && *s)
 		s++;
 	if (*s == c)
-		return (s);
+		return ((char *)s);
 	else
 		return (NULL);
 }

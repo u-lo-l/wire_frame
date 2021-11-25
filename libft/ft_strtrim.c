@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 15:11:00 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 23:40:26 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 19:00:46 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trimed_str = malloc(sizeof(char) * (s1_len - begin - end + 1));
 	if (trimed_str == NULL)
 		return (NULL);
-	ft_strncpy(trimed_str, (s1 + begin), s1_len - begin - end);
-	trimed_str[s1_len - begin - end] = 0;
+	ft_strlcpy(trimed_str, (s1 + begin), s1_len - begin - end + 1);
 	return (trimed_str);
 }

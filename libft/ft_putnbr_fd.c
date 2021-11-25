@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:42:58 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 01:59:30 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 19:15:56 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	nbr;
 	int				minus;
+
 	if (fd < 0)
 		return ;
 	if (n < 0)

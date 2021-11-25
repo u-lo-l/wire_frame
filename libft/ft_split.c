@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 00:47:41 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 19:38:50 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,18 @@ char	**ft_split(char const *s, char c)
 	}
 	str_set[count] = NULL;
 	return (str_set);
+}
+#include <stdio.h>
+int main()
+{
+	char *str = "I II III IIII";
+	char c = ' ';
+	int count = count_delimeter(str,c);
+	printf ("count : %d\n", count);
+	char **set = ft_split(str, c);
+	while (*set != NULL)
+	{
+		printf("%s\n",*set);
+		(*set)++;
+	}
 }

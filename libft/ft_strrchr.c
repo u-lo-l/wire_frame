@@ -6,13 +6,13 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:36:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/22 12:39:45 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 19:01:16 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*strrchr(const char *s, int c)
 {
-	char	*temp;
+	const char	*temp;
 
 	while (*s)
 	{
@@ -20,5 +20,5 @@ char	*strrchr(const char *s, int c)
 			temp = s;
 		s++;
 	}
-	return (temp);
+	return ((char *)temp);
 }

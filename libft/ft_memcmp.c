@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 03:43:12 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:42:46 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/25 17:57:01 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t  i;
-	char    *temp1;
-	char    *temp2;
+	size_t		i;
+	const char	*temp1;
+	const char	*temp2;
 
 	temp1 = s1;
 	temp2 = s2;

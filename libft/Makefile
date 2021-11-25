@@ -15,20 +15,20 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	   ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
 	   ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
 	   ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-OBJS = ${SRCS:.c=.o}
+OBJS = $(SRCS:.c=.o)
 
-all : ${NAME}
+all : $(NAME)
 
-${OBJS} : ${SRCS}
-	${CC} ${CFLAGS} -c $^
+$(OBJS) : $(SRCS)
+	$(CC) $(CFLAGS) -c $^
 
 clean :
-	rm -rf ${OBJS}
+	rm -rf $(OBJS)
 
 fclean : clean
-	rm -rf ${NAME}
+	rm -rf $(NAME)
 
 re : fclean all
 
-${NAME} : ${OBJS}
-	${AR} ${ARFLAGS} $@ $^
+$(NAME) : $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
