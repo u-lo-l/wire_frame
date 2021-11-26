@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 15:33:56 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/26 22:11:23 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	count_delimeter(char const *s, char c)
 	return (count);
 }
 
-char	*ft_strndup(const char *s1, size_t n)
+static char	*ft_strndup(const char *s1, size_t n)
 {
 	size_t	i;
 	size_t	size;

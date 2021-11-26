@@ -6,14 +6,15 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 03:50:49 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 19:11:17 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/26 22:09:15 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
 typedef unsigned char	t_uchar;
 
-void	*memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
