@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 15:31:13 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 01:53:26 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/27 02:36:58 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/27 02:55:47 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strdup(const char *s1)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	size_t	i;
-	size_t	size;
-	char	*copy;
-
-	size = ft_strlen(s1);
-	copy = malloc(sizeof(char) * (size + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		copy[i] = s1[i];
-		i++;
-	}
-	copy[i] = 0;
-	return (copy);
+	if (lst == NULL || new == NULL)
+		return ;
+	new >next = (*lst);
+	(*lst) = new;
 }

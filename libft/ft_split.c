@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 22:11:23 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/27 02:10:58 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static char	*ft_strndup(const char *s1, size_t n)
 		copy[i] = s1[i];
 		i++;
 	}
+	copy[i] = 0;
 	return (copy);
 }
 
@@ -85,20 +86,3 @@ char	**ft_split(char const *s, char c)
 	str_set[set_idx] = NULL;
 	return (str_set);
 }
-/*
-#include <stdio.h>
-int main()
-{
-	char *str = "I II III IIII";
-	char c = ' ';
-	int count = count_delimeter(str,c);
-	printf ("count : %d\n", count);
-	char **set = ft_split(str, c);
-	int i = 0;
-	while (i < count)
-	{
-		printf("%s\n",set[i]);
-		i++;
-	}
-}
-*/

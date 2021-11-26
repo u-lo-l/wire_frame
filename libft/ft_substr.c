@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:34:29 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 15:27:47 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/27 01:56:41 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr[i] = s[start + i];
 		i++;
 	}
+	substr[i] = 0;
 	return (substr);
 }

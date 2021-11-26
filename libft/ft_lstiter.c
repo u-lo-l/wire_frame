@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 15:31:13 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 01:53:26 by dkim2            ###   ########.fr       */
+/*   Created: 2021/11/27 03:23:38 by dkim2             #+#    #+#             */
+/*   Updated: 2021/11/27 03:26:28 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strdup(const char *s1)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-	size_t	size;
-	char	*copy;
-
-	size = ft_strlen(s1);
-	copy = malloc(sizeof(char) * (size + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < size)
+	t_list	*temp;
+	if (lst == NULL || f == NULL)
+		return ;
+	temp = lst;
+	while (temp)
 	{
-		copy[i] = s1[i];
-		i++;
+		f(temp);
+		temp = temp->next;
 	}
-	copy[i] = 0;
-	return (copy);
 }

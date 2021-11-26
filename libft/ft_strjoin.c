@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:44:38 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/24 22:46:11 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/27 02:00:25 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	i = 0;
-	while (i < prefix_len + suffix_len)
+	while (i < suffix_len)
 	{
 		new_str[prefix_len + i] = s2[i];
 		i++;
 	}
-	new_str[i] = '\0';
+	new_str[prefix_len + i] = 0;
 	return (new_str);
 }
