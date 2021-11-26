@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:47:16 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 19:18:40 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/26 15:22:28 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (((const unsigned char *)s)[i] == c)
+		if (((const char *)s)[i] == c)
 			return ((void *)(s + i));
 		i++;
 	}

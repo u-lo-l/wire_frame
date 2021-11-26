@@ -6,12 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:26:52 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 17:25:57 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/26 16:34:13 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <limits.h>
 
 int	get_size(unsigned int a)
 {
@@ -29,27 +28,26 @@ int	get_size(unsigned int a)
 
 char	*ft_itoa(int a)
 {
-	int		i;
-	int		minus;
-	int		size;
-	char	*number;
+	char			*number;
+	unsigned int	u_a;
+	int				size;
+	int				minus;
 
 	minus = 0;
-	if (a == INT_MIN)
-		return ("-2147483648");
 	if (a < 0)
 	{
 		minus = 1;
-		a = -a;
+		u_a = -a;
 	}
-	size = get_size(a);
+	else
+		u_a = a;
+	size = get_size(u_a);
 	number = malloc(sizeof(char) * (minus + size + 1));
-	i = 0;
-	number[minus + size] = '\0';
-	while (++i <= minus + size)
+	number[minus + size] = 0;
+	while (--size >= 0)
 	{
-		number[minus + size - i] = a % 10 + '0';
-		a /= 10;
+		number[minus + size] = u_a % 10 + '0';
+		u_a /= 10;
 	}
 	if (minus)
 		number[0] = '-';

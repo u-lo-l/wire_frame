@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 19:38:50 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/26 15:33:56 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,32 @@ char	*ft_strndup(const char *s1, size_t n)
 
 char	**ft_split(char const *s, char c)
 {
-	int		set_idx;
-	int		begin;
-	int		end;
-	int		count;
-	char	**str_set;
+	int			set_idx;
+	int			count;
+	const char	*start;
+	char		**str_set;
 
 	if (s == NULL)
 		return (NULL);
 	count = count_delimeter(s, c);
 	str_set = malloc(sizeof(char *) * (count + 1));
 	set_idx = 0;
-	begin = 0;
 	while (set_idx < count)
 	{
-		while (s[begin] == c && s[begin])
-			begin++;
-		end = begin + 1;
-		while (s[end] != c && s[end])
-			end++;
-		str_set[set_idx] = ft_strndup(s + begin, end - begin);
-		begin = end;
+		while (*s == c)
+			s++;
+		if (*s == 0)
+			break ;
+		start = s;
+		while (*s != c && *s != 0)
+			s++;
+		str_set[set_idx] = ft_strndup(start, s - start);
+		set_idx++;
 	}
-	str_set[count] = NULL;
+	str_set[set_idx] = NULL;
 	return (str_set);
 }
+/*
 #include <stdio.h>
 int main()
 {
@@ -93,9 +94,11 @@ int main()
 	int count = count_delimeter(str,c);
 	printf ("count : %d\n", count);
 	char **set = ft_split(str, c);
-	while (*set != NULL)
+	int i = 0;
+	while (i < count)
 	{
-		printf("%s\n",*set);
-		(*set)++;
+		printf("%s\n",set[i]);
+		i++;
 	}
 }
+*/
