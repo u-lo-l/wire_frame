@@ -6,11 +6,12 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/25 19:31:35 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 17:03:03 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 static int	ft_is_space(char c)
 {
@@ -19,8 +20,8 @@ static int	ft_is_space(char c)
 
 int	ft_atoi(const char *nptr)
 {
-	int	nbr;
-	int	sign;
+	unsigned int	nbr;
+	int				sign;
 
 	sign = 1;
 	nbr = 0;
@@ -37,5 +38,9 @@ int	ft_atoi(const char *nptr)
 		nbr = nbr * 10 + (*nptr - '0');
 		nptr++;
 	}
-	return (sign * nbr);
+	if (nbr * sign >= INT_MAX)
+		return (INT_MAX);
+	if (nbr * sign <= INT_MIN)
+		return (INT_MIN);
+	return (nbr);
 }
