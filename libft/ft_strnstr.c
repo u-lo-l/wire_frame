@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:20:27 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 16:49:24 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 16:50:27 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strnstr(const void *hs, const void *nd, size_t len)
 			if (h_i + n_i >= len)
 				break ;
 			n_i++;
-			if (((const char *)nd)[n_i] == NULL)
+			if (!((const char *)nd)[n_i])
 				return ((char *)hs + h_i);
 		}
 		h_i++;
