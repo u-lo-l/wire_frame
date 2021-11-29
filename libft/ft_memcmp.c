@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 03:43:12 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 22:16:01 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 15:34:54 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if ((temp1[i] - temp2[i]) || temp1[i] == 0)
+		if ((temp1[i] - temp2[i]))
 			return ((temp1[i] - temp2[i]));
 		i++;
 	}
