@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 17:16:52 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 17:17:46 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_atoi(const char *nptr)
 	unsigned long	lnbr;
 
 	sign = 1;
-	nbr = 0;
+	lnbr = 0;
 	while (ft_is_space(*nptr))
 		nptr++;
 	if (*nptr == '-' || *nptr == '+')
