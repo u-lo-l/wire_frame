@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 17:09:00 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 17:16:00 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	ft_is_space(char c)
 
 int	ft_atoi(const char *nptr)
 {
-	int	nbr;
-	int	sign;
+	int				sign;
+	unsigned long	lnbr;
 
 	sign = 1;
 	nbr = 0;
@@ -35,8 +35,12 @@ int	ft_atoi(const char *nptr)
 	}
 	while (ft_isdigit(*nptr))
 	{
-		nbr = nbr * 10 + (*nptr - '0');
+		lnbr = lnbr * 10 + (*nptr - '0');
 		nptr++;
 	}
+	if (sign == 0 && nbr >= (long)INT_MAX)
+		return (-1);
+	if (sign == -1 && lnbr >= (long)INT_MAX + 1)
+		return (0);
 	return (nbr * sign);
 }
