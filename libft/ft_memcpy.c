@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 03:50:49 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 22:09:15 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 15:26:51 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
+	if (dest == NULL || src == NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
