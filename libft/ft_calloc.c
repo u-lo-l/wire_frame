@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 15:21:36 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/22 15:31:04 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 17:21:37 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	*ft_calloc(size_t count, size_t size)
 	temp = malloc(size * count);
 	if (!temp)
 		return (NULL);
-	ft_bzero(temp, count);
+	ft_bzero(temp, count * size);
 	return (temp);
 }
