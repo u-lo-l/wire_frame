@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:38:15 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 17:05:11 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 17:06:13 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_atoi(const char *nptr)
 		nbr = nbr * 10 + (*nptr - '0');
 		nptr++;
 	}
-	if (nbr * sign >= LONG_MAX)
+	if (long(nbr * sign) >= LONG_MAX)
 		return (INT_MAX);
-	if (nbr * sign <= LONG_MIN)
+	if (long(nbr * sign) <= LONG_MIN)
 		return (INT_MIN);
 	return (nbr * sign);
 }
