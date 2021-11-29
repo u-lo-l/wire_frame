@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 23:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 02:10:58 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 22:52:15 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	count = count_delimeter(s, c);
 	str_set = malloc(sizeof(char *) * (count + 1));
+	if (!str_set)
+		return (NULL);
 	set_idx = 0;
 	while (set_idx < count)
 	{
@@ -80,8 +82,7 @@ char	**ft_split(char const *s, char c)
 		start = s;
 		while (*s != c && *s != 0)
 			s++;
-		str_set[set_idx] = ft_strndup(start, s - start);
-		set_idx++;
+		str_set[set_idx++] = ft_strndup(start, s - start);
 	}
 	str_set[set_idx] = NULL;
 	return (str_set);

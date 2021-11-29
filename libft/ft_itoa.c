@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:26:52 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 16:34:13 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 22:51:58 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,12 @@ char	*ft_itoa(int a)
 
 	minus = 0;
 	if (a < 0)
-	{
 		minus = 1;
-		u_a = -a;
-	}
-	else
-		u_a = a;
+	u_a = a * ((1 - minus) * (1) + ((minus) * (-1)));
 	size = get_size(u_a);
 	number = malloc(sizeof(char) * (minus + size + 1));
+	if (!number)
+		return (NULL);
 	number[minus + size] = 0;
 	while (--size >= 0)
 	{
