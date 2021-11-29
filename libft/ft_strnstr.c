@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:20:27 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 16:11:01 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 16:17:34 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	*ft_strnstr(const void *hs, const void *nd, size_t len)
 	size_t	h_i;
 	size_t	n_i;
 
-	if (hs == NULL)
-		return (NULL);
-	if (nd == NULL || ft_strlen(nd) == 0)
+	if (ft_strlen(nd) == 0)
 		return ((char *)hs);
 	h_i = 0;
 	while ((h_i < len) && ((const char *)hs)[h_i])
@@ -29,11 +27,11 @@ char	*ft_strnstr(const void *hs, const void *nd, size_t len)
 		{
 			n_i++;
 			if (h_i + n_i >= len)
-				break ;
+				return (NULL);
 			if (!((const char *)nd)[n_i])
-				return ((char *)hs + h_i);
+				break ;
 		}
 		h_i++;
 	}
-	return (NULL);
+	return ((char *)hs + h_i);
 }
