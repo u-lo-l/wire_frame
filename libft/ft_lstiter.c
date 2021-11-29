@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 03:23:38 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 03:26:28 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/28 18:10:48 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*temp;
+
 	if (lst == NULL || f == NULL)
 		return ;
 	temp = lst;
 	while (temp)
 	{
-		f(temp);
+		f(temp->content);
 		temp = temp->next;
 	}
 }

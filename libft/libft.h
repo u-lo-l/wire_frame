@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 23:40:10 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 03:39:26 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/28 18:05:41 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 # include <unistd.h>
 
-typedef	struct s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/28 15:17:54 by dkim2             #+#    #+#              #
+#    Updated: 2021/11/29 15:00:30 by dkim2            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
 CC = gcc
@@ -28,15 +40,21 @@ $(NAME) : $(OBJS)
 
 all : $(NAME)
 
+bonus : $(OBJS) $(B_OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $^
+
 $(OBJS) : $(SRCS)
 	$(CC) $(CFLAGS) -c $^
 
+$(B_OBJS) : $(B_SRCS)
+	$(CC) $(CFLAGS) -c $^
+
 clean :
-	rm -rf $(OBJS)
+	rm -rf $(OBJS) $(B_OBJS)
 
 fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
 
-
+.PHONY : all clean fclean re

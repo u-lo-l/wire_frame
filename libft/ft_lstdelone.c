@@ -6,12 +6,15 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 03:07:05 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 03:18:28 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/29 13:44:55 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_lstdelone(t_list *lst,  void (*del)(void *))
-{}
+#include "libft.h"
+#include <stdlib.h>
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
 	if (lst == NULL || del == NULL)
 		return ;
 	del(lst->content);

@@ -6,11 +6,12 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 02:35:06 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/27 02:55:39 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/11/28 15:22:53 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 t_list	*ft_lstnew(void *content)
 {
