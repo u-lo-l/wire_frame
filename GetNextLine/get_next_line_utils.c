@@ -6,11 +6,21 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/02 18:24:55 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/02 19:18:30 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	gnl_strlen(char *str)
+{
+	if (!str)
+		return (-1);
+	if (*str)
+		return (gnl_strlen(str + 1) + 1);
+	else
+		return (0);
+}
 
 char	*gnl_stralloc(int strlen)
 {
@@ -36,17 +46,19 @@ char	*gnl_strchr(char *str, char c)
 		return (NULL);
 }
 
-char	*gnl_strdup(char *str)
+char	*gnl_strndup(char *str, size_t n)
 {
-	int		size;
+	size_t	i;
 	char	*new_str;
 	
-	size = 0;
-	while (str[size])
-		size++;
-	new_str = gnl_stralloc(size + 1);
-	size = -1;
-	while (str[++size])
-		new_str[size] = str[size];
+	new_str = gnl_stralloc(n + 1);
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < n && str[i])
+	{
+		new_str[i] = str[i];
+		i++;
+	}
 	return (new_str);
 }
