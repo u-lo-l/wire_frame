@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/02 19:18:30 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/02 19:25:32 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*gnl_strndup(char *str, size_t n)
 {
 	size_t	i;
 	char	*new_str;
-	
+
 	new_str = gnl_stralloc(n + 1);
 	if (new_str == NULL)
 		return (NULL);
