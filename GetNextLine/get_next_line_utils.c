@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/02 18:03:30 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/02 18:12:16 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ char	*gnl_stralloc(int strlen)
 
 char	*gnl_strchr(char *str, char c)
 {
-	int	str_end;
-
-	str_end = 0;
-	while(!str_end)
-	{
-		if (!*str)
-			str_end = 1;
-		if (*str == c)
-			return (str);
+	while (*str && *str != c)
 		str++;
-	}
-	return (NULL);
+	if (*str == c)
+		return (str);
+	else
+		return (NULL);
 }
