@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/03 07:23:21 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/04 18:25:35 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ char	*gnl_strrealloc(char *str, int size)
 
 	if (size < 0)
 		return (NULL);
-	if (!str)
-		return (gnl_strcalloc(0));
 	len = gnl_strlen(str);
 	if (size < len)
 		len = size;
@@ -84,7 +82,7 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len)
 	size = gnl_strlen((char *)s);
 	substr = gnl_strcalloc(len);
 	if (!substr)
-		return (NULL);	
+		return (NULL);
 	i = 0;
 	while (i < len && start + i < size)
 	{
