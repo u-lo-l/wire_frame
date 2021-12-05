@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/05 20:20:34 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/05 20:42:32 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_next_line(int fd)
 	char		*curr_line;
 	static char	*next_line;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = gnl_strcalloc(BUFFER_SIZE);
 	if (!buffer)
@@ -44,29 +44,21 @@ char	*get_next_line(int fd)
 	}
 	if (read_status < 1)
 	{
-		if (next_line)
-			free(next_line);
+		free(next_line);
 		return (NULL);
 	}
 	return (get_next_line(fd));
 }
-/*
+
 #include <fcntl.h>
 int main()
 {
 	int fd = open("text", O_RDONLY);
 	char	*s;
-	int i = 0;
-	while (i++ < 10)
+	while ((s = get_next_line(fd)))
 	{
-		s = get_next_line(fd);
-		if (!s)
-		{
-			printf("(null)\n");
-			break ;
-		}
-		printf(">\n%d | %s>\n", i, s);
+		printf("%s", s);
 		free(s);
 	}
 	close(fd);
-}*/
+}
