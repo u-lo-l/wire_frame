@@ -63,12 +63,13 @@ char	*get_next_line(int fd)
 		if (gnl_strlen(next_line))
 			curr_line = gnl_substr(next_line, 0, gnl_strlen(next_line));
 		free(next_line);
-		next_line = NULL;
+		next_line = NULL;	
 		return (curr_line);
 	}
 	return (get_next_line(fd));
 }
 /*====================================*/
+/*
 void	ppp(char *str)
 {
 	if (str)
@@ -100,4 +101,4 @@ int main()
 			free(s);
 	}
 	close(fd);
-}
+}*/
