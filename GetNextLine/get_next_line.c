@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/05 13:13:23 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/05 16:32:34 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,5 @@ int main()
 		free(s);
 	}
 	close(fd);
-}
-*/
+	system("leaks a.out > leaks_result_temp; cat leaks_result_temp |grep leaked && rm -rf leaks_result_temp");
+}*/
