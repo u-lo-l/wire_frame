@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 02:06:22 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 02:07:04 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*gnl_strappend(char *front, char *end)
 	return (front);
 }
 
-char	*temp_f(char **next_line);
+char	*temp_f(char **next_line)
 {
 	int		read_status;
 	char	*temp;
