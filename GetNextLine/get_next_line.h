@@ -19,7 +19,7 @@
 # include<stdlib.h>
 int		gnl_strlen(char *str);
 char	*gnl_strcalloc(int len);
-char	*gnl_strreallo(char *str, int size);
+char	*gnl_strrealloc(char *str, int size);
 char	*gnl_strchr(char *str, char c);
 char	*gnl_substr(char const *str, unsigned int start, size_t size);
 char	*gnl_strappend(char *front, char *end);
