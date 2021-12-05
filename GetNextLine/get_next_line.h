@@ -17,6 +17,7 @@
 # endif
 # include<unistd.h>
 # include<stdlib.h>
+
 int		gnl_strlen(char *str);
 char	*gnl_strcalloc(int len);
 char	*gnl_strrealloc(char *str, int size);
