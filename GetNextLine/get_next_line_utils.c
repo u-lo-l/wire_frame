@@ -91,20 +91,3 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len)
 	}
 	return (substr);
 }
-
-char	*gnl_strappend(char *front, char *end)
-{
-	int		f_size;
-	int		e_size;
-	int		i;
-
-	f_size = gnl_strlen(front);
-	e_size = gnl_strlen(end);
-	front = gnl_strrealloc(front, f_size + e_size);
-	if (!front)
-		return (NULL);
-	i = -1;
-	while (++i < e_size)
-		front[f_size + i] = end[i];
-	return (front);
-}
