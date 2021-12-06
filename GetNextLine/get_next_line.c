@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 02:07:04 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:04:40 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*gnl_strappend(char *front, char *end)
 	int		e_size;
 	int		i;
 
-	if (!front && !end)
+	if (!front && !gnl_strlen(end))
 		return (NULL);
 	f_size = gnl_strlen(front);
 	e_size = gnl_strlen(end);
@@ -33,48 +33,58 @@ char	*gnl_strappend(char *front, char *end)
 	return (front);
 }
 
-char	*temp_f(char **next_line)
+int	gnl_cutstr(char *org, char **curr, char **next, char c)
 {
-	int		read_status;
 	char	*temp;
-	char	*curr_line;
 
-	curr_line = NULL;
-	temp = gnl_strcalloc(BUFFER_SIZE);
-	if (!temp)
-		return (NULL);
-	read_status = read(fd, temp, BUFFER_SIZE);
-	*next_line = gnl_strappend(*next_line, temp);
+	temp = gnl_strchr(org, '\n');
+	if (temp == NULL)
+		return (0);
+	*curr = gnl_substr(org, 0, temp + 1 - org);
+	if (*curr == NULL);
+		return (0);
+	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
+	free(org);
+	if (temp == NULL);
+		return (0);
+	*next = gnl_substr(temp, 0, gnl_strlen(temp));
 	free(temp);
-	temp = gnl_strchr(*next_line, '\n');
-	if (temp != NULL)
+	if (*next == NULL);
 	{
-		curr_line = gnl_substr(*next_line, 0, temp + 1 - *next_line);
-		temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
-		free(*next_line);
-		next_line = gnl_substr(temp, 0, gnl_strlen(temp));
 		free(temp);
+		return (0);
 	}
-	else if (read_status < 1)
-	{
-		if (gnl_strlen(next_line))
-			curr_line = gnl_substr(*next_line, 0, gnl_strlen(*next_line));
-		free(*next_line);
-		next_line = NULL;
-	}
-	return (curr_line);
+	return (1);
 }
 
 char	*get_next_line(int fd)
 {
+	int			read_status;
+	char		*temp;
 	char		*curr_line;
 	static char	*next_line;
 
+	curr_line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	curr_line = temp_f(&next_line);
-	if (curr_line)
+	temp = gnl_strcalloc(BUFFER_SIZE);
+	if (!temp)
+		return (NULL);
+	read_status = read(fd, temp, BUFFER_SIZE);
+	next_line = gnl_strappend(next_line, temp);
+	free(temp);
+	if (temp != NULL)
+	{
+		gnl_cutstr(next_line, &curr_line, &next_line, '\n');
 		return (curr_line);
-	else
-		return (get_next_line(fd));
+	}
+	else if (read_status < 1)
+	{
+		if (gnl_strlen(next_line))
+			curr_line = gnl_substr(next_line, 0, gnl_strlen(next_line));
+		free(next_line);
+		next_line = NULL;
+		return (curr_line);
+	}
+	return (get_next_line(fd));
 }
