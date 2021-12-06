@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 18:04:40 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:06:08 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int	gnl_cutstr(char *org, char **curr, char **next, char c)
 	if (temp == NULL)
 		return (0);
 	*curr = gnl_substr(org, 0, temp + 1 - org);
-	if (*curr == NULL);
+	if (*curr == NULL)
 		return (0);
 	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
 	free(org);
-	if (temp == NULL);
+	if (temp == NULL)
 		return (0);
 	*next = gnl_substr(temp, 0, gnl_strlen(temp));
 	free(temp);
-	if (*next == NULL);
+	if (*next == NULL)
 	{
 		free(temp);
 		return (0);
