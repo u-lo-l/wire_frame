@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 18:11:40 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:12:20 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*gnl_strappend(char *front, char *end)
 	int		e_size;
 	int		i;
 
-	if (!front && gnl_strlen(end))
+	if (!front && !end)
 		return (NULL);
 	f_size = gnl_strlen(front);
 	e_size = gnl_strlen(end);
