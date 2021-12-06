@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:52:41 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 21:56:00 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 21:58:33 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char	*get_next_line(int fd)
 	if (!temp)
 		return (NULL);
 	read_status = read(fd, temp, BUFFER_SIZE);
-	next_line[fd] = gnl_strappend(next_line, temp);
+	next_line[fd] = gnl_strappend(next_line[fd], temp);
 	free(temp);
-	if (gnl_cutstr(next_line, &curr_line, &next_line[fd], '\n'))
+	if (gnl_cutstr(next_line[fd], &curr_line, &next_line[fd], '\n'))
 		return (curr_line);
 	else if (read_status >= 1)
 		return (get_next_line(fd));
