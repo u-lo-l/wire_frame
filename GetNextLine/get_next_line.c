@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 18:16:03 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:16:58 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int gnl_cutstr(char *org, char **front, char **rear, char c)
 	temp = gnl_strchr(org, c);
 	if (temp == NULL)
 		return (0);
-	front = gnl_substr(org, 0, temp + 1 - org);
+	*front = gnl_substr(org, 0, temp + 1 - org);
 	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
 	free(org);
-	rear = gnl_substr(temp, 0, gnl_strlen(temp));
+	*rear = gnl_substr(temp, 0, gnl_strlen(temp));
 	free(temp);
 	return (1);
 }
