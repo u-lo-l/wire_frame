@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 18:16:58 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:19:16 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ char	*get_next_line(int fd)
 	read_status = read(fd, temp, BUFFER_SIZE);
 	next_line = gnl_strappend(next_line, temp);
 	free(temp);
-	temp = gnl_strchr(next_line, '\n');
-	if (temp != NULL)
-	{
-		gnl_cutstr(next_line, &curr_line, &next_line, '\n');
+	if (gnl_cutstr(next_line, &curr_line, &next_line, '\n'))
 		return (curr_line);
-	}
 	else if (read_status < 1)
 	{
 		if (gnl_strlen(next_line))
