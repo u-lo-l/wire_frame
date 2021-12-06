@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 18:10:18 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/06 18:11:40 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*gnl_strappend(char *front, char *end)
 	int		e_size;
 	int		i;
 
-	if (!front && !gnl_strlen(end))
+	if (!front && gnl_strlen(end))
 		return (NULL);
 	f_size = gnl_strlen(front);
 	e_size = gnl_strlen(end);
@@ -31,21 +31,6 @@ char	*gnl_strappend(char *front, char *end)
 	while (++i < e_size)
 		front[f_size + i] = end[i];
 	return (front);
-}
-
-int	gnl_cutstr(char *org, char **curr, char **next, char c)
-{
-	char	*temp;
-
-	temp = gnl_strchr(org, c);
-	if (temp == NULL)
-		return (0);
-	*curr = gnl_substr(org, 0, temp + 1 - org);
-	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
-	free(org);
-	*next = gnl_substr(temp, 0	, gnl_strlen(temp));
-	free(temp);
-	return (1);
 }
 
 char	*get_next_line(int fd)
@@ -64,9 +49,15 @@ char	*get_next_line(int fd)
 	read_status = read(fd, temp, BUFFER_SIZE);
 	next_line = gnl_strappend(next_line, temp);
 	free(temp);
+	temp = gnl_strchr(next_line, '\n');
+	
 	if (temp != NULL)
 	{
-		gnl_cutstr(next_line, &curr_line, &next_line, '\n');
+		curr_line = gnl_substr(next_line, 0, temp + 1 - next_line);
+		temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
+		free(next_line);
+		next_line = gnl_substr(temp, 0, gnl_strlen(temp));
+		free(temp);
 		return (curr_line);
 	}
 	else if (read_status < 1)
