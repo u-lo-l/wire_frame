@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:31:23 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/26 22:20:27 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/07 16:26:03 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != c && *s)
+	while (*s != (char)c && *s)
 		s++;
-	if (*s == c)
+	if (*s == (char)c)
 		return ((char *)s);
 	else
 		return (NULL);

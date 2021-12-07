@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 03:27:16 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 22:59:18 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/07 16:32:56 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*temp;
 
 	if (lst == NULL || f == NULL)
-		return (NULL);
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
 		return (NULL);
 	new = ft_lstnew(f(lst->content));
 	if (lst->next != NULL)

@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 15:11:00 by dkim2             #+#    #+#             */
-/*   Updated: 2021/11/29 22:39:17 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/07 18:55:13 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,19 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1)
 		return (NULL);
-	if (!set)
+	if (!set || !(*set))
 		return (ft_strdup(s1));
 	s1_len = ft_strlen(s1);
 	begin = 0;
-	while (ft_strchr(set, s1[begin]) != NULL)
+	while (begin < s1_len && ft_strchr(set, s1[begin]) != NULL)
 		begin++;
 	end = 0;
-	while (ft_strchr(set, s1[s1_len - end - 1]) && end + 1 < s1_len)
+	while (end < s1_len && ft_strchr(set, s1[s1_len - end - 1]) != NULL)
 		end++;
-	if (begin + end + 1 >= s1_len)
+	if (s1_len < begin + end + 1)
 		return (ft_strdup(""));
-	trimed_str = malloc(sizeof(char) * (s1_len - begin - end + 1));
+	trimed_str = ft_substr(s1, begin, s1_len - begin - end);
 	if (trimed_str == NULL)
 		return (NULL);
-	ft_strlcpy(trimed_str, (s1 + begin), s1_len - begin - end + 1);
 	return (trimed_str);
 }
