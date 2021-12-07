@@ -19,9 +19,11 @@
  cd ..
  echo -e "\033[32;1m"unit-test"\033[m"
  read $a
- git clone https://github.com/alelievr/libft-unit-test.git ../libft_unit_test
- cd ../libft-unit-test/
+ cd ..
+ git clone https://github.com/alelievr/libft-unit-test.git
+ cd libft-unit-test/
  sed -i "" 's/LIBFTDIR    =    ..\/libft/LIBFTDIR    =    ..\//' Makefile
+ pwd
  make f
  cd ../libft
  echo -e "\033[32;1m"libftTester"\033[m"
