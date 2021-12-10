@@ -6,13 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:56:54 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 21:53:03 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/10 22:14:16 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
-#include <limits.h>
 
 char	*gnl_strappend(char *front, char *end)
 {
@@ -33,16 +31,16 @@ char	*gnl_strappend(char *front, char *end)
 	return (front);
 }
 
-int	gnl_cutstr(char *org, char **front, char **rear, char c)
+int	gnl_cutstr(char *origine, char **front, char **rear, char c)
 {
 	char	*temp;
 
-	temp = gnl_strchr(org, c);
+	temp = gnl_strchr(origine, c);
 	if (temp == NULL)
 		return (0);
-	*front = gnl_substr(org, 0, temp + 1 - org);
+	*front = gnl_substr(origine, 0, temp + 1 - org);
 	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
-	free(org);
+	free(origine);
 	*rear = gnl_substr(temp, 0, gnl_strlen(temp));
 	free(temp);
 	return (1);

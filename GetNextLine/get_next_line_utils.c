@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/10 20:33:21 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/10 22:13:00 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,34 @@ int	gnl_strlen(char *str)
 		return (0);
 }
 
-char	*gnl_strcalloc(int strlen)
+char	*gnl_strcalloc(int len)
 {
 	char	*new_str;
 	int		i;
 
 	if (strlen < 0)
 		return (NULL);
-	new_str = malloc(sizeof(char) * (strlen + 1));
+	new_str = malloc(sizeof(char) * (len + 1));
 	if (!new_str)
 		return (NULL);
 	i = 0;
-	while (i <= strlen)
+	while (i <= len)
 		new_str[i++] = 0;
 	return (new_str);
 }
 
-char	*gnl_strrealloc(char *str, int size)
+char	*gnl_strrealloc(char *str, int new_len)
 {
 	char	*new;
 	int		i;
 	int		len;
 
-	if (size < 0)
+	if (new_len < 0)
 		return (NULL);
 	len = gnl_strlen(str);
-	if (size < len)
-		len = size;
-	new = gnl_strcalloc(size);
+	if (new_len < len)
+		new_len = len;
+	new = gnl_strcalloc(new_len);
 	if (!new)
 		return (NULL);
 	i = -1;
@@ -75,16 +75,20 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	i;
-	size_t	size;
+	size_t	slen;
 
 	if (!s)
 		return (NULL);
-	size = gnl_strlen((char *)s);
+	slen = gnl_strlen((char *)s);
+	if (start >= slen)
+		len = 0;
+	else if (start + len > slen)
+		len = slen - start;
 	substr = gnl_strcalloc(len);
 	if (!substr)
 		return (NULL);
 	i = 0;
-	while (i < len && start + i < size)
+	while (i < len && start + i < slen)
 	{
 		substr[i] = s[start + i];
 		i++;
