@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:52:41 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/10 20:32:56 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/10 22:28:42 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ char	*gnl_strappend(char *front, char *end)
 	return (front);
 }
 
-int	gnl_cutstr(char *org, char **front, char **rear, char c)
+int	gnl_cutstr(char *origine, char **front, char **rear, char c)
 {
 	char	*temp;
 
-	temp = gnl_strchr(org, c);
+	temp = gnl_strchr(origine, c);
 	if (temp == NULL)
 		return (0);
-	*front = gnl_substr(org, 0, temp + 1 - org);
+	*front = gnl_substr(origine, 0, temp + 1 - origine);
 	temp = gnl_substr(temp + 1, 0, gnl_strlen(temp + 1));
-	free(org);
+	free(origine);
 	*rear = gnl_substr(temp, 0, gnl_strlen(temp));
 	free(temp);
 	return (1);
