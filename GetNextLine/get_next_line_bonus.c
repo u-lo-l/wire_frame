@@ -6,13 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:52:41 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/06 21:58:33 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/10 20:32:56 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <unistd.h>
-#include <limits.h>
 
 char	*gnl_strappend(char *front, char *end)
 {
