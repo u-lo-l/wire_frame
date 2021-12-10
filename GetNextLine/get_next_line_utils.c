@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:57:01 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/10 22:13:00 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/10 22:27:09 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*gnl_strcalloc(int len)
 	char	*new_str;
 	int		i;
 
-	if (strlen < 0)
+	if (len < 0)
 		return (NULL);
 	new_str = malloc(sizeof(char) * (len + 1));
 	if (!new_str)
