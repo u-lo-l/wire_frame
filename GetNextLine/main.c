@@ -16,7 +16,7 @@ int main()
 	int file4 = open("./files/10nls", O_RDONLY);
 	int file5 = open("./files/empty", O_RDONLY);
 
-	while ((line = get_next_line(file1)))
+	while ((line = get_next_line(0)))
 	{
 		printf("%s", line);
 		free(line);
