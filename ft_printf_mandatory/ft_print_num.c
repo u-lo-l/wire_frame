@@ -51,7 +51,7 @@ void	init_base(t_number *t_num, char conv)
 		if (conv == 'X')
 			t_num->is_digit_upper = 1;
 		else
-			t_num->print_base_pre = 0;
+			t_num->is_digit_upper = 0;
 	}
 }
 
@@ -89,7 +89,7 @@ int	ft_print_num(t_number t_num)
 	int		len;
 	int		size;
 	char	*numstr;
-
+	
 	len = ft_count_digits(t_num.nbr, t_num.base);
 	size = len;
 	numstr = ft_calloc(sizeof(char), len + 1);

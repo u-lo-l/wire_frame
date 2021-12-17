@@ -6,10 +6,11 @@
 #    By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/28 15:17:54 by dkim2             #+#    #+#              #
-#    Updated: 2021/12/15 16:41:38 by dkim2            ###   ########.fr        #
+#    Updated: 2021/12/17 15:43:00 by dkim2            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+.SUFFIXES : .c .o
 NAME = libft.a
 
 CC = gcc
@@ -38,6 +39,9 @@ B_OBJS = $(B_SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
+
+.c.o : 
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
 

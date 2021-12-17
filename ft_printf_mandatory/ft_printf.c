@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:01:17 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/15 17:09:39 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/17 15:52:11 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	ft_printf(const char *str, ...)
 	return (ret);
 }
 
-int main()
-{   
-	int a = 1234;
-	char c = 'C';
-	ft_printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
-	printf("=====================\n");
-	printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
-	// ft_printf("%p\n", &a);
-}
+// int main()
+// {   
+// 	int a = 1234;
+// 	char c = 'C';
+// 	ft_printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
+// 	printf("=====================\n");
+// 	printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
+// 	// ft_printf("%p\n", &a);
+// }
