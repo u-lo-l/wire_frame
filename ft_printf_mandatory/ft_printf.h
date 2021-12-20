@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:02:35 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/15 16:42:51 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/19 01:10:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_nbr
 int		ft_printf_format(const char *str);
 int		ft_printf(const char *str, ...);
 /*ft_print_num.c*/
-void	init_number(t_number *t_num, va_list ap, char conv);
+int		init_number(t_number *t_num, va_list ap, char conv);
 void	init_base(t_number *t_num, char conv);
 void	init_base_prefix(t_number *t_num, char conv);
 int		ft_print_num(t_number t_num);

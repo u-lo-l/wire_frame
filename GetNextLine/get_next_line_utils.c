@@ -14,12 +14,14 @@
 
 int	gnl_strlen(char *str)
 {
+	int	i;
+
+	i = 0;
 	if (!str)
 		return (0);
-	if (*str)
-		return (gnl_strlen(str + 1) + 1);
-	else
-		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
 char	*gnl_strcalloc(int len)

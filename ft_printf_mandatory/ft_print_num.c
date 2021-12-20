@@ -11,23 +11,21 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	init_number(t_number *t_num, va_list ap, char conv)
+#include <stdio.h>
+int	init_number(t_number *t_num, va_list ap, char conv)
 {
 	long	temp;
 
+	t_num->is_minus = 0;
 	if (conv == 'd' || conv == 'i')
 		temp = (long)va_arg(ap, int);
 	else if (conv == 'u' || conv == 'x'|| conv  == 'X')
 		temp = (long)va_arg(ap, unsigned int);
 	else if (conv == 'p')
 		temp = (long)va_arg(ap, void *);
-	else
-		return ;
-	if (temp >= 0)
+	if (temp >= 0 || conv == 'p')
 	{
 		t_num->nbr = (unsigned long)temp;
-		t_num->is_minus = 0;
 		ft_strlcpy(t_num->sign_prefix, "\0", 2);
 	}
 	else
@@ -36,6 +34,7 @@ void	init_number(t_number *t_num, va_list ap, char conv)
 		t_num->is_minus = 1;
 		ft_strlcpy(t_num->sign_prefix, "-", 2);
 	}
+	return (t_num->nbr != 0);
 }
 
 void	init_base(t_number *t_num, char conv)

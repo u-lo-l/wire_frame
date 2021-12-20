@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:07 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/15 17:07:33 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/19 01:26:46 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int ft_print_string(va_list ap)
 	char	*str;
 
 	str = va_arg(ap, char *);
+	if (str == 0)
+		str = "(null)";
 	return (ft_putstr(str));
 }
