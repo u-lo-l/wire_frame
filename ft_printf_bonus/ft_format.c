@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:56:55 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/21 04:42:24 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/21 13:31:33 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int	pft_get_conversion(char **s, t_format *f, va_list ap)
 	if (**s == 'd' || **s == 'i' || **s == 'u'
 		|| **s == 'x' || **s == 'X' || **s == 'p')
 	{
-		if (pft_init_number(f, ap, **s) == 0 && **s == 'p')
-			return (pft_print_string("(nil)", f));
+		pft_init_number(f, ap, **s);
 		pft_init_base(f, **s);
 		size = pft_print_num(f);
 	}

@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:02:35 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/21 04:43:20 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/21 13:16:34 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		pft_printf_format(const char *str);
 
 int		ft_printf(const char *str, ...);
 /*ft_printf_num.c*/
-int		pft_init_number(t_format *t_num, va_list ap, char conv);
+void	pft_init_number(t_format *t_num, va_list ap, char conv);
 
 void	pft_init_base(t_format *t_num, char conv);
 

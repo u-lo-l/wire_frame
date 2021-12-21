@@ -6,14 +6,14 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/21 04:41:21 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/21 13:39:54 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	pft_init_number(t_format *f, va_list ap, char conv)
+void	pft_init_number(t_format *f, va_list ap, char conv)
 {
 	long	temp;
 
@@ -34,7 +34,6 @@ int	pft_init_number(t_format *f, va_list ap, char conv)
 		f->is_minus = 1;
 		ft_strlcpy(f->sign_prefix, "-", 2);
 	}
-	return (f->nbr != 0);
 }
 
 void	pft_init_base(t_format *f, char conv)
@@ -54,7 +53,7 @@ void	pft_init_base(t_format *f, char conv)
 			ft_strlcpy(f->base_prefix, "0x", 3);
 			f->print_base = 1;
 		}
-		if (f->nbr == 0)
+		if (f->nbr == 0 && conv != 'p')
 			ft_strlcpy(f->base_prefix, "\0\0", 3);
 	}
 }
@@ -109,7 +108,7 @@ int	pft_print_num(t_format *f)
 	if (f->blank == '0' && f->precision >= 0)
 		f->blank = ' ';
 	numstr = pft_numtostr(f);
-	len = ft_strlen(numstr) + ft_strlen(f->sign_prefix);
+	len = ft_strlen(numstr) +	 ft_strlen(f->sign_prefix);
 	len += ft_strlen(f->base_prefix) * f->print_base;
 	ret_size = len;
 	f->blank_size = ft_max(f->width - len, 0);
