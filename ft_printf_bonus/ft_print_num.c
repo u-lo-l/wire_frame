@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/21 13:39:54 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/21 20:33:06 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pft_init_number(t_format *f, va_list ap, char conv)
 {
 	long	temp;
 
+	temp = 0;
 	if (conv == 'd' || conv == 'i')
 		temp = (long)va_arg(ap, int);
 	else if (conv == 'u' || conv == 'x' || conv == 'X')
@@ -108,7 +109,7 @@ int	pft_print_num(t_format *f)
 	if (f->blank == '0' && f->precision >= 0)
 		f->blank = ' ';
 	numstr = pft_numtostr(f);
-	len = ft_strlen(numstr) +	 ft_strlen(f->sign_prefix);
+	len = ft_strlen(numstr) + ft_strlen(f->sign_prefix);
 	len += ft_strlen(f->base_prefix) * f->print_base;
 	ret_size = len;
 	f->blank_size = ft_max(f->width - len, 0);

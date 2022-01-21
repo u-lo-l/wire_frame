@@ -6,13 +6,13 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:39:53 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/19 20:05:36 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/21 20:34:50 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr(char  *str)
+int	ft_putstr(char *str)
 {
 	if (str == NULL)
 		return (-1);

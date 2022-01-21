@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:07 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/21 04:41:44 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/21 20:58:49 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ int	pft_print_string(char *str, t_format *f)
 
 	size = 0;
 	if (str == NULL)
-	{
 		str = "(null)";
-		if (f->precision >= 0 && f->precision < 6)
-			f->precision = 0;
-	}
 	len = ft_strlen(str);
 	if (f->precision >= 0)
 		len = ft_min(len, f->precision);
