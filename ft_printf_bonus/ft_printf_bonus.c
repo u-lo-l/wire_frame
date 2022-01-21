@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:01:17 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/19 01:08:48 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/22 00:24:14 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 #include <stdio.h>
 
-int ft_print_format(char *s, va_list ap)
+int	pft_print_format(char **str, va_list ap)
 {
-	t_number	t_num;
+	t_format	format_info;
 	int			size;
 
 	size = 0;
-	if (*s == 'd' || *s == 'i' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'p')
+	pft_init_format(&format_info);
+	pft_get_flags(str, &format_info);
+	format_info.width = pft_get_count(str);
+	if (**str == '.')
 	{
-		if (init_number(&t_num, ap, *s) == 0 && *s == 'p')
-			return (ft_putstr("(nil)"));
-		init_base(&t_num, *s);
-		init_base_prefix(&t_num, *s);
-		size = ft_print_num(t_num);
+		(*str)++;
+		format_info.precision = pft_get_count(str);
 	}
-	else if (*s == 'c' || *s == '%')
-		size = ft_print_char(ap, *s);
-	else if (*s == 's')
-		size = ft_print_string(ap);
+	size = pft_get_conversion(str, &format_info, ap);
+	(*str)++;
 	return (size);
 }
 
@@ -48,22 +46,11 @@ int	ft_printf(const char *str, ...)
 		if (*temp == '%')
 		{
 			temp++;
-			ret += ft_print_format(temp, ap);
+			ret += pft_print_format(&temp, ap);
 		}
 		else
-			ret += write(1, temp, 1);
-		temp++;
+			ret += write(1, temp++, 1);
 	}
 	va_end(ap);
 	return (ret);
 }
-
-// int main()
-// {   
-// 	int a = 1234;
-// 	char c = 'C';
-// 	ft_printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
-// 	printf("=====================\n");
-// 	printf("%c\n%s\n%p\n%d\n%i\n%u\n%x\n%X\n%%\n", c, "abc def", &a, -a, a, a, a, a);
-// 	// ft_printf("%p\n", &a);
-// }

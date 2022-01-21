@@ -6,57 +6,32 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:07 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/21 20:58:49 by dkim2            ###   ########.fr       */
+/*   Updated: 2021/12/19 01:26:46 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	pft_fill_blank(char c, int n)
+int ft_print_char(va_list ap, char conv)
 {
-	int	i;
+	unsigned char c;
 
-	i = -1;
-	while (++i < n)
-		write(1, &c, 1);
-	return (n);
-}
-
-int	pft_print_char(t_format *f, va_list ap, char conv)
-{
-	unsigned char	c;
-	int				size;
-
-	size = 0;
-	f->blank_size = ft_max(f->width - 1, 0);
-	if (f->justify == RIGHT)
-		size += pft_fill_blank(f->blank, f->blank_size);
 	if (conv == '%')
-		c = '%';
+		return (write(1, "%", 1));
 	if (conv == 'c')
-		c = (unsigned char)va_arg(ap, int);
-	size += write(1, &c, 1);
-	if (f->justify == LEFT)
-		size += pft_fill_blank(f->blank, f->blank_size);
-	return (size);
+	{
+		c = (unsigned int)va_arg(ap, int);
+		return (write(1, &c, 1));
+	}
+	return (0);
 }
 
-int	pft_print_string(char *str, t_format *f)
+int ft_print_string(va_list ap)
 {
-	int		size;
-	int		len;
+	char	*str;
 
-	size = 0;
-	if (str == NULL)
+	str = va_arg(ap, char *);
+	if (str == 0)
 		str = "(null)";
-	len = ft_strlen(str);
-	if (f->precision >= 0)
-		len = ft_min(len, f->precision);
-	f->blank_size = ft_max(f->width - len, 0);
-	if (f->justify == RIGHT)
-		size += pft_fill_blank(f->blank, f->blank_size);
-	size += write(1, str, len);
-	if (f->justify == LEFT)
-		size += pft_fill_blank(f->blank, f->blank_size);
-	return (size);
+	return (ft_putstr(str));
 }
