@@ -6,7 +6,7 @@
 #    By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 22:35:00 by dkim2             #+#    #+#              #
-#    Updated: 2021/12/19 01:29:38 by dkim2            ###   ########.fr        #
+#    Updated: 2022/01/22 13:44:16 by dkim2            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_FILE = libft.a
 LIBS = $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
 # LIBS = ./libft/libft.a
 
-OBJS = ft_printf.o ft_print_num.o ft_print_word.o ft_format.o
+OBJS = ft_printf.o ft_print_num.o ft_print_word.o
 SRCS = $(OBJS.o=.c)
 
 all : $(NAME)

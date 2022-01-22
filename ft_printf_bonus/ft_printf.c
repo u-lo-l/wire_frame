@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:01:17 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/19 01:08:48 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/22 13:40:15 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int ft_print_format(char *s, va_list ap)
 	size = 0;
 	if (*s == 'd' || *s == 'i' || *s == 'u' || *s == 'x' || *s == 'X' || *s == 'p')
 	{
-		if (init_number(&t_num, ap, *s) == 0 && *s == 'p')
-			return (ft_putstr("(nil)"));
+		init_number(&t_num, ap, *s);
 		init_base(&t_num, *s);
 		init_base_prefix(&t_num, *s);
 		size = ft_print_num(t_num);

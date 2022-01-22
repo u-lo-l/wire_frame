@@ -6,16 +6,17 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2021/12/15 15:53:20 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/22 13:39:42 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-int	init_number(t_number *t_num, va_list ap, char conv)
+void	init_number(t_number *t_num, va_list ap, char conv)
 {
 	long	temp;
 
+	temp = 0;
 	t_num->is_minus = 0;
 	if (conv == 'd' || conv == 'i')
 		temp = (long)va_arg(ap, int);
@@ -34,7 +35,6 @@ int	init_number(t_number *t_num, va_list ap, char conv)
 		t_num->is_minus = 1;
 		ft_strlcpy(t_num->sign_prefix, "-", 2);
 	}
-	return (t_num->nbr != 0);
 }
 
 void	init_base(t_number *t_num, char conv)
