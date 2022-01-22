@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 02:56:55 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 16:49:09 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/23 00:11:21 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pft_init_format(t_format *f)
+void	pf_init_format(t_format *f)
 {
 	if (f == NULL)
 		return ;
@@ -30,7 +30,7 @@ void	pft_init_format(t_format *f)
 	f->justify = RIGHT;
 }
 
-void	pft_get_flags(char **str, t_format *f)
+void	pf_get_flags(char **str, t_format *f)
 {
 	while (**str)
 	{
@@ -56,7 +56,7 @@ void	pft_get_flags(char **str, t_format *f)
 	}
 }
 
-int	pft_get_count(char **str)
+int	pf_get_count(char **str)
 {
 	int	count;
 
@@ -69,7 +69,7 @@ int	pft_get_count(char **str)
 	return (count);
 }
 
-int	pft_get_conversion(char **s, t_format *f, va_list ap)
+int	pf_get_conversion(char **s, t_format *f, va_list ap)
 {
 	int		size;
 	char	*str;
@@ -78,16 +78,16 @@ int	pft_get_conversion(char **s, t_format *f, va_list ap)
 	if (**s == 'd' || **s == 'i' || **s == 'u'
 		|| **s == 'x' || **s == 'X' || **s == 'p')
 	{
-		pft_init_number(f, ap, **s);
-		pft_init_base(f, **s);
-		size = pft_print_num(f);
+		pf_init_number(f, ap, **s);
+		pf_init_base(f, **s);
+		size = pf_print_num(f);
 	}
 	else if (**s == 'c' || **s == '%')
-		size = pft_print_char(f, ap, **s);
+		size = pf_print_char(f, ap, **s);
 	else if (**s == 's')
 	{
 		str = (char *)va_arg(ap, const char *);
-		size = pft_print_string(str, f);
+		size = pf_print_string(str, f);
 	}
 	else
 		return (-1);

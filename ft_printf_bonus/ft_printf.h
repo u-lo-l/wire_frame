@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:02:35 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 00:24:12 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/23 00:11:24 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ typedef struct s_format
 
 }	t_format;
 /*ft_format.c*/
-void	pft_init_format(t_format *format_info);
+void	pf_init_format(t_format *format_info);
 
-void	pft_get_flags(char **str, t_format *format_info);
+void	pf_get_flags(char **str, t_format *format_info);
 
-int		pft_get_count(char **str);
+int		pf_get_count(char **str);
 
-int		pft_get_conversion(char **str, t_format *format_info, va_list ap);
+int		pf_get_conversion(char **str, t_format *format_info, va_list ap);
 /*ft_printf.c*/
-int		pft_printf_format(const char *str);
+int		pf_printf_format(const char *str);
 
 int		ft_printf(const char *str, ...);
 /*ft_printf_num.c*/
-void	pft_init_number(t_format *t_num, va_list ap, char conv);
+void	pf_init_number(t_format *t_num, va_list ap, char conv);
 
-void	pft_init_base(t_format *t_num, char conv);
+void	pf_init_base(t_format *t_num, char conv);
 
-int		pft_print_num(t_format *t_num);
+int		pf_print_num(t_format *t_num);
 /*ft_print_word.c*/
-int		pft_fill_blank(char c, int n);
+int		pf_fill_blank(char c, int n);
 
-int		pft_print_char(t_format *format_info, va_list ap, char conv);
+int		pf_print_char(t_format *format_info, va_list ap, char conv);
 
-int		pft_print_string(char *str, t_format *format_info);
+int		pf_print_string(char *str, t_format *format_info);
 
 #endif

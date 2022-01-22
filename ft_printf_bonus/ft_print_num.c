@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_num_bonus.c                               :+:      :+:    :+:   */
+/*   ft_print_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 16:49:26 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/23 00:11:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pft_init_number(t_format *f, va_list ap, char conv)
+void	pf_init_number(t_format *f, va_list ap, char conv)
 {
 	long	temp;
 
@@ -36,7 +36,7 @@ void	pft_init_number(t_format *f, va_list ap, char conv)
 	}
 }
 
-void	pft_init_base(t_format *f, char conv)
+void	pf_init_base(t_format *f, char conv)
 {
 	if (conv == 'p' || conv == 'x' || conv == 'X')
 	{
@@ -58,7 +58,7 @@ void	pft_init_base(t_format *f, char conv)
 	}
 }
 
-static int	pft_get_numsize(unsigned long nbr, int base)
+static int	pf_get_numsize(unsigned long nbr, int base)
 {
 	int	i;
 
@@ -71,7 +71,7 @@ static int	pft_get_numsize(unsigned long nbr, int base)
 	return (i);
 }
 
-char	*pft_numtostr(t_format *f)
+char	*pf_numtostr(t_format *f)
 {
 	int				len;
 	char			*numstr;
@@ -84,7 +84,7 @@ char	*pft_numtostr(t_format *f)
 	if (f->nbr == 0 && f->precision == 0)
 		len = 0;
 	else
-		len = ft_max(pft_get_numsize(f->nbr, f->base), f->precision);
+		len = ft_max(pf_get_numsize(f->nbr, f->base), f->precision);
 	f->blank_size = ft_max(f->width - len, 0);
 	numstr = ft_calloc(sizeof(char), len + 1);
 	if (numstr == NULL)
@@ -99,7 +99,7 @@ char	*pft_numtostr(t_format *f)
 	return (numstr);
 }
 
-int	pft_print_num(t_format *f)
+int	pf_print_num(t_format *f)
 {
 	int		ret_size;
 	int		len;
@@ -107,19 +107,19 @@ int	pft_print_num(t_format *f)
 
 	if (f->blank == '0' && f->precision >= 0)
 		f->blank = ' ';
-	numstr = pft_numtostr(f);
+	numstr = pf_numtostr(f);
 	len = ft_strlen(numstr) + ft_strlen(f->sign_prefix);
 	len += ft_strlen(f->base_prefix) * f->print_base;
 	ret_size = len;
 	f->blank_size = ft_max(f->width - len, 0);
 	if (f->justify == RIGHT)
-		ret_size += pft_fill_blank(f->blank, f->blank_size);
+		ret_size += pf_fill_blank(f->blank, f->blank_size);
 	ft_putstr(f->sign_prefix);
 	if (f->print_base == 1)
 		ft_putstr(f->base_prefix);
 	ft_putstr(numstr);
 	if (f->justify == LEFT)
-		ret_size += pft_fill_blank(f->blank, f->blank_size);
+		ret_size += pf_fill_blank(f->blank, f->blank_size);
 	free(numstr);
 	return (ret_size);
 }

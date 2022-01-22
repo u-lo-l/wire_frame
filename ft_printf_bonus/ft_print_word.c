@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_word_bonus.c                              :+:      :+:    :+:   */
+/*   ft_print_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:07 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 16:49:49 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/23 00:11:17 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	pft_fill_blank(char c, int n)
+int	pf_fill_blank(char c, int n)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	pft_fill_blank(char c, int n)
 	return (n);
 }
 
-int	pft_print_char(t_format *f, va_list ap, char conv)
+int	pf_print_char(t_format *f, va_list ap, char conv)
 {
 	unsigned char	c;
 	int				size;
@@ -30,18 +30,18 @@ int	pft_print_char(t_format *f, va_list ap, char conv)
 	size = 0;
 	f->blank_size = ft_max(f->width - 1, 0);
 	if (f->justify == RIGHT)
-		size += pft_fill_blank(f->blank, f->blank_size);
+		size += pf_fill_blank(f->blank, f->blank_size);
 	if (conv == '%')
 		c = '%';
 	if (conv == 'c')
 		c = (unsigned char)va_arg(ap, int);
 	size += write(1, &c, 1);
 	if (f->justify == LEFT)
-		size += pft_fill_blank(f->blank, f->blank_size);
+		size += pf_fill_blank(f->blank, f->blank_size);
 	return (size);
 }
 
-int	pft_print_string(char *str, t_format *f)
+int	pf_print_string(char *str, t_format *f)
 {
 	int		size;
 	int		len;
@@ -54,9 +54,9 @@ int	pft_print_string(char *str, t_format *f)
 		len = ft_min(len, f->precision);
 	f->blank_size = ft_max(f->width - len, 0);
 	if (f->justify == RIGHT)
-		size += pft_fill_blank(f->blank, f->blank_size);
+		size += pf_fill_blank(f->blank, f->blank_size);
 	size += write(1, str, len);
 	if (f->justify == LEFT)
-		size += pft_fill_blank(f->blank, f->blank_size);
+		size += pf_fill_blank(f->blank, f->blank_size);
 	return (size);
 }
