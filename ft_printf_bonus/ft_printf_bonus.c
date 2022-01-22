@@ -6,12 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:01:17 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 13:38:45 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/22 16:51:44 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
-#include <stdio.h>
 
 int	pft_print_format(char **str, va_list ap)
 {

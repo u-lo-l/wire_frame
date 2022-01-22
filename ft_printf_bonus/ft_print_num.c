@@ -1,113 +1,125 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_num.conv                                     :+:      :+:    :+:   */
+/*   ft_print_num_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 13:39:42 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/22 16:49:26 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-void	init_number(t_number *t_num, va_list ap, char conv)
+
+void	pft_init_number(t_format *f, va_list ap, char conv)
 {
 	long	temp;
 
 	temp = 0;
-	t_num->is_minus = 0;
 	if (conv == 'd' || conv == 'i')
 		temp = (long)va_arg(ap, int);
-	else if (conv == 'u' || conv == 'x'|| conv  == 'X')
+	else if (conv == 'u' || conv == 'x' || conv == 'X')
 		temp = (long)va_arg(ap, unsigned int);
 	else if (conv == 'p')
-		temp = (long)va_arg(ap, void *);
-	if (temp >= 0 || conv == 'p')
 	{
-		t_num->nbr = (unsigned long)temp;
-		ft_strlcpy(t_num->sign_prefix, "\0", 2);
+		temp = (long)va_arg(ap, void *);
+		f->precision = -1;
 	}
+	if (temp >= 0 || conv == 'p')
+		f->nbr = (unsigned long)temp;
 	else
 	{
-		t_num->nbr = (unsigned long)(-temp);
-		t_num->is_minus = 1;
-		ft_strlcpy(t_num->sign_prefix, "-", 2);
+		f->nbr = (unsigned long)(-temp);
+		f->is_minus = 1;
+		ft_strlcpy(f->sign_prefix, "-", 2);
 	}
 }
 
-void	init_base(t_number *t_num, char conv)
+void	pft_init_base(t_format *f, char conv)
 {
-	if (conv == 'd' || conv == 'i' || conv == 'u')
+	if (conv == 'p' || conv == 'x' || conv == 'X')
 	{
-		t_num->base = 10;
-		t_num->is_digit_upper = 0;
-	}
-	else if (conv == 'p' || conv == 'x'|| conv  == 'X')
-	{
-		t_num->base = 16;
+		f->base = 16;
 		if (conv == 'X')
-			t_num->is_digit_upper = 1;
+		{
+			ft_strlcpy(f->base_prefix, "0X", 3);
+			f->is_digit_upper = 1;
+		}
+		else if (conv == 'x')
+			ft_strlcpy(f->base_prefix, "0x", 3);
 		else
-			t_num->is_digit_upper = 0;
+		{
+			ft_strlcpy(f->base_prefix, "0x", 3);
+			f->print_base = 1;
+		}
+		if (f->nbr == 0 && conv != 'p')
+			ft_strlcpy(f->base_prefix, "\0\0", 3);
 	}
 }
 
-void	init_base_prefix(t_number *t_num, char conv)
+static int	pft_get_numsize(unsigned long nbr, int base)
 {
-	t_num->print_base_pre = 0;
-	if (conv == 'd' || conv == 'i' || conv == 'u')
-		ft_strlcpy(t_num->base_prefix, "\0\0", 3);
-	else if (conv == 'p' || conv == 'x')
+	int	i;
+
+	i = 1;
+	while (nbr / base)
 	{
-		ft_strlcpy(t_num->base_prefix, "0x", 3);
-		if (conv == 'p')
-			t_num->print_base_pre = 1;
+		i++;
+		nbr /= base;
 	}
-	else if (conv == 'X')
-		ft_strlcpy(t_num->base_prefix, "0X", 3);
+	return (i);
 }
 
-static int ft_count_digits(unsigned long number, int base)
+char	*pft_numtostr(t_format *f)
 {
-	int	count;
+	int				len;
+	char			*numstr;
 
-	count = 1;
-	while (number / base)
+	if (f->blank == '0' && f->precision == -1 && f->width)
 	{
-		count++;
-		number /= base;
+		f->precision = f->width - ft_strlen(f->sign_prefix);
+		f->width = 0;
 	}
-	return (count);
-}
-
-int	ft_print_num(t_number t_num)
-{
-	int		i;
-	int		len;
-	int		size;
-	char	*numstr;
-	
-	len = ft_count_digits(t_num.nbr, t_num.base);
-	size = len;
+	if (f->nbr == 0 && f->precision == 0)
+		len = 0;
+	else
+		len = ft_max(pft_get_numsize(f->nbr, f->base), f->precision);
+	f->blank_size = ft_max(f->width - len, 0);
 	numstr = ft_calloc(sizeof(char), len + 1);
 	if (numstr == NULL)
 		return (0);
-	size += ft_putstr(t_num.sign_prefix);
-	if (t_num.print_base_pre == 1)
-		size += ft_putstr(t_num.base_prefix);
-	i = 1;
-	while (i <= len)
+	while (--len >= 0)
 	{
-		if (t_num.is_digit_upper == 0)
-			numstr[len - i] = "0123456789abcdef"[t_num.nbr % t_num.base];
-		else if (t_num.is_digit_upper == 1)
-			numstr[len - i] = "0123456789ABCDEF"[t_num.nbr % t_num.base];
-		t_num.nbr /= t_num.base;
-		i++;
+		numstr[len] = "0123456789ABCDEF"[f->nbr % f->base];
+		if (f->is_digit_upper == 0)
+			numstr[len] = "0123456789abcdef"[f->nbr % f->base];
+		f->nbr /= f->base;
 	}
+	return (numstr);
+}
+
+int	pft_print_num(t_format *f)
+{
+	int		ret_size;
+	int		len;
+	char	*numstr;
+
+	if (f->blank == '0' && f->precision >= 0)
+		f->blank = ' ';
+	numstr = pft_numtostr(f);
+	len = ft_strlen(numstr) + ft_strlen(f->sign_prefix);
+	len += ft_strlen(f->base_prefix) * f->print_base;
+	ret_size = len;
+	f->blank_size = ft_max(f->width - len, 0);
+	if (f->justify == RIGHT)
+		ret_size += pft_fill_blank(f->blank, f->blank_size);
+	ft_putstr(f->sign_prefix);
+	if (f->print_base == 1)
+		ft_putstr(f->base_prefix);
 	ft_putstr(numstr);
+	if (f->justify == LEFT)
+		ret_size += pft_fill_blank(f->blank, f->blank_size);
 	free(numstr);
-	return (size);
+	return (ret_size);
 }
