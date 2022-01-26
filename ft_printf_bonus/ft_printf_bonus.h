@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 03:02:35 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/23 00:14:57 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:37:04 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "./libft/libft.h"
 # define RIGHT 0
 # define LEFT 1
-# include <stdio.h>
 
 typedef struct s_format
 {
