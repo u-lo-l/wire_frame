@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 22:49:10 by dkim2             #+#    #+#             */
-/*   Updated: 2022/01/22 00:24:07 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/01/30 23:39:20 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static int	pft_get_numsize(unsigned long nbr, int base)
 
 char	*pft_numtostr(t_format *f)
 {
-	int				len;
-	char			*numstr;
+	int		len;
+	char	*numstr;
 
 	if (f->blank == '0' && f->precision == -1 && f->width)
 	{
@@ -86,7 +86,6 @@ char	*pft_numtostr(t_format *f)
 		len = 0;
 	else
 		len = ft_max(pft_get_numsize(f->nbr, f->base), f->precision);
-	f->blank_size = ft_max(f->width - len, 0);
 	numstr = ft_calloc(sizeof(char), len + 1);
 	if (numstr == NULL)
 		return (0);
