@@ -6,7 +6,7 @@
 #    By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 22:35:00 by dkim2             #+#    #+#              #
-#    Updated: 2022/01/31 02:18:51 by dkim2            ###   ########.fr        #
+#    Updated: 2022/02/15 21:30:57 by dkim2            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,12 @@ re : fclean all
 
 #DEPENDECY PART
 
-$(NAME) : $(OBJS)
-	@make -C $(LIBFT_DIR) all
+$(NAME) : $(OBJS) $(LIBS)
 	cp $(LIBS) $(NAME)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-# SUFFIX RULE
+$(LIBS)	:
+	@make -C $(LIBFT_DIR) all
+
 .c.o : 
 	$(CC) $(CFLAGS) -c $< -o $@
