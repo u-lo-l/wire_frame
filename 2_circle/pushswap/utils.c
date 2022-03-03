@@ -1,5 +1,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 int	my_strlen(char *str)
 {
@@ -33,36 +34,37 @@ char	*my_strndup(char *str, int size)
 	ret[i] = 0;
 	return (ret);
 }
-#include <stdio.h>
 
 int	my_atoi(char *str, int *error_check)
 {
-	long 	num;
+	long	num;
 	int		is_minus;
+
 	is_minus = 0;
-	num	= 0; 
-	if (*str == '-')
-	{
-		is_minus = 1;
-		str++;
-	}
-	while (*str)
-	{
-		if (*str >= '0' && *str <= '9')
-			num = num * 10 + (*str - '0');
-		else
-		{
-			*error_check = 1;
-			break;
-		}
-		if (num > is_minus + 2147483647)
-		{
-			*error_check = 1;
-			break;
-		}
-		str++;
-	}
+	num = 0;
+	if (*str == '-' || *str == '+')
+		if (*str++ == '-')
+			is_minus = 1;
+	if (*str == 0)
+		*error_check = 1;
+	while (*str >= '0' && *str <= '9')
+		num = num * 10 + (*(str++) - '0');
+	if (*str != 0 || num > is_minus + 2147483647L)
+		*error_check = 1;
 	if (is_minus)
 		num *= -1;
 	return ((int)num);
 }
+/*
+int main(int argc, char **argv)
+{
+	int err = 0;
+	for (int i = 1 ; i < argc ; i++)
+	{
+		int n = my_atoi(argv[i], &err);
+		if (err == 1)
+			printf("ERROR\n");
+		else
+			printf("[%d]\n", n);
+	}
+}*/

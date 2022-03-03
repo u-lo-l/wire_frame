@@ -6,13 +6,13 @@
 /*   By: dkim2 <dkim2@student.42Seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:07:30 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 15:07:54 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/03 16:44:35 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arg_list.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 t_arglst	*new_arglst(void)
 {
 	t_arglst	*lst;
@@ -21,14 +21,19 @@ t_arglst	*new_arglst(void)
 	if (!lst)
 		return (NULL);
 	lst->lst_size = 0;
-	lst->head = NULL;
+	lst->head = malloc(sizeof(t_arglst_node));
+	if (lst->head == NULL)
+	{
+		free(lst);
+		return (NULL);
+	}
+	lst->head->next = NULL;
 	return (lst);
 }
 
 int	add_by_data(t_arglst *lst, int data)
 {
 	t_arglst_node	*new;
-
 	if (!lst)
 		return (ERROR);
 	new = malloc(sizeof(t_arglst_node));
@@ -36,18 +41,18 @@ int	add_by_data(t_arglst *lst, int data)
 		return (ERROR);
 	new->data = data;
 	new->next = lst->head->next;
-	lst->head = new;
+	lst->head->next = new;
 	return (TRUE);
 }
 
-int	fine_data(t_arglst *lst, int key)
+int	find_data(t_arglst *lst, int key)
 {
 	t_arglst_node	*curr;
 
 	if (!lst)
-		return (NULL);
-	curr = lst->head;
-	while (curr != NULL)
+		return (0);
+	curr = lst->head->next;;
+	while (curr != 0)
 	{
 		if (curr->data == key)
 			return (TRUE);
