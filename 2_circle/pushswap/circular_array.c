@@ -1,5 +1,5 @@
 #include "circular_array.h"
-
+#include <stdlib.h>
 t_mystack	*new_stack(int size)
 {
 	t_mystack	*stack;
@@ -11,7 +11,7 @@ t_mystack	*new_stack(int size)
 	stack->curr_element_count = 0;
 	stack->top_index = 0;
 	stack->bottom_index = 0;
-	stack->array = malloc(sizeof(int), size);
+	stack->array = malloc(sizeof(int) * size);
 	if (!(stack->array))
 	{
 		free(stack);
@@ -33,6 +33,7 @@ int	convert_index(int idx, int max_size)
 	return (idx);
 }
 
+/*
 int	traverse(t_mystack *stack, (int)*func(int, int))
 {
 	int	i;
@@ -54,3 +55,4 @@ int	traverse(t_mystack *stack, (int)*func(int, int))
 	}
 	return (res);
 }
+*/

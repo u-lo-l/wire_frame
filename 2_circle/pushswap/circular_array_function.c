@@ -7,7 +7,7 @@ int add_top(t_mystack *stack, int num)
 	if (stack->curr_element_count == stack->max_size)
 		return (FALSE);
 	stack->top_index++;
-	stack->top_indexs %= stack->max_size;
+	stack->top_index %= stack->max_size;
 	stack->array[stack->top_index] = num;
 	stack->curr_element_count++;
 	return (TRUE);

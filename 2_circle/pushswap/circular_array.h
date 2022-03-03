@@ -22,8 +22,6 @@ void	delete_stack(t_mystack *stack);
 
 int	convert_index(int idx, int max_size);
 
-int	traverse(t_mystack *stack, (int)*func(int, int));
-
 /*FUNCTIONS*/
 int add_top(t_mystack *stack, int num);
 
@@ -39,7 +37,7 @@ int is_ascending(t_mystack *stack);
 
 int is_descending(t_mystack *stack);
 
-int not_duplicated(t_mystack *stack);
+int not_duplicated(t_mystack *stack, int key);
 
 int get_fst_pivot(t_mystack *stack);
 

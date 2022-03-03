@@ -1,3 +1,4 @@
+#include "preprocess_args.h"
 #include "push_swap.h"
 #include <stdlib.h>
 
@@ -65,21 +66,31 @@ char	**split_args(int argc, char *str)
 	return (argset);
 }
 
-// int	*save_arg_as_int(int size, char **pstr)
-// {
-// 	int		i;
-// 	long	temp_num;
-// 	int		*ret_array;
+int preprocess_args(t_arg_lst *lst, char *arg)
+{
+	int		error_check;
+	int		num;
+	int		arg_count;
+	int		i;
+	char	**arg_vector;
 
-// 	ret_array = malloc(sizeof(int) * size);
-// 	if (ret_array)
-// 		return (NULL);
-// 	if (!pstr)
-// 		return (-1);
-// 	i = 0;
-// 	while (i < size)
-// 	{
+	if (!lst)
+		return (ERROR);
+	arg_count = count_args(arg);
+	arg_vector = split_args(arg_count, arg);
+	if (arg_vector == NULL)
+		return (ERROR);
+	i = 0;
+	while (i < arg_count)
+	{
+		error_check = 0;
+		num = my_atoi(arg_vector[i], &error_check);
+		if (error_check == TRUE)
+		{
+			delete_argset(arg_vector, i);
+			return (ERROR);
+		}
 
-// 	}
-
-// }
+		i++;
+	}
+}

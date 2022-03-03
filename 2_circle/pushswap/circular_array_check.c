@@ -10,14 +10,14 @@ int	is_ascending(t_mystack *stack)
 		return (ERROR);
 	curr = stack->top_index;
 	bot_i = stack->bottom_index;
-	while (TURE)
+	while (TRUE)
 	{
 		if (curr == bot_i)
 			return (TRUE);
-		next = convert_index(curr - 1);
+		next = convert_index(curr - 1, stack->max_size);
 		if (stack->array[curr] > stack->array[next])
 			return (FALSE);
-		curr = convert_index(--curr);
+		curr = convert_index(--curr, stack->max_size);
 	}
 }
 
@@ -31,14 +31,14 @@ int	is_descending(t_mystack *stack)
 		return (ERROR);
 	curr = stack->top_index;
 	bot_i = stack->bottom_index;
-	while (TURE)
+	while (TRUE)
 	{
 		if (curr == bot_i)
 			return (TRUE);
-		next = convert_index(curr - 1);
+		next = convert_index(curr - 1, stack->max_size);
 		if (stack->array[curr] < stack->array[next])
 			return (FALSE);
-		curr = convert_index(--curr);
+		curr = convert_index(--curr, stack->max_size);
 	}
 }
 
@@ -55,11 +55,11 @@ int	not_duplicated(t_mystack *stack, int key)
 	{
 		if (stack->array[curr] == key)
 			return (FALSE);
-		curr = convert_index(--curr);
+		curr = convert_index(--curr, stack->max_size);
 	}
 	return (TRUE);
 }
-
+/*
 int	get_fst_pivot(t_mystack *stack)
 {
 	int total_size;
@@ -81,3 +81,4 @@ int	get_fst_pivot(t_mystack *stack)
 }
 
 int	get_snd_pivot(t_mystack *stack);
+*/
