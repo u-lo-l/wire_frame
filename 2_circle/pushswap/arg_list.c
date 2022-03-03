@@ -6,13 +6,13 @@
 /*   By: dkim2 <dkim2@student.42Seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:07:30 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 16:44:35 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/03 17:58:17 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "arg_list.h"
 #include <stdlib.h>
-#include <stdio.h>
+
 t_arglst	*new_arglst(void)
 {
 	t_arglst	*lst;
@@ -34,6 +34,7 @@ t_arglst	*new_arglst(void)
 int	add_by_data(t_arglst *lst, int data)
 {
 	t_arglst_node	*new;
+
 	if (!lst)
 		return (ERROR);
 	new = malloc(sizeof(t_arglst_node));
@@ -51,7 +52,7 @@ int	find_data(t_arglst *lst, int key)
 
 	if (!lst)
 		return (0);
-	curr = lst->head->next;;
+	curr = lst->head->next;
 	while (curr != 0)
 	{
 		if (curr->data == key)

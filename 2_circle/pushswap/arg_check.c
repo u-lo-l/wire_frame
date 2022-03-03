@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42Seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:24:06 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 16:44:19 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/03 17:57:10 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "arg_list.h"
@@ -14,6 +14,7 @@
 #include "push_swap.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 int	count_args(char *str)
 {
 	char	space;
@@ -41,6 +42,7 @@ int	count_args(char *str)
 void	delete_argset(char **set, int size)
 {
 	int	i;
+
 	i = 0;
 	while (i < size)
 		free(set[i++]);
@@ -77,52 +79,56 @@ char	**split_args(int argc, char *str)
 	return (argset);
 }
 
-/*complete :
-	split strset to strs
-	atoi str;
-
- */
-
-int	preprocess_args(t_arglst *arglst, int argc, char **argv)
+static int	push_args_to_list(t_arglst *arglst, int argcnt, char **argset)
 {
-	int		i;
-	int		j;
-	int		num;
-	int		error_check;
-	int		temp_argcnt;
-	char	**temp_argset;
+	int	i;
+	int	err_check;
+	int	num;
 
-	error_check = 0;
-	i = 0;
-	while (++i < argc)
+	err_check = 0;
+	i = -1;
+	while (++i < argcnt)
 	{
-		temp_argcnt = count_args(argv[i]);
-		temp_argset = split_args(temp_argcnt, argv[i]);
-		j = -1;
-		while (++j < temp_argcnt)
-		{
-			num = my_atoi(temp_argset[j], &error_check);
-			if (error_check == 1)
-			{
-				delete_argset(temp_argset, temp_argcnt);
-				return (ERROR);
-			}
-			if (find_data(arglst, num))
-			{
-				delete_argset(temp_argset, temp_argcnt);
-				return (ERROR);
-			}
-			if (add_by_data(arglst, num) == -1)
-			{
-				delete_argset(temp_argset, temp_argcnt);
-				return (ERROR);
-			}
-		}
-		delete_argset(temp_argset, temp_argcnt);
+		num = my_atoi(argset[i], &err_check);
+		if (err_check == 1)
+			delete_argset(argset, argcnt);
+		else if (find_data(arglst, num) == TRUE)
+			delete_argset(argset, argcnt);
+		else if (add_by_data(arglst, num) == ERROR)
+			delete_argset(argset, argcnt);
+		else
+			continue ;
+		return (ERROR);
 	}
 	return (TRUE);
 }
 
+int	preprocess_args(t_arglst *arglst, int argc, char **argv)
+{
+	int		i;
+	int		temp_argcnt;
+	int		total_argcnt;
+	char	**temp_argset;
+
+	i = 0;
+	total_argcnt = 0;
+	while (++i < argc)
+	{
+		temp_argcnt = count_args(argv[i]);
+		total_argcnt += temp_argcnt;
+		temp_argset = split_args(temp_argcnt, argv[i]);
+		if (temp_argset == NULL)
+			return (ERROR);
+		if (push_args_to_list(arglst, temp_argcnt, temp_argset) == ERROR)
+			return (ERROR);
+		delete_argset(temp_argset, temp_argcnt);
+	}
+	if (total_argcnt == 0)
+		return (FALSE);
+	return (TRUE);
+}
+
+/*
 int main(int argc, char **argv)
 {
 	t_arglst *testlist;
@@ -130,8 +136,12 @@ int main(int argc, char **argv)
 	testlist = new_arglst();
 
 	if (argc < 2)
+	{
+		printf("few args\n");
 		return (0);
-	if (preprocess_args(testlist, argc, argv) == TRUE)
+	}
+	int res = preprocess_args(testlist, argc, argv);
+	if (res == TRUE)
 	{
 		t_arglst_node *curr = testlist->head->next;
 		while (curr != NULL)
@@ -139,27 +149,17 @@ int main(int argc, char **argv)
 			printf("[%d] ", curr->data);
 			curr = curr->next;
 		}
+		printf("\n");
 	}
-	else
-		printf("err");
-	printf("\n");
+	else if (res == FALSE)
+		printf("few args\n");
+	else if (res == ERROR)
+	{
+		printf("err\n");
+		delete_arglst(testlist);
+		exit(1);
+	}
 	delete_arglst(testlist);
 	return (0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
