@@ -2,19 +2,24 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
+# include "circularArray/circular_array.h"
+# include "args/args.h"
+
+enum e_order_type
+{
+	not_ordered,
+	acsending,
+	decsending
+};
 
 /*utils*/
 int	my_strlen(char *str);
 char	*my_strndup(char *str, int size);
 int	my_atoi(char *str, int *errer_check);
 
-/*args*/
-int	count_args(char *str);
-char	**split_args(int argc, char *str);
-
-
 /*main function*/
-char	*push_swap(int argc, char **argv);
+t_mystack	*init_stack_a(t_arglst *arglst);
 
+void	push_swap(t_arglst *arglst);
 
 #endif

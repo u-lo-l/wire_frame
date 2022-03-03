@@ -27,12 +27,11 @@ int add_top(t_mystack *stack, int num);
 
 int add_bot(t_mystack *stack, int num);
 
-int rem_bot(t_mystack *stack, int num);
+int rem_top(t_mystack *stack);
 
-int rem_bot(t_mystack *stack, int num);
+int rem_bot(t_mystack *stack);
 
 /*check*/
-
 int is_ascending(t_mystack *stack);
 
 int is_descending(t_mystack *stack);
@@ -44,9 +43,9 @@ int get_fst_pivot(t_mystack *stack);
 int get_snd_pivot(t_mystack *stack);
 
 /*ACTIONS*/
-void act_push(t_mystack *stack, int num);
+void act_push(t_mystack *from, t_mystack *to);
 
-void act_sawp(t_mystack *from, t_mystack *to);
+void act_sawp(t_mystack *stack);
 
 void act_rot(t_mystack *stack);
 
