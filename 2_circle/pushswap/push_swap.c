@@ -28,7 +28,6 @@ static void	printstack(t_mystack *stack)
 		count++;
 	}
 	printf("\n\033[0m");
-
 }
 
 static void show_arglst(t_arglst *lst)
