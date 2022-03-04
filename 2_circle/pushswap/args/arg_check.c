@@ -14,11 +14,11 @@
 #include "../push_swap.h"
 #include <stdlib.h>
 
-int	count_args(char *str)
+unsigned int	count_args(char *str)
 {
-	char	space;
-	int		count;
-	int		on_the_word;
+	char				space;
+	unsigned int		count;
+	int					on_the_word;
 
 	space = ' ';
 	count = 0;
@@ -38,9 +38,9 @@ int	count_args(char *str)
 	return (count);
 }
 
-void	delete_argset(char **set, int size)
+void	delete_argset(char **set, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < size)
@@ -104,10 +104,10 @@ static int	push_args_to_list(t_arglst *arglst, int argcnt, char **argset)
 
 int	preprocess_args(t_arglst *arglst, int argc, char **argv)
 {
-	int		i;
-	int		temp_argcnt;
-	int		total_argcnt;
-	char	**temp_argset;
+	int					i;
+	unsigned int		temp_argcnt;
+	unsigned int		total_argcnt;
+	char				**temp_argset;
 
 	i = 0;
 	total_argcnt = 0;
