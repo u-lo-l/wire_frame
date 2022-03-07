@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:07:16 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 22:40:10 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/07 23:45:44 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			delete_arglst(t_arglst *lst);
 /*arg_check*/
 unsigned int	count_args(char *str);
 
-void			delete_argset(char **argset, int size);
+void			delete_argset(char **argset, unsigned int size);
 
 char			**split_args(int argc, char *str);
 
