@@ -4,10 +4,10 @@
 #include <stdio.h>
 static void	printstack(t_mystack *stack)
 {
-	int i;
-	int count;
-	int bot;
-	int max;
+	int 			i;
+	int 			count;
+	int 			bot;
+	unsigned int	max;
 
 	i = stack->top_index;
 	count = 1;
