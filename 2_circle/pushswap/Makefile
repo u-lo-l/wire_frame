@@ -20,6 +20,7 @@ OBJS = ./circularArray/circular_array_check.o\
 		./args/arg_check.o\
 		./args/utils.o\
 		./push_swap.o\
+		./sort_three.o\
 		main.o
 SRCS = $(OBJS.o=.c)
 

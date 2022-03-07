@@ -22,4 +22,6 @@ t_mystack	*init_stack_a(t_arglst *arglst);
 
 void	push_swap(t_arglst *arglst);
 
+/*sort*/
+void	sort3(t_mystack *stack_a);
 #endif

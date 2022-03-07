@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:48:56 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 21:48:59 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/07 22:59:31 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void act_push(t_mystack *from, t_mystack *to)
 {
 	int temp;
 
-	if (from->curr_element_count == 0)
+	if (from->curr == 0)
 		return ;
 	temp = from->array[from->top_index];
 	rem_top(from);
 	add_top(to, temp);
 }
 
-void act_sawp(t_mystack *stack)
+void act_swap(t_mystack *stack)
 {
 	int temp;
 	int first;
@@ -31,7 +31,7 @@ void act_sawp(t_mystack *stack)
 
 	if (!stack)
 		return ;
-	if (stack->curr_element_count < 2)
+	if (stack->curr < 2)
 		return ;
 	first = stack->top_index;
 	secnd = convert_index(first - 1, stack->max_size);
@@ -44,7 +44,7 @@ void act_rot(t_mystack *stack)
 {
 	int temp;
 
-	if (stack->curr_element_count < 2)
+	if (stack->curr < 2)
 		return ;
 	temp = stack->array[stack->top_index];
 	rem_top(stack);
@@ -55,7 +55,7 @@ void act_rrot(t_mystack *stack)
 {
 	int temp;
 
-	if (stack->curr_element_count < 2)
+	if (stack->curr < 2)
 		return ;
 	temp = stack->array[stack->bottom_index];
 	rem_bot(stack);

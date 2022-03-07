@@ -15,7 +15,7 @@ static void	printstack(t_mystack *stack)
 	max = stack->max_size;
 	printf("\033[1;33m>>> STACK <<<\n");
 	printf("  MAX : %d\n", stack->max_size);
-	printf(" CURR : %d\n", stack->curr_element_count);
+	printf(" CURR : %d\n", stack->curr);
 	printf(" DATA : ");
 	while (1)
 	{
@@ -78,5 +78,8 @@ void	push_swap(t_arglst *arglst)
 	if (!ordered_dir)
 		ordered_dir = is_descending(stack_a);
 	printf("%s \n", order_arr[ordered_dir]);
+	if (stack_a->curr == 3)
+		sort3(stack_a);
+	printstack(stack_a);
 	delete_stack(stack_a);
 }

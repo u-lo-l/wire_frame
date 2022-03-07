@@ -9,7 +9,7 @@
 typedef struct s_circular_array_type
 {
 	int max_size;
-	int curr_element_count;
+	int curr;
 	int top_index;
 	int bottom_index;
 	int *array;
@@ -45,7 +45,7 @@ int get_snd_pivot(t_mystack *stack);
 /*ACTIONS*/
 void act_push(t_mystack *from, t_mystack *to);
 
-void act_sawp(t_mystack *stack);
+void act_swap(t_mystack *stack);
 
 void act_rot(t_mystack *stack);
 
