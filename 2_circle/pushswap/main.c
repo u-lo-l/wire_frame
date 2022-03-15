@@ -3,17 +3,6 @@
 #include "args/args.h"
 #include <stdio.h>
 
-static void show_arglst(t_arglst *lst)
-{	t_arglst_node *curr = lst->head->next;
-	while (curr)
-	{
-		printf("->(%d)",curr->data);
-		curr = curr->next;
-	}
-	printf("\n");
-}
-
-
 int main(int argc, char *argv[])
 {
 	int preprocess_res;
@@ -28,9 +17,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	else if(preprocess_res == TRUE)
-	{
 		push_swap(arglst);
-	}
 	else
 		delete_arglst(arglst);
 	return (0);

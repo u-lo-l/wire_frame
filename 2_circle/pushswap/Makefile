@@ -20,8 +20,11 @@ OBJS = ./circularArray/circular_array_check.o\
 		./args/arg_check.o\
 		./args/utils.o\
 		./push_swap.o\
-		./sort_three.o\
+		./sort_mini.o\
+		./sort_big.o\
+		just_for_debug.o\
 		main.o
+		
 SRCS = $(OBJS.o=.c)
 
 all : $(TARGET)

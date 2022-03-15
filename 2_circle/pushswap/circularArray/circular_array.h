@@ -13,11 +13,12 @@ typedef struct s_element_type
 
 typedef struct s_circular_array_type
 {
-	int max_size;
-	int curr;
-	int top_index;
-	int bottom_index;
-	int	*array;
+	int		max_size;
+	int		curr;
+	int		top_index;
+	int		bottom_index;
+	int		*array;
+	char	stack_name;
 }				t_mystack;
 
 /*BASIC*/
@@ -44,11 +45,11 @@ int is_descending(t_mystack *stack);
 int not_duplicated(t_mystack *stack, int key);
 
 /*ACTIONS*/
-void act_push(t_mystack *from, t_mystack *to);
+int act_push(t_mystack *from, t_mystack *to);
 
-void act_swap(t_mystack *stack);
+int act_swap(t_mystack *stack1, t_mystack *stack2);
 
-void act_rot(t_mystack *stack);
+int act_rot(t_mystack *stack1, t_mystack *stack2);
 
-void act_rrot(t_mystack *stack);
+int act_rrot(t_mystack *stack1, t_mystack *stack2);
 #endif

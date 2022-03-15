@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dkim2 <dkim2@student.42Seoul.kr>           +#+  +:+       +#+        */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:58:31 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/03 21:58:22 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/16 03:56:02 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,3 @@ int	my_atoi(char *str, int *error_check)
 		num *= -1;
 	return ((int)num);
 }
-/*
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int err = 0;
-	for (int i = 1 ; i < argc ; i++)
-	{
-		int n = my_atoi(argv[i], &err);
-		if (err == 1)
-			printf("ERROR\n");
-		else
-			printf("[%d]\n", n);
-	}
-}*/

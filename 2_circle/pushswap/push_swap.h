@@ -4,24 +4,39 @@
 # include <stdlib.h>
 # include "circularArray/circular_array.h"
 # include "args/args.h"
+# include <stdio.h>
 
-enum e_order_type
+typedef struct s_actions_number
 {
-	not_ordered,
-	acsending,
-	decsending
-};
+	int	ra;
+	int	rra;
+	int	rb;
+	int	rrb;
+	int	total;
+}		t_actions;
 
 /*utils*/
-int	my_strlen(char *str);
-char	*my_strndup(char *str, int size);
-int	my_atoi(char *str, int *errer_check);
+int			my_strlen(char *str);
+char		*my_strndup(char *str, int size);
+int			my_atoi(char *str, int *errer_check);
 
 /*main function*/
 t_mystack	*init_stack_a(t_arglst *arglst);
-
-void	push_swap(t_arglst *arglst);
+void		push_swap(t_arglst *arglst);
 
 /*sort*/
-void	sort3(t_mystack *stack_a);
+void		sort_mini(t_mystack *A);
+int			sort_big(t_mystack *A, t_mystack *B);
+
+/*count actions*/
+void		count_ra(t_mystack *A, int index, t_actions *actions);
+void		count_rb(t_mystack *B, int target, t_actions *actions);
+void		count_a2b_actions(t_mystack *A, int index, t_mystack *B, t_actions *temp);
+int			get_least_actions(t_mystack *A,	t_mystack *B, t_actions *actions, \
+							int big3[3]);
+
+/*just for debug*/
+void		printstack(t_mystack *stack);
+void		show_arglst(t_arglst *lst);
+
 #endif

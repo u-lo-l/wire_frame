@@ -6,12 +6,13 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:49:08 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/07 22:58:27 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/16 02:31:27 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "circular_array.h"
 #include <stdlib.h>
+
 t_mystack	*new_stack(int size)
 {
 	t_mystack	*stack;
@@ -23,6 +24,7 @@ t_mystack	*new_stack(int size)
 	stack->curr = 0;
 	stack->top_index = 0;
 	stack->bottom_index = 0;
+	stack->stack_name = 0;
 	stack->array = malloc(sizeof(int) * size);
 	if (!(stack->array))
 	{
@@ -44,27 +46,3 @@ int	convert_index(int idx, int max_size)
 	idx %= max_size;
 	return (idx);
 }
-
-/*
-int	traverse(t_mystack *stack, (int)*func(int, int))
-{
-	int	i;
-	int	top_i;
-	int	bot_i;
-	int res;
-
-	if (!stack)
-		return (ERROR);
-	i = top_i;
-	while (TRUE)
-	{
-		if (i == bot_i)
-			break ;
-		res = func(stack->array[i], stack->array[convert_index(i - 1)]);
-		if (res == ERROR)
-			return (ERROR);
-		i = convert_index(--i);
-	}
-	return (res);
-}
-*/
