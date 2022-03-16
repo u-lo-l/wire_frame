@@ -6,12 +6,26 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 17:58:31 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/16 03:56:02 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/16 13:50:58 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 #include <stdlib.h>
+
+int my_min(int a, int b)
+{
+	if (a > b)
+		return (b);
+	return (a);
+}
+
+int my_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
 
 int	my_strlen(char *str)
 {

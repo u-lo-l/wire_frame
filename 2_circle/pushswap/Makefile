@@ -1,6 +1,6 @@
 .SUFFIXES : .c .STACK_OBJS
 
-TARGET = push_swap.out
+TARGET = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
@@ -18,11 +18,13 @@ OBJS = ./circularArray/circular_array_check.o\
 		./circularArray/actions.o\
 		./args/arg_list.o\
 		./args/arg_check.o\
-		./args/utils.o\
 		./push_swap.o\
 		./sort_mini.o\
 		./sort_big.o\
+		utils.o\
 		just_for_debug.o\
+		prepare_a2b.o \
+		count_actions.o \
 		main.o
 		
 SRCS = $(OBJS.o=.c)
