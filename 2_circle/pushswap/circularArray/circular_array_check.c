@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:49:14 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/15 23:15:41 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:39:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	is_ascending(t_mystack *stack)
 
 	if (!stack)
 		return (ERROR);
-	curr = stack->top_index;
-	bot_i = stack->bottom_index;
+	curr = stack->top_idx;
+	bot_i = stack->bot_idx;
 	while (TRUE)
 	{
 		if (curr == bot_i)
@@ -41,8 +41,8 @@ int	is_descending(t_mystack *stack)
 
 	if (!stack)
 		return (ERROR);
-	curr = stack->top_index;
-	bot_i = stack->bottom_index;
+	curr = stack->top_idx;
+	bot_i = stack->bot_idx;
 	while (TRUE)
 	{
 		if (curr == bot_i)
@@ -61,8 +61,8 @@ int	not_duplicated(t_mystack *stack, int key)
 
 	if (!stack)
 		return (ERROR);
-	curr = stack->top_index;
-	bot_i = stack->bottom_index;
+	curr = stack->top_idx;
+	bot_i = stack->bot_idx;
 	while (curr != bot_i)
 	{
 		if (stack->array[curr] == key)

@@ -44,8 +44,7 @@ void	push_swap(t_arglst *arglst)
 
 	stack_a = init_stack_a(arglst);
 	stack_b = init_stack_b(stack_a->max_size);
-	// printstack(stack_a);
-	// printstack(stack_b);
+
 	if (!stack_a || !stack_b)
 	{
 		delete_stack(stack_a);
@@ -59,10 +58,6 @@ void	push_swap(t_arglst *arglst)
 		else
 			sort_big(stack_a, stack_b);
 	}
-	// printstack(stack_a);
-	// // printstack(stack_b);
-	char *as[2] = {"FAIL", "OK"};
-	printf("%s\n", as[is_ascending(stack_a)]);
 	delete_stack(stack_a);
 	delete_stack(stack_b);
 }

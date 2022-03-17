@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:49:08 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/16 02:31:27 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:38:35 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_mystack	*new_stack(int size)
 		return (NULL);
 	stack->max_size = size;
 	stack->curr = 0;
-	stack->top_index = 0;
-	stack->bottom_index = 0;
+	stack->top_idx = 0;
+	stack->bot_idx = 0;
 	stack->stack_name = 0;
 	stack->array = malloc(sizeof(int) * size);
 	if (!(stack->array))

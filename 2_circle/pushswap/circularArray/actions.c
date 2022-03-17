@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:48:56 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/17 03:14:50 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:39:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int act_push(t_mystack *from, t_mystack *to)
 	
 	if (from->curr == 0)
 		return (FALSE);
-	temp = from->array[from->top_index];
+	temp = from->array[from->top_idx];
 	rem_top(from);
 	add_top(to, temp);
 	if (to->stack_name == 'a')
@@ -46,12 +46,12 @@ int act_swap(t_mystack *stack1, t_mystack *stack2)
 
 	if (stack1 && stack1->curr >= 2)
 	{
-		first = stack1->top_index;
+		first = stack1->top_idx;
 		secnd = convert_index(first - 1, stack1->max_size);
 		swap(stack1->array + first, stack1->array + secnd);
 		if (stack2 && stack2->curr >= 2)
 		{
-			first = stack2->top_index;
+			first = stack2->top_idx;
 			secnd = convert_index(first - 1, stack2->max_size);
 			swap(stack2->array + first, stack2->array + secnd);
 			write(1, "ss\n", 3);
@@ -72,12 +72,12 @@ int act_rot(t_mystack *stack1, t_mystack *stack2)
 
 	if (stack1 != NULL && stack1->curr >= 2)
 	{
-		temp = stack1->array[stack1->top_index];
+		temp = stack1->array[stack1->top_idx];
 		rem_top(stack1);
 		add_bot(stack1, temp);
 		if (stack2 != NULL && stack2->curr >= 2)
 		{
-			temp = stack2->array[stack2->top_index];
+			temp = stack2->array[stack2->top_idx];
 			rem_top(stack2);
 			add_bot(stack2, temp);
 			write(1, "rr\n", 3);
@@ -98,12 +98,12 @@ int act_rrot(t_mystack *stack1, t_mystack *stack2)
 
 	if (stack1 != NULL && stack1->curr >= 2)
 	{
-		temp = stack1->array[stack1->bottom_index];
+		temp = stack1->array[stack1->bot_idx];
 		rem_bot(stack1);
 		add_top(stack1, temp);
 		if (stack2 != NULL && stack2->curr >= 2)
 		{
-			temp = stack2->array[stack2->bottom_index];
+			temp = stack2->array[stack2->bot_idx];
 			rem_bot(stack2);
 			add_top(stack2, temp);
 			write(1, "rrr\n", 4);

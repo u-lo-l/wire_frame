@@ -48,30 +48,30 @@ static void	set_big_three(t_mystack *stack, int big3[3])
 {
 	int	i;
 
-	i = stack->top_index;
+	i = stack->top_idx;
 	while (TRUE)
 	{
 		if (big3[0] < stack->array[i])
 			big3[0] = stack->array[i];
-		if (i == stack->bottom_index)
+		if (i == stack->bot_idx)
 			break;
 		i = convert_index(i - 1, stack->max_size);
 	}
-	i = stack->top_index;
+	i = stack->top_idx;
 	while (TRUE)
 	{
 		if ((big3[1] < stack->array[i]) && (stack->array[i] < big3[0]))
 			big3[1] = stack->array[i];
-		if (i == stack->bottom_index)
+		if (i == stack->bot_idx)
 			break;
 		i = convert_index(i - 1, stack->max_size);
 	}
-	i = stack->top_index;
+	i = stack->top_idx;
 	while (TRUE)
 	{
 		if (big3[2] < stack->array[i] && stack->array[i] < big3[1])
 			big3[2] = stack->array[i];
-		if (i == stack->bottom_index)
+		if (i == stack->bot_idx)
 			break;
 		i = convert_index(i - 1, stack->max_size);
 	}

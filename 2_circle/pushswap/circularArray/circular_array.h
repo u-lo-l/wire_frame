@@ -15,8 +15,8 @@ typedef struct s_circular_array_type
 {
 	int		max_size;
 	int		curr;
-	int		top_index;
-	int		bottom_index;
+	int		top_idx;
+	int		bot_idx;
 	int		*array;
 	char	stack_name;
 }				t_mystack;

@@ -7,8 +7,8 @@ void sort_two(t_mystack *stack)
 
 	if (stack->curr != 2)
 		return ;
-	first = stack->array[stack->top_index];
-	second = stack->array[stack->bottom_index];
+	first = stack->array[stack->top_idx];
+	second = stack->array[stack->bot_idx];
 	if (first > second)
 		act_swap(stack, NULL);
 }
@@ -35,7 +35,7 @@ void sort_mini(t_mystack *stack)
 		sort_two(stack);
 	if (stack->curr != 3 || is_ascending(stack))
 		return ;
-	first = stack->top_index;
+	first = stack->top_idx;
 	second = stack->array[convert_index(first - 1, stack->max_size)];
 	third = stack->array[convert_index(first - 2, stack->max_size)];
 	first = stack->array[first];

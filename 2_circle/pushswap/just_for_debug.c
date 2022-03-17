@@ -9,9 +9,9 @@ void	printstack(t_mystack *stack)
 	int 			bot;
 	unsigned int	max;
 
-	i = stack->top_index;
+	i = stack->top_idx;
 	count = 1;
-	bot = stack->bottom_index;
+	bot = stack->bot_idx;
 	max = stack->max_size;
 	printf("\033[1;33m>>> STACK %c<<<\n", stack->stack_name);
 	printf("  MAX : %d\n", stack->max_size);

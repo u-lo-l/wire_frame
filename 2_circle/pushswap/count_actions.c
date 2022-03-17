@@ -3,7 +3,7 @@
 void	count_ra(t_mystack *A, int a_idx, t_actions *actions)
 {
 	actions->ra = 0;
-	actions->ra = convert_index(A->top_index - a_idx, A->max_size);
+	actions->ra = convert_index(A->top_idx - a_idx, A->max_size);
 	if (A->curr == 0)
 		actions->rra = 0;
 	else
@@ -19,29 +19,29 @@ void	count_rb(t_mystack *B, int target, t_actions *actions)
 	actions->rrb = 0;
 	if (!B->curr)
 		return ;
-	if (target < B->array[B->top_index])
+	if (target < B->array[B->top_idx])
 	{
-		b_idx = convert_index(B->top_index, B->max_size);
+		b_idx = convert_index(B->top_idx, B->max_size);
 		prev = 2147483647;
 		while (target < B->array[b_idx] && prev >= B->array[b_idx])
 		{
 			prev = B->array[b_idx];
 			actions->rb++;
-			if (b_idx == B->bottom_index)
+			if (b_idx == B->bot_idx)
 				break;
 			b_idx = convert_index(b_idx - 1, B->max_size);
 		}
 		actions->rrb = (B->curr - actions->rb) % B->curr;
 	}
-	else if(target > B->array[B->top_index])
+	else if(target > B->array[B->top_idx])
 	{
-		b_idx = convert_index(B->bottom_index, B->max_size);
+		b_idx = convert_index(B->bot_idx, B->max_size);
 		prev = -2147483648;
 		while (target > B->array[b_idx] && prev <= B->array[b_idx])
 		{
 			prev = B->array[b_idx];
 			actions->rrb++;
-			if (b_idx == B->top_index)
+			if (b_idx == B->top_idx)
 				break;
 			b_idx = convert_index(b_idx + 1, B->max_size);
 		}
@@ -74,7 +74,7 @@ int	count_b2a_actions(t_mystack *B)
 	rb = 0;
 	while (rb < B->curr)
 	{
-		b_idx = convert_index(B->top_index - rb, B->max_size);
+		b_idx = convert_index(B->top_idx - rb, B->max_size);
 		if (prev < B->array[b_idx])
 			break;
 		prev = B->array[b_idx];
@@ -89,7 +89,7 @@ int	get_least_actions(t_mystack *A,	t_mystack *B,
 	int			a_idx;
 	t_actions	temp_actions;
 
-	a_idx = A->top_index;
+	a_idx = A->top_idx;
 	while (TRUE)
 	{
 		if (A->array[a_idx] != big3[0] \
@@ -100,7 +100,7 @@ int	get_least_actions(t_mystack *A,	t_mystack *B,
 			if (actions->total > temp_actions.total)
 				(*actions) = temp_actions;
 		}
-		if (a_idx == A->bottom_index)
+		if (a_idx == A->bot_idx)
 			break;
 		a_idx = convert_index(a_idx - 1, A->max_size);
 	}
