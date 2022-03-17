@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 03:07:59 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 03:08:33 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <unistd.h>
@@ -37,7 +49,8 @@ void		case_else(t_mystack *A, t_mystack *B, t_actions *acts);
 /*count actions*/
 void		count_ra(t_mystack *A, int index, t_actions *actions);
 void		count_rb(t_mystack *B, int target, t_actions *actions);
-void		count_a2b_actions(t_mystack *A, int index, t_mystack *B, t_actions *temp);
+void		count_a2b_actions(t_mystack *A, int index, t_mystack *B, \
+							t_actions *temp);
 int			count_b2a_actions(t_mystack *B);
 int			get_least_actions(t_mystack *A,	t_mystack *B, t_actions *actions, \
 							int big3[3]);

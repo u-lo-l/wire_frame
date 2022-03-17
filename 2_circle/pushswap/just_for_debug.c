@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   just_for_debug.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:49:33 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 02:51:01 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*THIS PART IS JUST FOR DEBUG*/
 #include "push_swap.h"
 #include <stdio.h>
 
 void	printstack(t_mystack *stack)
 {
-	int 			i;
-	int 			count;
-	int 			bot;
+	int				i;
+	int				count;
+	int				bot;
 	unsigned int	max;
 
 	i = stack->top_idx;
@@ -26,7 +38,7 @@ void	printstack(t_mystack *stack)
 	{
 		printf("[% 4d]", stack->array[i]);
 		if (i == bot)
-			break;
+			break ;
 		if (count % 15 == 0)
 			printf("\n        ");
 		i = convert_index(i - 1, max);
@@ -35,12 +47,14 @@ void	printstack(t_mystack *stack)
 	printf("\033[0m\n");
 }
 
-void show_arglst(t_arglst *lst)
+void	show_arglst(t_arglst *lst)
 {	
-	t_arglst_node *curr = lst->head->next;
+	t_arglst_node	*curr;
+
+	curr = lst->head->next;
 	while (curr)
 	{
-		printf("->(%d)",curr->data);
+		printf("->(%d)", curr->data);
 		curr = curr->next;
 	}
 	printf("\n");

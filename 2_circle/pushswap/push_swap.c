@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:52:45 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 02:53:31 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_mystack	*init_stack_a(t_arglst *arglst)
@@ -5,7 +17,7 @@ t_mystack	*init_stack_a(t_arglst *arglst)
 	t_mystack		*stack_a;
 	int				size;
 	t_arglst_node	*curr;
-	
+
 	if (!arglst)
 		return (NULL);
 	size = arglst->lst_size;
@@ -39,17 +51,16 @@ t_mystack	*init_stack_b(int size)
 
 void	push_swap(t_arglst *arglst)
 {
-	t_mystack *stack_a;
-	t_mystack *stack_b;
+	t_mystack	*stack_a;
+	t_mystack	*stack_b;
 
 	stack_a = init_stack_a(arglst);
 	stack_b = init_stack_b(stack_a->max_size);
-
 	if (!stack_a || !stack_b)
 	{
 		delete_stack(stack_a);
 		delete_stack(stack_b);
-		return ;	
+		return ;
 	}
 	if (is_ascending(stack_a) != TRUE)
 	{

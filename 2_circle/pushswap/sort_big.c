@@ -1,11 +1,22 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_big.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:54:03 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 03:07:01 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "push_swap.h"
 
 void	prepare_a_and_b(t_mystack *A, t_mystack *B, t_actions *acts)
 {
-	int count_rr;
-	int count_rrr;
-	int count_else;
+	int	count_rr;
+	int	count_rrr;
+	int	count_else;
 	int	i;
 
 	count_rr = my_max(acts->ra, acts->rb);
@@ -31,49 +42,48 @@ void	rearrange_b(t_mystack *B)
 	if (B->curr > 0)
 		count_rrb = (B->curr - count_rb) % B->curr;
 	if (count_rb >= count_rrb)
+	{
 		while (count_rrb > 0)
 		{
 			act_rrot(B, NULL);
 			count_rrb--;
 		}
+	}
 	else
+	{
 		while (count_rb > 0)
 		{
 			act_rot(B, NULL);
 			count_rb--;
 		}
+	}
 }
 
 static void	set_big_three(t_mystack *stack, int big3[3])
 {
 	int	i;
+	int	idx;
 
-	i = stack->top_idx;
-	while (TRUE)
+	i = -1;
+	while (++i < stack->curr)
 	{
+		idx = convert_index(stack->top_idx - i, stack->max_size);
 		if (big3[0] < stack->array[i])
 			big3[0] = stack->array[i];
-		if (i == stack->bot_idx)
-			break;
-		i = convert_index(i - 1, stack->max_size);
 	}
-	i = stack->top_idx;
-	while (TRUE)
+	i = -1;
+	while (++i < stack->curr)
 	{
+		idx = convert_index(stack->top_idx - i, stack->max_size);
 		if ((big3[1] < stack->array[i]) && (stack->array[i] < big3[0]))
 			big3[1] = stack->array[i];
-		if (i == stack->bot_idx)
-			break;
-		i = convert_index(i - 1, stack->max_size);
 	}
-	i = stack->top_idx;
-	while (TRUE)
+	i = -1;
+	while (++i < stack->curr)
 	{
+		idx = convert_index(stack->top_idx - i, stack->max_size);
 		if (big3[2] < stack->array[i] && stack->array[i] < big3[1])
 			big3[2] = stack->array[i];
-		if (i == stack->bot_idx)
-			break;
-		i = convert_index(i - 1, stack->max_size);
 	}
 }
 

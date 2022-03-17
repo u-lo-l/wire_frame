@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_mini.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:55:42 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 02:56:01 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void sort_two(t_mystack *stack)
+void	sort_two(t_mystack *stack)
 {
-	int first;
-	int second;
+	int	first;
+	int	second;
 
 	if (stack->curr != 2)
 		return ;
@@ -13,23 +25,23 @@ void sort_two(t_mystack *stack)
 		act_swap(stack, NULL);
 }
 
-static void sort_three_case2(t_mystack *stack)
+static void	sort_three_case2(t_mystack *stack)
 {
 	act_rrot(stack, NULL);
 	act_swap(stack, NULL);
 }
 
-static void sort_three_case5(t_mystack *stack)
+static void	sort_three_case5(t_mystack *stack)
 {
 	act_swap(stack, NULL);
 	act_rrot(stack, NULL);
 }
 
-void sort_mini(t_mystack *stack)
+void	sort_mini(t_mystack *stack)
 {
-	int first;
-	int second;
-	int third;
+	int	first;
+	int	second;
+	int	third;
 
 	if (stack->curr == 2)
 		sort_two(stack);

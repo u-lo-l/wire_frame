@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepare_a2b.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:52:16 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 02:52:30 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void case_rr(t_mystack *A, t_mystack *B, t_actions *acts)
+void	case_rr(t_mystack *A, t_mystack *B, t_actions *acts)
 {
 	int	i;
 
@@ -22,7 +34,7 @@ void case_rr(t_mystack *A, t_mystack *B, t_actions *acts)
 	}
 }
 
-void case_rrr(t_mystack *A, t_mystack *B, t_actions *acts)
+void	case_rrr(t_mystack *A, t_mystack *B, t_actions *acts)
 {
 	int	i;
 
@@ -44,9 +56,10 @@ void case_rrr(t_mystack *A, t_mystack *B, t_actions *acts)
 	}
 }
 
-void case_else(t_mystack *A, t_mystack *B, t_actions *acts)
+void	case_else(t_mystack *A, t_mystack *B, t_actions *acts)
 {
-	int i;
+	int	i;
+
 	i = -1;
 	if (acts->ra < acts->rra)
 		while (++i < acts->ra)

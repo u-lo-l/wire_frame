@@ -6,14 +6,14 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:49:20 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/18 02:39:20 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:46:34 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "circular_array.h"
 #include <stdio.h>
 
-int add_top(t_mystack *stack, int num)
+int	add_top(t_mystack *stack, int num)
 {
 	if (!stack)
 		return (ERROR);
@@ -26,7 +26,7 @@ int add_top(t_mystack *stack, int num)
 	return (TRUE);
 }
 
-int add_bot(t_mystack *stack, int num)
+int	add_bot(t_mystack *stack, int num)
 {
 	if (!stack)
 		return (ERROR);
@@ -39,7 +39,7 @@ int add_bot(t_mystack *stack, int num)
 	return (TRUE);
 }
 
-int rem_top(t_mystack *stack)
+int	rem_top(t_mystack *stack)
 {
 	if (!stack)
 		return (ERROR);
@@ -51,7 +51,7 @@ int rem_top(t_mystack *stack)
 	return (TRUE);
 }
 
-int rem_bot(t_mystack *stack)
+int	rem_bot(t_mystack *stack)
 {
 	if (!stack)
 		return (ERROR);

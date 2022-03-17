@@ -6,26 +6,26 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 21:48:56 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/18 02:39:18 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:46:17 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "circular_array.h"
 #include <unistd.h>
 
-static void swap(int *a, int *b)
+static void	swap(int *a, int *b)
 {
-	int temp;
+	int	temp;
 
 	temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-int act_push(t_mystack *from, t_mystack *to)
+int	act_push(t_mystack *from, t_mystack *to)
 {
-	int temp;
-	
+	int	temp;
+
 	if (from->curr == 0)
 		return (FALSE);
 	temp = from->array[from->top_idx];
@@ -38,11 +38,11 @@ int act_push(t_mystack *from, t_mystack *to)
 	return (TRUE);
 }
 
-int act_swap(t_mystack *stack1, t_mystack *stack2)
+int	act_swap(t_mystack *stack1, t_mystack *stack2)
 {
-	int temp;
-	int first;
-	int secnd;
+	int	temp;
+	int	first;
+	int	secnd;
 
 	if (stack1 && stack1->curr >= 2)
 	{
@@ -66,9 +66,9 @@ int act_swap(t_mystack *stack1, t_mystack *stack2)
 	return (FALSE);
 }
 
-int act_rot(t_mystack *stack1, t_mystack *stack2)
+int	act_rot(t_mystack *stack1, t_mystack *stack2)
 {
-	int temp;
+	int	temp;
 
 	if (stack1 != NULL && stack1->curr >= 2)
 	{
@@ -92,9 +92,9 @@ int act_rot(t_mystack *stack1, t_mystack *stack2)
 	return (FALSE);
 }
 
-int act_rrot(t_mystack *stack1, t_mystack *stack2)
+int	act_rrot(t_mystack *stack1, t_mystack *stack2)
 {
-	int temp;
+	int	temp;
 
 	if (stack1 != NULL && stack1->curr >= 2)
 	{

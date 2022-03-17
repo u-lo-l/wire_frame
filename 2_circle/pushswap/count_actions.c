@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count_actions.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/18 02:48:08 by dkim2             #+#    #+#             */
+/*   Updated: 2022/03/18 03:11:50 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	count_ra(t_mystack *A, int a_idx, t_actions *actions)
@@ -28,12 +40,12 @@ void	count_rb(t_mystack *B, int target, t_actions *actions)
 			prev = B->array[b_idx];
 			actions->rb++;
 			if (b_idx == B->bot_idx)
-				break;
+				break ;
 			b_idx = convert_index(b_idx - 1, B->max_size);
 		}
 		actions->rrb = (B->curr - actions->rb) % B->curr;
 	}
-	else if(target > B->array[B->top_idx])
+	else if (target > B->array[B->top_idx])
 	{
 		b_idx = convert_index(B->bot_idx, B->max_size);
 		prev = -2147483648;
@@ -42,7 +54,7 @@ void	count_rb(t_mystack *B, int target, t_actions *actions)
 			prev = B->array[b_idx];
 			actions->rrb++;
 			if (b_idx == B->top_idx)
-				break;
+				break ;
 			b_idx = convert_index(b_idx + 1, B->max_size);
 		}
 		actions->rb = (B->curr - actions->rrb) % B->curr;
@@ -52,9 +64,10 @@ void	count_rb(t_mystack *B, int target, t_actions *actions)
 void	count_a2b_actions(t_mystack *A, int a_idx, t_mystack *B,
 						t_actions *temp)
 {
-	int count_rr;
-	int count_rrr;
-	int count_else;
+	int	count_rr;
+	int	count_rrr;
+	int	count_else;
+
 	count_ra(A, a_idx, temp);
 	count_rb(B, A->array[a_idx], temp);
 	count_rr = my_max(temp->ra, temp->rb);
@@ -68,7 +81,7 @@ int	count_b2a_actions(t_mystack *B)
 {
 	int	b_idx;
 	int	prev;
-	int rb;
+	int	rb;
 
 	prev = 2147483647;
 	rb = 0;
@@ -76,7 +89,7 @@ int	count_b2a_actions(t_mystack *B)
 	{
 		b_idx = convert_index(B->top_idx - rb, B->max_size);
 		if (prev < B->array[b_idx])
-			break;
+			break ;
 		prev = B->array[b_idx];
 		rb++;
 	}
@@ -101,7 +114,7 @@ int	get_least_actions(t_mystack *A,	t_mystack *B,
 				(*actions) = temp_actions;
 		}
 		if (a_idx == A->bot_idx)
-			break;
+			break ;
 		a_idx = convert_index(a_idx - 1, A->max_size);
 	}
 }

@@ -6,21 +6,21 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 15:07:16 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/07 23:45:44 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/18 02:42:57 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARG_LIST_H
-# define ARG_LIST_H
+#ifndef ARGS_H
+# define ARGS_H
 # define TRUE	1
 # define FALSE	0
 # define ERROR	-1
 
 typedef struct s_arg_with_index_type
 {
-    int data;
-    int index;
-}       t_arg_with_idx;
+	int	data;
+	int	index;
+}		t_arg_with_idx;
 
 typedef struct s_arglst_node_type
 {
