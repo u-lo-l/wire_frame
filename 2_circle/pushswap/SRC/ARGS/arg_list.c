@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
+#include "../../INC/args.h"
 #include <stdlib.h>
 
 t_arglst	*new_arglst(void)

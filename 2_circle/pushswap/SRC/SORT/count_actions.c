@@ -10,55 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../INC/push_swap.h"
 
-void	count_ra(t_mystack *A, int a_idx, t_actions *actions)
+void	count_ra(t_mystack *A, int a_idx, t_actions *acts)
 {
-	actions->ra = 0;
-	actions->ra = convert_index(A->top_idx - a_idx, A->max_size);
+	acts->ra = convert_index(A->top_idx - a_idx, A->max_size);
 	if (A->curr == 0)
-		actions->rra = 0;
+		acts->rra = 0;
 	else
-		actions->rra = (A->curr - actions->ra) % A->curr;
+		acts->rra = (A->curr - acts->ra) % A->curr;
 }
 
-void	count_rb(t_mystack *B, int target, t_actions *actions)
+void	count_rb(t_mystack *B, int target, t_actions *acts)
 {
 	int	b_idx;
 	int	prev;
 
-	actions->rb = 0;
-	actions->rrb = 0;
+	acts->rb = 0;
+	acts->rrb = 0;
 	if (!B->curr)
 		return ;
 	if (target < B->array[B->top_idx])
-	{
-		b_idx = convert_index(B->top_idx, B->max_size);
-		prev = 2147483647;
-		while (target < B->array[b_idx] && prev >= B->array[b_idx])
-		{
-			prev = B->array[b_idx];
-			actions->rb++;
-			if (b_idx == B->bot_idx)
-				break ;
-			b_idx = convert_index(b_idx - 1, B->max_size);
-		}
-		actions->rrb = (B->curr - actions->rb) % B->curr;
-	}
+		search_b_forward(B, target, acts);
 	else if (target > B->array[B->top_idx])
-	{
-		b_idx = convert_index(B->bot_idx, B->max_size);
-		prev = -2147483648;
-		while (target > B->array[b_idx] && prev <= B->array[b_idx])
-		{
-			prev = B->array[b_idx];
-			actions->rrb++;
-			if (b_idx == B->top_idx)
-				break ;
-			b_idx = convert_index(b_idx + 1, B->max_size);
-		}
-		actions->rb = (B->curr - actions->rrb) % B->curr;
-	}
+		search_b_backward(B, target, acts);
 }
 
 void	count_a2b_actions(t_mystack *A, int a_idx, t_mystack *B,
@@ -94,27 +69,4 @@ int	count_b2a_actions(t_mystack *B)
 		rb++;
 	}
 	return (rb);
-}
-
-void	get_least_actions(t_mystack *A,	t_mystack *B,
-						t_actions *actions,	int big3[3])
-{
-	int			a_idx;
-	t_actions	temp_actions;
-
-	a_idx = A->top_idx;
-	while (TRUE)
-	{
-		if (A->array[a_idx] != big3[0] \
-			&& A->array[a_idx] != big3[1] \
-			&& A->array[a_idx] != big3[2])
-		{
-			count_a2b_actions(A, a_idx, B, &temp_actions);
-			if (actions->total > temp_actions.total)
-				(*actions) = temp_actions;
-		}
-		if (a_idx == A->bot_idx)
-			break ;
-		a_idx = convert_index(a_idx - 1, A->max_size);
-	}
 }

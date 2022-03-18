@@ -16,12 +16,6 @@
 # define FALSE	0
 # define ERROR	-1
 
-typedef struct s_arg_with_index_type
-{
-	int	data;
-	int	index;
-}		t_arg_with_idx;
-
 typedef struct s_arglst_node_type
 {
 	int							data;
@@ -36,20 +30,15 @@ typedef struct s_arglst_type
 
 /*arg_list*/
 t_arglst		*new_arglst(void);
-
 int				add_by_data(t_arglst *lst, int data);
-
 int				find_data(t_arglst *lst, int key);
-
 void			delete_arglst(t_arglst *lst);
 
 /*arg_check*/
 unsigned int	count_args(char *str);
-
 void			delete_argset(char **argset, unsigned int size);
-
 char			**split_args(int argc, char *str);
-
+int				push_args_to_list(t_arglst *arglst, int argcnt, char **argset);
 int				preprocess_args(t_arglst *arglst, int argc, char **argv);
 
 #endif

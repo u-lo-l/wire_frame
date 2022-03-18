@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "../push_swap.h"
-#include <stdlib.h>
+#include "../../INC/args.h"
+#include "../../INC/push_swap.h"
 
 unsigned int	count_args(char *str)
 {
@@ -48,7 +47,6 @@ void	delete_argset(char **set, unsigned int size)
 	free(set);
 }
 
-/* 마지막에 널보인터가 없는 이중배열을 반환한다.. 꼭 개수로 접근하자 */
 char	**split_args(int argc, char *str)
 {
 	char	*start;
@@ -78,7 +76,7 @@ char	**split_args(int argc, char *str)
 	return (argset);
 }
 
-static int	push_args_to_list(t_arglst *arglst, int argcnt, char **argset)
+int	push_args_to_list(t_arglst *arglst, int argcnt, char **argset)
 {
 	int	i;
 	int	err_check;
@@ -126,40 +124,3 @@ int	preprocess_args(t_arglst *arglst, int argc, char **argv)
 		return (FALSE);
 	return (TRUE);
 }
-
-/*
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	t_arglst *testlist;
-
-	testlist = new_arglst();
-
-	if (argc < 2)
-	{
-		printf("few args\n");
-		return (0);
-	}
-	int res = preprocess_args(testlist, argc, argv);
-	if (res == TRUE)
-	{
-		t_arglst_node *curr = testlist->head->next;
-		while (curr != NULL)
-		{
-			printf("[%d] ", curr->data);
-			curr = curr->next;
-		}
-		printf("\n");
-	}
-	else if (res == FALSE)
-		printf("few args\n");
-	else if (res == ERROR)
-	{
-		printf("err\n");
-		delete_arglst(testlist);
-		exit(1);
-	}
-	delete_arglst(testlist);
-	return (0);
-}
-*/

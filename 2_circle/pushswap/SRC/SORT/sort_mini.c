@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../INC/push_swap.h"
 
-void	sort_two(t_mystack *stack)
+static void	sort_two(t_mystack *stack)
 {
 	int	first;
 	int	second;

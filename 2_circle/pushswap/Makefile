@@ -5,20 +5,24 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
-OBJS = ./circularArray/circular_array_check.o\
-		./circularArray/circular_array.o\
-		./circularArray/circular_array_function.o\
-		./circularArray/actions.o\
-		./args/arg_list.o\
-		./args/arg_check.o\
-		./push_swap.o\
-		./sort_mini.o\
-		./sort_big.o\
-		utils.o\
+OBJS =	\
+		SRC/STACK/circular_array.o\
+		SRC/STACK/circular_array_function.o\
+		\
+		SRC/ARGS/arg_list.o\
+		SRC/ARGS/arg_check.o\
+		\
+		SRC/SORT/sort_mini.o\
+		SRC/SORT/sort_big.o\
+		SRC/SORT/count_rb.o\
+		SRC/SORT/prepare_a2b.o \
+		SRC/SORT/count_actions.o \
+		\
+		SRC/push_swap.o\
+		SRC/utils.o\
+		SRC/actions.o\
+		\
 		just_for_debug.o\
-		prepare_a2b.o \
-		count_actions.o \
-		main.o
 		
 SRCS = $(OBJS.o=.c)
 

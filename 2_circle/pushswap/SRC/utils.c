@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../INC/push_swap.h"
 #include <stdlib.h>
 
 int	my_min(int a, int b)

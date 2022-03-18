@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../INC/push_swap.h"
 
 void	prepare_a_and_b(t_mystack *A, t_mystack *B, t_actions *acts)
 {
@@ -31,11 +31,13 @@ void	prepare_a_and_b(t_mystack *A, t_mystack *B, t_actions *acts)
 		case_else(A, B, acts);
 }
 
-void	rearrange_b(t_mystack *B)
+void	make_b_decsending(t_mystack *B)
 {
 	int	count_rb;
 	int	count_rrb;
 
+	if (B->stack_name != 'b')
+		return ;
 	count_rb = count_b2a_actions(B);
 	count_rrb = 0;
 	if (B->curr > 0)
@@ -58,7 +60,7 @@ void	rearrange_b(t_mystack *B)
 	}
 }
 
-static void	set_big_three(t_mystack *stack, int big3[3])
+void	get_big_three(t_mystack *stack, int big3[3])
 {
 	int	i;
 	int	idx;
@@ -86,6 +88,29 @@ static void	set_big_three(t_mystack *stack, int big3[3])
 	}
 }
 
+void	get_least_actions(t_mystack *A,	t_mystack *B,
+						t_actions *actions,	int big3[3])
+{
+	int			a_idx;
+	t_actions	temp_actions;
+
+	a_idx = A->top_idx;
+	while (TRUE)
+	{
+		if (A->array[a_idx] != big3[0] \
+			&& A->array[a_idx] != big3[1] \
+			&& A->array[a_idx] != big3[2])
+		{
+			count_a2b_actions(A, a_idx, B, &temp_actions);
+			if (actions->total > temp_actions.total)
+				(*actions) = temp_actions;
+		}
+		if (a_idx == A->bot_idx)
+			break ;
+		a_idx = convert_index(a_idx - 1, A->max_size);
+	}
+}
+
 void	sort_big(t_mystack *A, t_mystack *B)
 {
 	t_actions	actions;
@@ -94,7 +119,7 @@ void	sort_big(t_mystack *A, t_mystack *B)
 	big_three[0] = -2147483648;
 	big_three[1] = -2147483648;
 	big_three[2] = -2147483648;
-	set_big_three(A, big_three);
+	get_big_three(A, big_three);
 	while (A->curr > 3)
 	{
 		actions.total = 2147483647;
@@ -103,7 +128,7 @@ void	sort_big(t_mystack *A, t_mystack *B)
 		act_push(A, B);
 	}
 	sort_mini(A);
-	rearrange_b(B);
+	make_b_decsending(B);
 	while (B->curr)
 		act_push(B, A);
 }

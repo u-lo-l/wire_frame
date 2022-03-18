@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../INC/push_swap.h"
 
 void	case_rr(t_mystack *A, t_mystack *B, t_actions *acts)
 {

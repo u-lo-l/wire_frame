@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "circular_array.h"
-#include <stdlib.h>
+#include "../../INC/circular_array.h"
 
 t_mystack	*new_stack(int size)
 {
@@ -45,4 +44,25 @@ int	convert_index(int idx, int max_size)
 	idx += max_size;
 	idx %= max_size;
 	return (idx);
+}
+
+int	is_ascending(t_mystack *stack)
+{
+	int	curr;
+	int	next;
+	int	bot_i;
+
+	if (!stack)
+		return (ERROR);
+	curr = stack->top_idx;
+	bot_i = stack->bot_idx;
+	while (TRUE)
+	{
+		if (curr == bot_i)
+			return (TRUE);
+		next = convert_index(curr - 1, stack->max_size);
+		if (stack->array[curr] > stack->array[next])
+			return (FALSE);
+		curr = convert_index(--curr, stack->max_size);
+	}
 }

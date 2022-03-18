@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "circular_array.h"
-#include <stdio.h>
+#include "../../INC/circular_array.h"
 
 int	add_top(t_mystack *stack, int num)
 {

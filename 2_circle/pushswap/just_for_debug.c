@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 /*THIS PART IS JUST FOR DEBUG*/
-#include "push_swap.h"
+#include "INC/push_swap.h"
 #include <stdio.h>
 
 void	printstack(t_mystack *stack)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "circular_array.h"
+#include "../INC/circular_array.h"
 #include <unistd.h>
 
 static void	swap(int *a, int *b)
