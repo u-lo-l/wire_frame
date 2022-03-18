@@ -40,7 +40,7 @@ void		push_swap(t_arglst *arglst);
 
 /*sort*/
 void		sort_mini(t_mystack *A);
-int			sort_big(t_mystack *A, t_mystack *B);
+void		sort_big(t_mystack *A, t_mystack *B);
 /*prepara A and B before pb*/
 void		case_rr(t_mystack *A, t_mystack *B, t_actions *acts);
 void		case_rrr(t_mystack *A, t_mystack *B, t_actions *acts);
@@ -52,7 +52,7 @@ void		count_rb(t_mystack *B, int target, t_actions *actions);
 void		count_a2b_actions(t_mystack *A, int index, t_mystack *B, \
 							t_actions *temp);
 int			count_b2a_actions(t_mystack *B);
-int			get_least_actions(t_mystack *A,	t_mystack *B, t_actions *actions, \
+void		get_least_actions(t_mystack *A,	t_mystack *B, t_actions *actions, \
 							int big3[3]);
 
 /*just for debug*/

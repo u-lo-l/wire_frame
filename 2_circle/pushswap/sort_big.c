@@ -35,7 +35,6 @@ void	rearrange_b(t_mystack *B)
 {
 	int	count_rb;
 	int	count_rrb;
-	int	b_idx;
 
 	count_rb = count_b2a_actions(B);
 	count_rrb = 0;
@@ -87,7 +86,7 @@ static void	set_big_three(t_mystack *stack, int big3[3])
 	}
 }
 
-int	sort_big(t_mystack *A, t_mystack *B)
+void	sort_big(t_mystack *A, t_mystack *B)
 {
 	t_actions	actions;
 	int			big_three[3];

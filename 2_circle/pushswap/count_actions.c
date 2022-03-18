@@ -96,7 +96,7 @@ int	count_b2a_actions(t_mystack *B)
 	return (rb);
 }
 
-int	get_least_actions(t_mystack *A,	t_mystack *B,
+void	get_least_actions(t_mystack *A,	t_mystack *B,
 						t_actions *actions,	int big3[3])
 {
 	int			a_idx;

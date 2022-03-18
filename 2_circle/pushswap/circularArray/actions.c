@@ -40,7 +40,6 @@ int	act_push(t_mystack *from, t_mystack *to)
 
 int	act_swap(t_mystack *stack1, t_mystack *stack2)
 {
-	int	temp;
 	int	first;
 	int	secnd;
 
