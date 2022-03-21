@@ -39,7 +39,7 @@ re : fclean all
 .PHONY : all clean fclean re
 
 $(TARGET) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS)
 
 .c.o :
-	$(CC) -c $< -o $@
+	$(CC) $(CFALGS) -c $< -o $@
