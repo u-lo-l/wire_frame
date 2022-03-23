@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 02:02:58 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/23 02:02:59 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/23 16:08:59 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ void	ft_putpid(pid_t pid, int radix)
 	}
 	if (minus)
 		str[0] = '-';
-	ft_putstr("Server PID : ");
 	ft_putstr(str);
-	ft_putstr("\n");
 	free(str);
 }
 
@@ -70,7 +68,7 @@ void	ft_putstr(char *str)
 	write(1, str, ft_strlen(str));
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, int *err)
 {
 	int		sign;
 	long	nbr;
@@ -90,5 +88,11 @@ int	ft_atoi(char *str)
 		nbr = nbr * 10 + *str - '0';
 		str++;
 	}
+	if (*str != 0)
+		*err = 1;
+	if (sign == 1 && nbr >= 2147483647L)
+		*err = 1;
+	if (sign == -1 && nbr >= 2147483648L)
+		*err = 1;
 	return ((int)nbr * sign);
 }
