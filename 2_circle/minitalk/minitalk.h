@@ -28,7 +28,11 @@ void	ft_putpid(pid_t pid, int radix);
 void	ft_putstr(char *str);
 int		ft_atoi(char *str, int *err);
 
+// void	put_char_bit(char c);
 /*SERVER*/
-
+void	receive_str_by_signal(int signo);
 /*CLIENT*/
+void	send_char_by_signal(pid_t server_pid, char c);
+void	send_str_by_signal(pid_t server_pid, char *str);
+
 #endif
