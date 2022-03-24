@@ -1,40 +1,108 @@
 #include "minitalk_bonus.h"
 #include <stdio.h>
 
-void putnum_binary(unsigned int nbr)
+int	receive_client_pid(int signo, int *connected)
 {
-	char arr[32] = {};
-	int i = 32;
+	static int	i;
+	static int	client_pid;
 
-	while (--i >= 0)
+	// printf("client Pid func | i : %d\n", i);
+	if (i > 31)
+		client_pid = 0;
+	if (i < 32)
 	{
-		arr[i] = (nbr & 1) + '0';
-		nbr >>= 1;
-	}
-	write(1, "bi : ", 5);
-	while (i < 32)
-	{
-		write(1, (arr + i), 1);
-		if (i % 4 == 3)
-			write(1, " ", 1);
+		client_pid <<= 1;
+		if (signo == SIGUSR2)
+			client_pid++;
+		// printf("cpid: %d\n", client_pid);
 		i++;
 	}
-	write(1, "\n", 1);
+	if (i > 31)
+	{
+		i = 0;
+		if (kill(client_pid, SIGUSR1) == -1)
+			exit(0);
+		// printf("\n\n\nclient PID : %d\n", client_pid);
+		*connected = TRUE;
+		// usleep(TIME);
+		return (client_pid);
+	}
+	return (0);
 }
 
-int main()
+int	receive_string(int signo, int client_pid ,int *connected)
 {
-	sigset_t	set;
-
-	sigemptyset(&set);
-	printf("%u\n", set);
-	putnum_binary(set);
+	static char	c;
+	static char	i;
 	
-	sigaddset(&set, SIGUSR1);
-	printf("%u\n", set);
-	putnum_binary(set);
+	if (client_pid == 0)
+	{
+		write(1, "client pid == 0\n", 16);
+		exit(0);
+	}
+	// printf("\tstring func | i : %d\n", i);
+	if (i < 0 || i > 6)
+	{
+		i = 0;
+		c = 0;
+	}
+	if (0 <= i && i < 7)
+	{
+		c <<= 1;
+		if (signo == SIGUSR2)
+			c++;
+		i++;
+	}
+	if (i == 7)
+	{
+		if (c)
+			write(1, &c, 1);
+		else
+		{
+			*connected = FALSE;
+			write(1, "\n", 1);
+		}
+	}
+	// write(1," SIG RECEIVED\n", 14);
+	// write(1,"READY TO ACK", 12);
+	// for (int i = 3; i > 0 ; i--)
+	// {
+	// 	write(1, " O", 2);
+	// 	usleep(TIME);
+	// }
+	// write(1, "\n", 1);
+	if (kill(client_pid, SIGUSR1) == -1)
+		exit(0);
+	if (connected == FALSE)
+		return (TRUE);
+	return (FALSE);
+}
 
-	sigaddset(&set, SIGUSR2);
-	printf("%u\n", set);
-	putnum_binary(set);
+void	signal_handler(int signo)
+{
+	static int	connected;
+	static int	client_pid;
+	static int	string_received;
+
+	// printf("\033[0;32mSIGNAL STATE ");
+	// printf("connected : %d ", connected);
+	// printf("client_pid : %d\n\033[0m", client_pid);
+
+	if (connected  == FALSE)
+		client_pid = receive_client_pid(signo, &connected);
+	else
+	{
+		if (receive_string(signo, client_pid, &connected) == TRUE)
+			client_pid = 0;
+	}
+}
+
+int main(void)
+{
+	ft_putpid(getpid(), 10);
+	ft_putstr("\n");
+	signal(SIGUSR1, signal_handler);
+	signal(SIGUSR2, signal_handler);
+	while (1)
+		pause();
 }

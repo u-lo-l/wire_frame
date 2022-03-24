@@ -6,19 +6,20 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 21:50:27 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/23 21:51:14 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/25 03:21:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_BONUS_H
 # define MINITALK_BONUS_H
 # include <stdlib.h>
+# include <sys/signal.h>
 # include <signal.h>
 # include <unistd.h>
 # include <sys/types.h>
 # define TRUE 1
-# define FLASE 0
-
+# define FALSE 0
+# define TIME 5000
 /*UTILS*/
 int		ft_strlen(char *str);
 int		ft_numsize(long num, int radix);
