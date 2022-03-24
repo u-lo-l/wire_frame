@@ -7,14 +7,6 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
-UTILS_O = utils_bonus.o
-SERVER_O = server_bonus.o
-CLIENT_O = client_bonus.o
-
-UTILS_C = utils_bonus.c
-SERVER_C = server_bonus.c
-CLIENT_C = client_bonus.c
-
 all : s c
 
 s : $(SERVER)
@@ -22,7 +14,7 @@ s : $(SERVER)
 c : $(CLIENT)
 
 clean :
-	$(RM) $(UTILS_O) $(CLIENT_O) $(SERVER_O)
+	$(RM) utils_bonus.o server_bonus.o client_bonus.o
 
 fclean : clean
 	$(RM) $(SERVER) $(CLIENT)
@@ -31,11 +23,11 @@ re : fclean all
 
 .PHONY : all s c clean fclean re
 
-$(SERVER) : $(UTILS_O) $(SERVER_O)
+$(SERVER) : utils_bonus.o server_bonus.o
 	$(CC) -o $@ $^
 
-$(CLIENT) : $(UTILS_O) $(CLIENT_O)
+$(CLIENT) : utils_bonus.o client_bonus.o
 	$(CC) -o $@ $^
 
 .c.o :
-	$(CC) $(CFALGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@

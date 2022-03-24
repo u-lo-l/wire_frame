@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 02:05:58 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/23 14:35:24 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/24 21:10:21 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	send_char_by_signal(pid_t server_pid, char c)
 		while (i >= 0)
 		{
 			kill(server_pid, sigarr[(c >> i) & 0b1]);
-			usleep(10);
+			usleep(100);
 			i--;
 		}
 	}
@@ -49,7 +49,7 @@ int	main(int argc, char *argv[])
 	int	server_pid;
 	int	err;
 
-	err = 0;
+	err = FLASE;
 	if (argc != 3)
 		return (-1);
 	server_pid = ft_atoi(argv[1], &err);
