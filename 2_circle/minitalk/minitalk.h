@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # define TRUE 1
 # define FLASE 0
-
+# define TIME 50
 /*UTILS*/
 int		ft_strlen(char *str);
 int		ft_numsize(long num, int radix);

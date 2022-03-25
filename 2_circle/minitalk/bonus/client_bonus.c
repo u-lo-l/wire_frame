@@ -14,8 +14,8 @@
 
 static void	receive_sig_from_server(int signo)
 {
-	if (signo == SIGUSR1)
-		usleep(1);
+	if (signo != SIGUSR1)
+		exit(0);
 }
 
 void	send_client_pid_by_signal(pid_t server_pid, int client_pid)
@@ -30,9 +30,9 @@ void	send_client_pid_by_signal(pid_t server_pid, int client_pid)
 	i = 31;
 	while (i >= 0)
 	{
+		usleep(TIME);
 		if (kill(server_pid, sigarr[(client_pid >> i) & 0b1]) == -1)
 			exit(0);
-		usleep(TIME);
 		i--;
 	}
 }
@@ -51,6 +51,7 @@ void	send_str_by_signal(pid_t server_pid, char *str)
 		i = 6;
 		while (i >= 0)
 		{
+			usleep(TIME);
 			if (kill(server_pid, sigarr[(*str >> i) & 0b1]) == -1)
 				exit(0);
 			i--;
@@ -74,6 +75,7 @@ int	main(int argc, char *argv[])
 	client_pid = (int)getpid();
 	usleep(TIME);
 	signal(SIGUSR1, receive_sig_from_server);
+	signal(SIGUSR2, receive_sig_from_server);
 	if (err == TRUE || server_pid <= 1)
 		return (-1);
 	send_client_pid_by_signal(server_pid, client_pid);

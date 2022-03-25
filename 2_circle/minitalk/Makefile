@@ -38,4 +38,4 @@ $(CLIENT) : $(UTILS_O) $(CLIENT_O)
 	$(CC) -o $@ $^
 
 .c.o :
-	$(CC) $(CFALGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@

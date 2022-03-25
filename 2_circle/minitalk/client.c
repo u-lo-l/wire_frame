@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 02:05:58 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/24 21:10:21 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/03/25 14:31:04 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	send_char_by_signal(pid_t server_pid, char c)
 	sigarr[0] = SIGUSR1;
 	sigarr[1] = SIGUSR2;
 	i = 6;
-	if (0 <= c || c <= 127)
+	if (0 <= c)
 	{
 		while (i >= 0)
 		{
+			usleep(TIME)
 			kill(server_pid, sigarr[(c >> i) & 0b1]);
-			usleep(100);
 			i--;
 		}
 	}
