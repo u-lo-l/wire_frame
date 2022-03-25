@@ -96,22 +96,3 @@ int	ft_atoi(char *str, int *err)
 		*err = 1;
 	return ((int)nbr * sign);
 }
-/*
-void	put_char_bit(char c)
-{
-	int i = 0;
-	char bit[7];
-
-	while (i <= 6)
-		bit[i++] = '0';
-	while (i >= 0)
-	{
-		if (((c >> i) & 1) == 1)
-			bit[6 - i] = '1';
-		else
-			bit[6 - i] = '0';			
-		i--;
-	}
-	write(1, bit, 7);
-	write(1, "\n", 1);
-}*/

@@ -43,12 +43,12 @@ int	receive_string(int signo, int client_pid)
 	static char	c;
 	static int	i;
 
-	if (i < 0 || i > 6)
+	if (i < 0 || i > 7)
 	{
 		i = 0;
 		c = 0;
 	}
-	if (i < 7)
+	if (i < 8)
 	{
 		c <<= 1;
 		if (signo == SIGUSR2)
@@ -58,9 +58,9 @@ int	receive_string(int signo, int client_pid)
 	usleep(TIME);
 	if (kill(client_pid, SIGUSR1) == -1)
 		exit(0);
-	if (i == 7 && c)
+	if (i == 8 && c)
 		write(1, &c, 1);
-	if (i == 7 && !c)
+	if (i == 8 && !c)
 		return (TRUE);
 	return (FALSE);
 }

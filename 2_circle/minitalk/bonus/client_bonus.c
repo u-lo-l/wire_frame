@@ -48,7 +48,7 @@ void	send_str_by_signal(pid_t server_pid, char *str)
 		return ;
 	while (1)
 	{
-		i = 6;
+		i = 7;
 		while (i >= 0)
 		{
 			usleep(TIME);
