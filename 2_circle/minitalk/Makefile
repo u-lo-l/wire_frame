@@ -19,7 +19,7 @@ CLIENT_C = client.c
 
 UTILS_B_O = bonus/utils_bonus.o
 SERVER_B_O = bonus/server_bonus.o
-CLIENT_O = bonus/client_bonus.o
+CLIENT_B_O = bonus/client_bonus.o
 
 UTILS_B_C = bonus/utils_bonus.c
 SERVER_B_C = bonus/server_bonus.c
