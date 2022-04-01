@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mat_linear_transformation.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 18:26:19 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/01 18:26:19 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
 int	tranformation_33mat(t_33mat mat, t_dvec3 u, t_dvec3 v, t_dvec3 w)
 {
-	int i;
+	int	i;
 
 	if (!mat || (!u && !v && !w))
 		return (FALSE);
@@ -11,7 +23,7 @@ int	tranformation_33mat(t_33mat mat, t_dvec3 u, t_dvec3 v, t_dvec3 w)
 	i = -1;
 	while (++i < 3)
 	{
-		if (u !=NULL)
+		if (u != NULL)
 			mat[0][i] = u[i];
 		if (v != NULL)
 			mat[1][i] = v[i];
@@ -25,9 +37,9 @@ int	tranformation_33mat(t_33mat mat, t_dvec3 u, t_dvec3 v, t_dvec3 w)
 
 int	rotation_matrix(t_dvec3 axis, double rad, t_33mat result)
 {
-	double c;
-	double s;
-	double v;
+	double	c;
+	double	s;
+	double	v;
 
 	if (!axis || rad == NAN || rad == INFINITY)
 		return (FALSE);
@@ -37,11 +49,9 @@ int	rotation_matrix(t_dvec3 axis, double rad, t_33mat result)
 	result[X][X] = axis[X] * axis[X] * v + c;
 	result[X][Y] = axis[X] * axis[Y] * v + axis[Z] * s;
 	result[X][Z] = axis[X] * axis[Z] * v - axis[Y] * s;
-
 	result[Y][X] = axis[Y] * axis[X] * v - axis[Z] * s;
 	result[Y][Y] = axis[Y] * axis[Y] * v + c;
 	result[Y][Z] = axis[Y] * axis[Z] * v + axis[X] * s;
-	
 	result[Z][X] = axis[Z] * axis[X] * v + axis[Y] * s;
 	result[Z][Y] = axis[Z] * axis[Y] * v - axis[X] * s;
 	result[Z][Z] = axis[Z] * axis[Z] * v + c;

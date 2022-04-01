@@ -1,8 +1,45 @@
 #include "../INC/fdf.h"
 
+void	print_queue(t_queue *queue)
+{
+	t_qnode	*curr; 
+
+	if (!queue)
+		return ;
+	curr = queue->pfront;
+	while (curr != NULL)
+	{
+		printf("Z : %d C : %#X\n", curr->data[0], curr->data[1]);
+		curr = curr->next;
+	}
+}
+
+void	print_orgmap(t_inputmap *org)
+{
+	int	x;
+	int	y;
+	int	r;
+	int	g;
+	int	b;
+
+	x = -1;
+	while (++x < org->sizeof_x)
+	{
+		y = -1;
+		while (++y < org->sizeof_y)
+		{
+			r = (org->arr[x][y][1] & 0XFF0000) >> 16;
+			g = (org->arr[x][y][1] & 0X00FF00) >> 8;
+			b = (org->arr[x][y][1] & 0X0000FF);
+			printf("\033[38;2;%d;%d;%dm [% 3d]\033[0m", r, g, b, org->arr[x][y][0]);
+		}
+		printf("\n\n");
+	}
+}
+
 void print_33mat(t_33mat mat)
 {
-	int i = 0;
+	int	i = 0;
 	while (i < 3)
 	{
 		int j = 0;
@@ -15,6 +52,7 @@ void print_33mat(t_33mat mat)
 		i++;
 	}
 }
+
 void print_dvec3(t_dvec3 vec3)
 {
 	printf("%3.2f\n%3.2f\n%3.2f\n", vec3[X], vec3[Y], vec3[Z]);
@@ -22,8 +60,8 @@ void print_dvec3(t_dvec3 vec3)
 
 void		print_output_map(t_outputmap *map)
 {
-	int	x;
-	int	y;
+	int	x = 0;
+	int	y = 0;
 
 	if (!map)
 		return ;
@@ -42,32 +80,8 @@ void		print_output_map(t_outputmap *map)
 			printf("(%3.2f %3.2f | %#x)", map->map[x][y][0], map->map[x][y][1], (int)map->map[x][y][2]);
 		printf("\n");
 	}
+	return ;
 }
-/* maxtix check
-int main()
-{
-	t_33mat	mat;
-	t_dvec3	axis;
-	t_dvec3 vec1;
-	t_dvec3 vec2;
-	int res;
-
-	if (zero_33mat(mat) == FALSE)
-		return (0);
-	print_33mat(mat);
-	if (!get_unitvector(0, 0, 1, axis))
-		return (0);
-	print_dvec3(axis);
-	if (!rotation_matrix(axis, 3.14 / 3, mat))
-		return (0);
-	print_33mat(mat);
-	if (!get_unitvector(0, 1, 0, vec1))
-		return (0);
-	print_dvec3(vec1);
-	if (!transform(vec1,mat,vec2))
-		return (0);
-	print_dvec3(vec2);
-}*/
 
 int 	main(int argc, char ** argv)
 {
@@ -102,5 +116,6 @@ int 	main(int argc, char ** argv)
 	print_output_map(out);
 	set_outputmap_size(out);
 	print_output_map(out);
-
+	delete_map_org(in);
+	delete_outputmap(out);
 }

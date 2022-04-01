@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:36:02 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 12:01:12 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 18:27:33 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,4 @@ int	is_queue_empty(t_queue *queue)
 	if (queue->pfront == NULL && queue->prear == NULL)
 		return (TRUE);
 	return (FALSE);
-}
-
-
-void	print_queue(t_queue *queue)
-{
-	t_qnode	*curr; 
-
-	if (!queue)
-		return ;
-	curr = queue->pfront;
-	while (curr != NULL)
-	{
-		printf("Z : %d C : %#X\n", curr->data[0], curr->data[1]);
-		curr = curr->next;
-	}
 }

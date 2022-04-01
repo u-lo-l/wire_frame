@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mat_matrix_basic.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 18:24:27 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/01 18:24:39 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
 int	zero_33mat(t_33mat mat)
@@ -33,7 +45,7 @@ int	transpose_33matrix(t_33mat mat)
 	temp = mat[1][2];
 	mat[1][2] = mat[2][1];
 	mat[2][1] = temp;
-	return (TRUE);	
+	return (TRUE);
 }
 
 int	mat_mul(t_33mat mat1, t_33mat mat2, t_33mat result)
@@ -60,7 +72,7 @@ int	mat_dup(t_33mat mat, t_33mat dup)
 {
 	int	i;
 	int	j;
-	
+
 	if (!mat || !dup)
 		return (FALSE);
 	i = -1;

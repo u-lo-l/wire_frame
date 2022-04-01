@@ -43,4 +43,4 @@ $(TARGET) : $(OBJS)
 	-Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
 
 .c.o :
-	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g

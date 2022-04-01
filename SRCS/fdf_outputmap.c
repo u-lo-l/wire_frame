@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_outputmap.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 18:22:53 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/01 19:21:12 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
-t_outputmap *create_ouputmap(int sizeof_y, int sizeof_x)
+t_outputmap	*create_ouputmap(int sizeof_y, int sizeof_x)
 {
 	t_outputmap	*out;
 
@@ -61,22 +73,19 @@ int	convert_map(t_inputmap *in, t_33mat mat, t_outputmap *out)
 				return (FALSE);
 			if (!transform(v_out, mat, v_in))
 				return (FALSE);
-			if (!set_vector3(v_in[0], v_in[1], in->arr[x][y][1], out->map[x][y]))
+			if (!set_vector3(v_in[0], v_in[1], in->arr[x][y][1], \
+				out->map[x][y]))
 				return (FALSE);
 		}
 	}
 	return (TRUE);
 }
-			// (out->map[y][x])[0] = v_in[0];
-			// (out->map[y][x])[1] = v_in[1];
-			// (out->map[y][x])[2] = in->arr[y][x][1];
 
 int	set_outputmap_size(t_outputmap *out)
 {
 	int	x;
 	int	y;
-	int	offset_x;
-	int	offset_y;
+	int	offset[2];
 
 	if (!out)
 		return (FALSE);
@@ -92,9 +101,10 @@ int	set_outputmap_size(t_outputmap *out)
 			out->minpoint[Y] = floor(fmin(out->map[x][y][Y], out->minpoint[Y]));
 		}
 	}
-	offset_x = (WIN_HEIGHT - (out->maxpoint[X], out->minpoint[X])) / 2;
-	offset_y = (WIN_WIDTH - (out->maxpoint[Y], out->minpoint[Y])) / 2;
-	if(!set_ivector2(offset_x, offset_y, out->offset_default))
+	offset[X] = (WIN_HEIGHT - (out->maxpoint[X], out->minpoint[X])) / 2;
+	offset[Y] = (WIN_WIDTH - (out->maxpoint[Y], out->minpoint[Y])) / 2;
+	if (!set_ivector2(offset[X], offset[Y], out->offset_default) || \
+		!set_ivector2(0, 0, out->offset_curr))
 		return (FALSE);
 	return (TRUE);
 }

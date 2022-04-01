@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:37:26 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 18:18:11 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 19:10:59 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ void		print_orgmap(t_inputmap *org);
 
 /*MATRIX*/
 /*vector.c*/
-int	set_ivector2(int i, int j, t_ivec2 result);
-int	set_vector3(double i, double j, double k, t_dvec3 result);
-int	get_unitvector(double i, double j, double k, t_dvec3 result);
-int	inner_product(t_dvec3 a, t_dvec3 b, double *result);
-int	cross_product(t_dvec3 a, t_dvec3 b, t_dvec3 result);
+int		set_ivector2(int i, int j, t_ivec2 result);
+int		set_vector3(double i, double j, double k, t_dvec3 result);
+int		get_unitvector(double i, double j, double k, t_dvec3 result);
+int		inner_product(t_dvec3 a, t_dvec3 b, double *result);
+int		cross_product(t_dvec3 a, t_dvec3 b, t_dvec3 result);
 /*matrix.c*/
-int	zero_33mat(t_33mat mat);
-int	transpose_33matrix(t_33mat mat);
-int	mat_mul(t_33mat mat1, t_33mat mat2, t_33mat result);
-int	mat_dup(t_33mat mat, t_33mat dup);
+int		zero_33mat(t_33mat mat);
+int		transpose_33matrix(t_33mat mat);
+int		mat_mul(t_33mat mat1, t_33mat mat2, t_33mat result);
+int		mat_dup(t_33mat mat, t_33mat dup);
 /*linear transformation*/
-int	tranformation_33mat(t_33mat mat, t_dvec3 u, t_dvec3 v, t_dvec3 w);
-int	rotation_matrix(t_dvec3 axis, double rad, t_33mat result);
-int	rotate(t_dvec3 vec, t_dvec3 axis, double rad, t_dvec3 result);
-int	transform(t_dvec3 vec, t_33mat mat, t_dvec3 result);
+int		tranformation_33mat(t_33mat mat, t_dvec3 u, t_dvec3 v, t_dvec3 w);
+int		rotation_matrix(t_dvec3 axis, double rad, t_33mat result);
+int		rotate(t_dvec3 vec, t_dvec3 axis, double rad, t_dvec3 result);
+int		transform(t_dvec3 vec, t_33mat mat, t_dvec3 result);
 
 /*OUTPUT MAP*/
 t_outputmap *create_ouputmap(int sizeof_y, int sizeof_x);

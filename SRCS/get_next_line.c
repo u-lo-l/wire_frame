@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 19:21:19 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/01 19:21:29 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
 #define BUFFER_SIZE 101
@@ -35,9 +47,9 @@ char	*get_next_line(int fd)
 	if (!saving)
 		return (NULL);
 	temp = ft_strchr(saving, '\n');
-	if (temp == NULL)
+	if (temp == NULL || temp == saving)
 	{
-		if (saving == NULL || ft_strlen(saving) == 0)
+		if (saving == NULL || temp == saving)
 			line = NULL;
 		else
 			line = ft_strndup(saving, ft_strlen(saving));
@@ -54,31 +66,27 @@ char	*get_next_line(int fd)
 
 int	put_data_to_queue(t_queue *queue, char *arg)
 {
-	int			res;
-	int			data;
-	int			words;
-	char		**info;
+	int		res;
+	int		data;
+	int		words;
+	char	**info;
 	t_ivec2	z_and_color;
 
+	res = FALSE;
 	words = count_words(arg, ',');
 	info = ft_split(arg, ',', words);
 	if (!info)
 		return (FALSE);
-	res = TRUE;
 	if (ft_atoi_base(info[0], 10, &data))
 		z_and_color[0] = data;
 	if (words == 1)
 		z_and_color[1] = -1;
 	else
-	{
-		res = FALSE;
 		if (info[1][0] == '0' && (info[1][1] == 'x' || info[1][1] == 'X'))
 			res = ft_atoi_base(info[1] + 2, 16, z_and_color + 1);
-		printf("%d\n", res);
-	}
 	delete_splited_charset(info, words);
 	ft_enqueue(queue, z_and_color);
-	if (res == FALSE)
+	if (res == FALSE && words > 1)
 		return (FALSE);
 	return (TRUE);
 }

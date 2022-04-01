@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mat_vector.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 18:24:48 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/01 18:25:23 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
 int	set_ivector2(int i, int j, t_ivec2 result)
@@ -23,7 +35,7 @@ int	set_vector3(double i, double j, double k, t_dvec3 result)
 
 int	get_unitvector(double i, double j, double k, t_dvec3 result)
 {
-	double l2norm;
+	double	l2norm;
 
 	if (!result || i == NAN || j == NAN || k == NAN)
 		return (FALSE);
@@ -38,7 +50,7 @@ int	get_unitvector(double i, double j, double k, t_dvec3 result)
 
 int	inner_product(t_dvec3 a, t_dvec3 b, double *result)
 {
-	int i;
+	int	i;
 
 	if (!a || !b)
 		return (FALSE);
@@ -53,8 +65,8 @@ int	cross_product(t_dvec3 a, t_dvec3 b, t_dvec3 result)
 {
 	if (!a || !b)
 		return (FALSE);
-	result[X] = a[Y]*b[Z]-a[Z]*b[Y];
-	result[Y] = a[X]*b[Z]-a[Z]*b[X];
-	result[Z] = a[X]*b[Y]-a[Y]*b[X];
+	result[X] = a[Y] * b[Z] - a[Z] * b[Y];
+	result[Y] = a[X] * b[Z] - a[Z] * b[X];
+	result[Z] = a[X] * b[Y] - a[Y] * b[X];
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:48:09 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 17:50:10 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 18:59:20 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	delete_map_org(t_inputmap *map)
 
 	i = 0;
 	while (i < map->sizeof_x)
-		free(map->arr[i]);
+		free(map->arr[i++]);
 	free(map->arr);
 	free(map);
 }
@@ -65,7 +65,8 @@ t_queue	*get_point_queue(int fd, int *sizeof_y, int *sizeof_x)
 	while (TRUE)
 	{
 		line = get_next_line(fd);
-		if (line == NULL || ft_strlen(line) == 0)
+		printf("line : [%s]\n", line);
+		if (line == NULL)
 			break ;
 		if (!parse_line(point_queue, line, sizeof_y))
 		{
@@ -126,30 +127,6 @@ t_inputmap	*get_origin_map(char *filepath)
 	close(fd);
 	return (origin_map);
 }
-
-
-void	print_orgmap(t_inputmap *org)
-{
-	int	x;
-	int	y;
-	int	r;
-	int	g;
-	int	b;
-
-	x = -1;
-	while (++x < org->sizeof_x)
-	{
-		y = -1;
-		while (++y < org->sizeof_y)
-		{
-			r = (org->arr[x][y][1] & 0XFF0000) >> 16;
-			g = (org->arr[x][y][1] & 0X00FF00) >> 8;
-			b = (org->arr[x][y][1] & 0X0000FF);
-			printf("\033[38;2;%d;%d;%dm [% 3d]\033[0m", r, g, b, org->arr[x][y][0]);
-		}
-		printf("\n\n");
-	}
-}
 /*
 int 	main(int argc, char ** argv)
 {
@@ -158,4 +135,6 @@ int 	main(int argc, char ** argv)
 		printf("ERROR\n");
 	else
 		print_orgmap(map);
-}*/
+	delete_map_org(map);
+}
+*/
