@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:36:02 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/30 01:58:33 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 12:01:12 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_queue	*ft_create_queque(void)
 	return (queue);
 }
 
-int	ft_enqueue(t_queue	*queue, t_z_n_color	z_n_c)
+int	ft_enqueue(t_queue	*queue, t_ivec2	z_and_color)
 {
 	t_qnode	*new;
 
@@ -35,8 +35,8 @@ int	ft_enqueue(t_queue	*queue, t_z_n_color	z_n_c)
 	new = malloc(sizeof(t_qnode) * 1);
 	if (!new)
 		return (FALSE);
-	new->data[0] = z_n_c[0];
-	new->data[1] = z_n_c[1];
+	new->data[0] = z_and_color[0];
+	new->data[1] = z_and_color[1];
 	if (is_queue_empty(queue))
 	{
 		queue->pfront = new;

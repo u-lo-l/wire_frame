@@ -6,33 +6,33 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:48:09 by dkim2             #+#    #+#             */
-/*   Updated: 2022/03/30 01:59:35 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 17:50:10 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/fdf.h"
 #include <fcntl.h>
 
-t_map_org	*init_map(int width, int height)
+t_inputmap	*init_map(int sizeof_y, int sizeof_x)
 {
 	int			i;
-	t_map_org	*map;
+	t_inputmap	*map;
 
-	map = malloc(sizeof(t_map_org));
+	map = malloc(sizeof(t_inputmap));
 	if (!map)
 		return (NULL);
-	map->width = width;
-	map->arr = malloc(sizeof(t_z_n_color *) * height);
+	map->sizeof_y = sizeof_y;
+	map->arr = malloc(sizeof(t_ivec2 *) * sizeof_x);
 	if (!map->arr)
 	{
 		free(map);
 		return (NULL);
 	}
 	i = -1;
-	while (++i < height)
+	while (++i < sizeof_x)
 	{
-		map->arr[i] = malloc(sizeof(t_z_n_color) * width);
-		map->height = i + 1;
+		map->arr[i] = malloc(sizeof(t_ivec2) * sizeof_y);
+		map->sizeof_x = i + 1;
 		if (!map->arr[i])
 		{
 			delete_map_org(map);
@@ -42,18 +42,18 @@ t_map_org	*init_map(int width, int height)
 	return (map);
 }
 
-void	delete_map_org(t_map_org *map)
+void	delete_map_org(t_inputmap *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < map->height)
+	while (i < map->sizeof_x)
 		free(map->arr[i]);
 	free(map->arr);
 	free(map);
 }
 
-t_queue	*get_point_queue(int fd, int *width, int *height)
+t_queue	*get_point_queue(int fd, int *sizeof_y, int *sizeof_x)
 {
 	int		i;
 	char	*line;
@@ -65,59 +65,61 @@ t_queue	*get_point_queue(int fd, int *width, int *height)
 	while (TRUE)
 	{
 		line = get_next_line(fd);
-		if (line == NULL)
+		if (line == NULL || ft_strlen(line) == 0)
 			break ;
-		if (!parse_line(point_queue, line, height))
+		if (!parse_line(point_queue, line, sizeof_y))
 		{
 			ft_delete_queue(point_queue);
 			point_queue = NULL;
 			break ;
 		}
-		*width += 1;
+		free(line);
+		*sizeof_x += 1;
 	}
+	free(line);
 	return (point_queue);
 }
 
-void	set_origin_map(t_map_org *map, t_queue *queue)
+void	set_origin_map(t_inputmap *map, t_queue *queue)
 {
-	int		i;
-	int		j;
+	int		x;
+	int		y;
 	t_qnode	*node;
 
-	i = -1;
-	while (++i < map->width)
+	x = -1;
+	while (++x < map->sizeof_x)
 	{
-		j = -1;
-		while (++j < map->height)
+		y = -1;
+		while (++y < map->sizeof_y)
 		{
 			node = ft_dequeue(queue);
-			map->arr[j][i][0] = node->data[0];
-			map->arr[j][i][1] = node->data[1];
+			map->arr[x][y][0] = node->data[0];
+			map->arr[x][y][1] = node->data[1];
 			free(node);
 		}
 	}
 }
 
-t_map_org	*get_origin_map(char *filepath)
+t_inputmap	*get_origin_map(char *filepath)
 {
-	int			width;
-	int			height;
+	int			sizeof_y;
+	int			sizeof_x;
 	int			fd;
 	t_queue		*point_queue;
-	t_map_org	*origin_map;
+	t_inputmap	*origin_map;
 
-	width = 0;
-	height = 0;
+	sizeof_y = 0;
+	sizeof_x = 0;
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	point_queue = get_point_queue(fd, &width, &height);
+	point_queue = get_point_queue(fd, &sizeof_y, &sizeof_x);
 	if (!point_queue)
 	{
 		close(fd);
 		return (NULL);
 	}
-	origin_map = init_map(width, height);
+	origin_map = init_map(sizeof_y, sizeof_x);
 	if (origin_map != NULL)
 		set_origin_map(origin_map, point_queue);
 	ft_delete_queue(point_queue);
@@ -126,37 +128,34 @@ t_map_org	*get_origin_map(char *filepath)
 }
 
 
-void	print_orgmap(t_map_org *org)
+void	print_orgmap(t_inputmap *org)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 	int	r;
 	int	g;
 	int	b;
 
-	i = -1;
-	while (++i < org->height)
+	x = -1;
+	while (++x < org->sizeof_x)
 	{
-		j = -1;
-		while (++j < org->width)
+		y = -1;
+		while (++y < org->sizeof_y)
 		{
-			// r = (org->arr[i][j][1] & 0XFF0000) >> 16;
-			// g = (org->arr[i][j][1] & 0X00FF00) >> 8;
-			// b = (org->arr[i][j][1] & 0X0000FF);
-			r = 0xff - org->arr[i][j][0] * 10;
-			b = 0xff - org->arr[i][j][0] * 10;
-			g = 0xff;
-			printf("\033[38;2;%d;%d;%dm [% 3d]\033[0m", r, g, b, org->arr[i][j][0]);
+			r = (org->arr[x][y][1] & 0XFF0000) >> 16;
+			g = (org->arr[x][y][1] & 0X00FF00) >> 8;
+			b = (org->arr[x][y][1] & 0X0000FF);
+			printf("\033[38;2;%d;%d;%dm [% 3d]\033[0m", r, g, b, org->arr[x][y][0]);
 		}
 		printf("\n\n");
 	}
 }
-
+/*
 int 	main(int argc, char ** argv)
 {
-	t_map_org *map = get_origin_map(argv[argc - 1]);
+	t_inputmap *map = get_origin_map(argv[argc - 1]);
 	if (map == NULL)
-		printf("ERROR");
+		printf("ERROR\n");
 	else
 		print_orgmap(map);
-}
+}*/

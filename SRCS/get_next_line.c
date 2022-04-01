@@ -58,30 +58,32 @@ int	put_data_to_queue(t_queue *queue, char *arg)
 	int			data;
 	int			words;
 	char		**info;
-	t_z_n_color	z_n_color;
+	t_ivec2	z_and_color;
 
 	words = count_words(arg, ',');
 	info = ft_split(arg, ',', words);
 	if (!info)
 		return (FALSE);
+	res = TRUE;
 	if (ft_atoi_base(info[0], 10, &data))
-		z_n_color[0] = data;
+		z_and_color[0] = data;
 	if (words == 1)
-		z_n_color[1] = -1;
+		z_and_color[1] = -1;
 	else
 	{
 		res = FALSE;
 		if (info[1][0] == '0' && (info[1][1] == 'x' || info[1][1] == 'X'))
-			res = ft_atoi_base(info[1] + 2, 16, z_n_color + 1);
+			res = ft_atoi_base(info[1] + 2, 16, z_and_color + 1);
+		printf("%d\n", res);
 	}
 	delete_splited_charset(info, words);
-	ft_enqueue(queue, z_n_color);
+	ft_enqueue(queue, z_and_color);
 	if (res == FALSE)
 		return (FALSE);
 	return (TRUE);
 }
 
-int	parse_line(t_queue *queue, char *line, int *height)
+int	parse_line(t_queue *queue, char *line, int *sizeof_y)
 {
 	int		res;
 	int		i;
@@ -89,15 +91,15 @@ int	parse_line(t_queue *queue, char *line, int *height)
 
 	if (!queue || !line)
 		return (FALSE);
-	if (*height == 0 || *height == count_words(line, ' '))
-		*height = count_words(line, ' ');
+	if (*sizeof_y == 0 || *sizeof_y == count_words(line, ' '))
+		*sizeof_y = count_words(line, ' ');
 	else
 		return (FALSE);
-	argset = ft_split(line, ' ', *height);
-	res = FALSE;
+	argset = ft_split(line, ' ', *sizeof_y);
 	if (argset == NULL)
-		return (res);
+		return (FALSE);
 	i = 0;
+	res = TRUE;
 	while (argset[i])
 	{
 		res = put_data_to_queue(queue, argset[i]);
@@ -105,7 +107,7 @@ int	parse_line(t_queue *queue, char *line, int *height)
 			break ;
 		i++;
 	}
-	delete_splited_charset(argset, *height);
+	delete_splited_charset(argset, *sizeof_y);
 	return (res);
 }
 
