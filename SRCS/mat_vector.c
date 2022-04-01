@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:24:48 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 18:25:23 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 19:23:57 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	get_unitvector(double i, double j, double k, t_dvec3 result)
 	result[X] = i / l2norm;
 	result[Y] = j / l2norm;
 	result[Z] = k / l2norm;
+	return (TRUE);
 }
 
 int	inner_product(t_dvec3 a, t_dvec3 b, double *result)

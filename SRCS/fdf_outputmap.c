@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:22:53 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 19:21:12 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 19:24:25 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ int	set_outputmap_size(t_outputmap *out)
 			out->minpoint[Y] = floor(fmin(out->map[x][y][Y], out->minpoint[Y]));
 		}
 	}
-	offset[X] = (WIN_HEIGHT - (out->maxpoint[X], out->minpoint[X])) / 2;
-	offset[Y] = (WIN_WIDTH - (out->maxpoint[Y], out->minpoint[Y])) / 2;
+	offset[X] = (WIN_HEIGHT - (out->maxpoint[X] - out->minpoint[X])) / 2;
+	offset[Y] = (WIN_WIDTH - (out->maxpoint[Y] - out->minpoint[Y])) / 2;
 	if (!set_ivector2(offset[X], offset[Y], out->offset_default) || \
 		!set_ivector2(0, 0, out->offset_curr))
 		return (FALSE);

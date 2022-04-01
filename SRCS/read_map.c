@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:48:09 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 18:59:20 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/01 19:23:36 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	delete_map_org(t_inputmap *map)
 
 t_queue	*get_point_queue(int fd, int *sizeof_y, int *sizeof_x)
 {
-	int		i;
 	char	*line;
 	t_queue	*point_queue;
 
