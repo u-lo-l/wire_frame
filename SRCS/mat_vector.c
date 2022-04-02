@@ -6,11 +6,20 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:24:48 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/02 20:50:16 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 23:14:22 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/fdf.h"
+
+int	set_ivector2(int i, int j, t_ivec2 result)
+{
+	if (!result)
+		return (FALSE);
+	result[X] = i;
+	result[Y] = j;
+	return (TRUE);
+}
 
 int	set_vector2(double i, double j, t_dvec2 result)
 {

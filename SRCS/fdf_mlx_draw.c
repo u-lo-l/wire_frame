@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_mlx_draw.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/02 22:19:10 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/03 02:40:54 by dkim2            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../INC/fdf.h"
 
 int	scale_color(int color, double scaler)
@@ -53,10 +65,11 @@ int	add_color(int color, int stride)
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color)
 {
 	char	*dst;
+
 	if (0 > x || WIN_WIDTH <= x || 0 > y || WIN_HEIGHT <= y)
 		return ;
-	dst = image->addr + y * image->line + x * (image->bpp/8);
-	*(unsigned int*)dst = color;
+	dst = image->addr + y * image->line + x * (image->bpp / 8);
+	*(unsigned int *)dst = color;
 }
 
 void	my_mlx_draw_line(t_image *image, t_dvec3 A, t_dvec3 B, \
@@ -96,7 +109,6 @@ void	my_mlx_print_map(t_image *image, t_outputmap *map)
 	if (!image || !map)
 		return ;
 	x = -1;
-	print_output_map(map);
 	while (++x < map->sizeof_x)
 	{
 		y = -1;
@@ -108,7 +120,7 @@ void	my_mlx_print_map(t_image *image, t_outputmap *map)
 	while (++x < map->sizeof_x - 1)
 	{
 		y = -1;
-		while(++y < map->sizeof_y)
+		while (++y < map->sizeof_y)
 			my_mlx_draw_line(image, map->map[x][y], map->map[x + 1][y], \
 								map->offset, map->scaler);
 	}

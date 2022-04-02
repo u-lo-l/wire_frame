@@ -77,11 +77,10 @@ typedef struct	s_mlx
 	t_image		*image;
 	t_inputmap	*in;
 	t_outputmap	*out;
+	t_33mat		trans;
+	t_ivec2		last;
+	t_ivec2		curr;
 	int			onclick;
-	int			curr_x;
-	int			curr_y;
-	int			last_x;
-	int			last_y;
 }				t_mlx;
 
 #endif

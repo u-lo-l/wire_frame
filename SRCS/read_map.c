@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:48:09 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 19:23:36 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 22:32:31 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_queue	*get_point_queue(int fd, int *sizeof_y, int *sizeof_x)
 	while (TRUE)
 	{
 		line = get_next_line(fd);
-		printf("line : [%s]\n", line);
 		if (line == NULL)
 			break ;
 		if (!parse_line(point_queue, line, sizeof_y))

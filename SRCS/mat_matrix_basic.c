@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:24:27 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 18:24:39 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/03 00:35:01 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	mat_mul(t_33mat mat1, t_33mat mat2, t_33mat result)
 	{
 		j = -1;
 		while (++j < 3)
-			if (!inner_product(mat1[i], mat2[j], &result[i][j]))
+			if (!inner_product(mat1[i], mat2[j], &result[j][i]))
 				return (FALSE);
 	}
 	return (TRUE);

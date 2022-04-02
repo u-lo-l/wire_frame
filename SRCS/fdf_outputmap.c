@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:22:53 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/02 20:48:57 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 23:10:18 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,11 @@ int	set_offset_scaler_output(t_outputmap *out)
 
 	if (!out)
 		return (FALSE);
-	printf("x : %3.2f  ~ %3.2f  | y : %3.2f ~ %3.2f\n", out->maxpoint[X], \
-			out->minpoint[X], out->maxpoint[Y], out->minpoint[Y]);
 	x = out->maxpoint[X] - out->minpoint[X];
 	y = out->maxpoint[Y] - out->minpoint[Y];
 	out->scaler = fmin((WIN_WIDTH / x), (WIN_HEIGHT / y));
-	printf("x %3.3f y %3.3f\n",x * out->scaler, y * out->scaler);
 	out->offset[X] = (WIN_WIDTH - x * out->scaler) / 2;
-	out->offset[Y] = (WIN_HEIGHT - y * out->scaler)/ 2;
+	out->offset[Y] = (WIN_HEIGHT - y * out->scaler) / 2;
 	out->offset[X] -= out->minpoint[X] * out->scaler;
 	out->offset[Y] -= out->minpoint[Y] * out->scaler;
 	return (TRUE);

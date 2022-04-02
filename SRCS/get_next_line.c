@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 19:21:19 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/02 04:32:47 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 22:23:43 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ char	*get_next_line(int fd)
 	if (!saving)
 		return (NULL);
 	temp = ft_strchr(saving, '\n');
-	// temp에 널 문자가 없다는 것은 끝까지 읽었다는 뜻이다.
-	//temp == saving는 temp에 널 문자 하나만 있다는 것이다.
-	// saving에 널문자만 남아 있는 경우도 끝난 경우이다.
-	if (temp == NULL || temp == saving || ft_strlen(saving) == 0) 
+	if (temp == NULL || temp == saving || ft_strlen(saving) == 0)
 	{
 		free(saving);
 		saving = NULL;
