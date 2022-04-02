@@ -6,15 +6,17 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:24:48 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 19:23:57 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:50:16 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/fdf.h"
 
-int	set_ivector2(int i, int j, t_ivec2 result)
+int	set_vector2(double i, double j, t_dvec2 result)
 {
-	if (!result)
+	if (!result || i == NAN || j == NAN)
+		return (FALSE);
+	if (i == INFINITY || j == INFINITY)
 		return (FALSE);
 	result[X] = i;
 	result[Y] = j;
@@ -59,15 +61,5 @@ int	inner_product(t_dvec3 a, t_dvec3 b, double *result)
 	i = -1;
 	while (++i < 3)
 		*result += a[i] * b[i];
-	return (TRUE);
-}
-
-int	cross_product(t_dvec3 a, t_dvec3 b, t_dvec3 result)
-{
-	if (!a || !b)
-		return (FALSE);
-	result[X] = a[Y] * b[Z] - a[Z] * b[Y];
-	result[Y] = a[X] * b[Z] - a[Z] * b[X];
-	result[Z] = a[X] * b[Y] - a[Y] * b[X];
 	return (TRUE);
 }

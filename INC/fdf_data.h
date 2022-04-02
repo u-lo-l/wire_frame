@@ -6,15 +6,12 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:40:46 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/01 17:55:47 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/02 21:58:17 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_DATA_H
 # define FDF_DATA_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -23,8 +20,8 @@
 # define Z 2
 # define W 3
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 450
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 900
 /*FOR PROCESS INPUT MAP*/
 typedef int	t_ivec2[2];
 
@@ -57,11 +54,34 @@ typedef struct s_ouputmap
 {
 	int		sizeof_y;
 	int		sizeof_x;
-	t_ivec2	maxpoint;
-	t_ivec2	minpoint;
-	t_ivec2	offset_default;
-	t_ivec2	offset_curr;
+	double	scaler;
+	t_dvec2	maxpoint;
+	t_dvec2	minpoint;
+	t_ivec2	offset;
 	t_dvec3	**map;
 }			t_outputmap;
+
+/*FOR MiniLibX*/
+typedef struct	s_image {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		endian;
+}			t_image;
+
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+	t_image		*image;
+	t_inputmap	*in;
+	t_outputmap	*out;
+	int			onclick;
+	int			curr_x;
+	int			curr_y;
+	int			last_x;
+	int			last_y;
+}				t_mlx;
 
 #endif
