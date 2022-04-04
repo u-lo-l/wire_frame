@@ -15,6 +15,7 @@ OBJS_FILE= read_map.o \
 		utils.o \
 		\
 		mat_vector.o \
+		mat_vector2.o \
 		mat_matrix_basic.o \
 		mat_linear_transformation.o \
 		mat_view.o \
@@ -23,8 +24,7 @@ OBJS_FILE= read_map.o \
 		fdf_mlx.o \
 		fdf_mlx_draw.o \
 		fdf_main.o \
-		fdf_mlx_event.o \
-		mat_debug.o
+		fdf_mlx_event.o
 
 OBJS = $(addprefix $(OBJ_DIR), $(OBJS_FILE))
 

@@ -12,54 +12,25 @@
 
 #include "../INC/fdf.h"
 
-int	scale_color(int color, double scaler)
+static int	dvec3_to_color(t_dvec3 color_vec)
 {
-	int		red;
-	int		green;
-	int		blue;
+	int	res;
 
-	red = ((color & 0XFF0000) >> 16) * scaler;
-	green = ((color & 0X00FF00) >> 8) * scaler;
-	blue = (color & 0X0000FF) * scaler;
-	if (red > 255)
-		red = 255;
-	if (green > 255)
-		green = 255;
-	if (blue > 255)
-		blue = 255;
-	if (red < -255)
-		red = -255;
-	if (green < -255)
-		green = -255;
-	if (blue < -255)
-		blue = -255;
-	color = (red << 16) + (green << 8) + blue;
-	return (color);
+	if (!color_vec)
+		return (FALSE);
+	res = ((int)color_vec[0] & 0xff) << 16;
+	res += ((int)color_vec[1] & 0xff) << 8;
+	res += (int)color_vec[2] & 0xff;
+	return (res);
 }
 
-int	add_color(int color, int stride)
+static void	color_to_dvec3(int color, t_dvec3 color_vec)
 {
-	int	red;
-	int	green;
-	int	blue;
-
-	red = ((color & 0XFF0000) >> 16) + ((stride & 0XFF0000) >> 16);
-	green = ((color & 0X00FF00) >> 8) + ((color & 0X00FF00) >> 8);
-	blue = (color & 0X0000FF) + (stride & 0X0000FF);
-	if (red > 255)
-		red = 255;
-	if (green > 255)
-		green = 255;
-	if (blue > 255)
-		blue = 255;
-	if (red < 0)
-		red = 0;
-	if (green < 0)
-		green = 0;
-	if (blue < 0)
-		blue = 0;
-	color = (red << 16) + (green << 8) + blue;
-	return (color);
+	if (!color_vec)
+		return ;
+	color_vec[0] = (color & 0xff0000) >> 16;
+	color_vec[1] = (color & 0xff00) >> 8;
+	color_vec[2] = (color & 0xff);
 }
 
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color)
@@ -73,55 +44,54 @@ void	my_mlx_pixel_put(t_image *image, int x, int y, int color)
 }
 
 void	my_mlx_draw_line(t_image *image, t_dvec3 A, t_dvec3 B, \
-						t_ivec2 offset, double scaler)
+						t_dvec3 offset)
 {
 	double	denominator;
-	t_dvec3	delta;
-	t_dvec3	temp_a;
-	t_dvec3	temp_b;
+	double	delta[5];
+	double	temp_a[5];
+	double	temp_b[5];
 
-	temp_a[X] = A[X] * scaler + offset[X];
-	temp_a[Y] = A[Y] * scaler + offset[Y];
-	temp_b[X] = B[X] * scaler + offset[X];
-	temp_b[Y] = B[Y] * scaler + offset[Y];
+	temp_a[X] = A[X] * offset[2] + offset[X];
+	temp_a[Y] = A[Y] * offset[2] + offset[Y];
+	temp_b[X] = B[X] * offset[2] + offset[X];
+	temp_b[Y] = B[Y] * offset[2] + offset[Y];
+	color_to_dvec3(A[2], temp_a + 2);
+	color_to_dvec3(B[2], temp_b + 2);
+	diff_dvec(delta, temp_a, temp_b, 2);
 	delta[X] = (temp_b[X] - temp_a[X]);
 	delta[Y] = (temp_b[Y] - temp_a[Y]);
-	delta[2] = (B[2] - A[2]);
 	denominator = fmax(fabs(delta[X]), fabs(delta[Y]));
-	delta[X] /= denominator;
-	delta[Y] /= denominator;
-	delta[2] = scale_color(delta[2], 1 / denominator);
+	scale_dvec(delta, 2, 1 / denominator);
 	while ((int)(temp_a[X] - temp_b[X]) || (int)(temp_a[Y] - temp_b[Y]))
 	{
-		my_mlx_pixel_put(image, (int)temp_a[X], (int)temp_a[Y], (int)A[2]);
-		temp_a[X] += delta[X];
-		temp_a[Y] += delta[Y];
-		A[2] = add_color(A[2], delta[2]);
+		my_mlx_pixel_put(image, (int)temp_a[X], (int)temp_a[Y], \
+							dvec3_to_color(temp_a + 2));
+		sum_dvec(temp_a, delta, 2);
 	}
 	my_mlx_pixel_put(image, (int)temp_b[X], (int)temp_b[Y], (int)B[2]);
 }
 
-void	my_mlx_print_map(t_image *image, t_outputmap *map)
+void	my_mlx_print_map(t_mlx *mlx)
 {
 	int	x;
 	int	y;
 
-	if (!image || !map)
+	if (!mlx)
 		return ;
 	x = -1;
-	while (++x < map->sizeof_x)
+	while (++x < mlx->out->sizeof_x)
 	{
 		y = -1;
-		while (++y < map->sizeof_y - 1)
-			my_mlx_draw_line(image, map->map[x][y], map->map[x][y + 1], \
-								map->offset, map->scaler);
+		while (++y < mlx->out->sizeof_y - 1)
+			my_mlx_draw_line(mlx->image, mlx->out->map[x][y], \
+				mlx->out->map[x][y + 1], mlx->out->offset);
 	}
 	x = -1;
-	while (++x < map->sizeof_x - 1)
+	while (++x < mlx->out->sizeof_x - 1)
 	{
 		y = -1;
-		while (++y < map->sizeof_y)
-			my_mlx_draw_line(image, map->map[x][y], map->map[x + 1][y], \
-								map->offset, map->scaler);
+		while (++y < mlx->out->sizeof_y)
+			my_mlx_draw_line(mlx->image, mlx->out->map[x][y], \
+				mlx->out->map[x + 1][y], mlx->out->offset);
 	}
 }

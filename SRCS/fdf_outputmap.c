@@ -36,8 +36,8 @@ t_outputmap	*create_ouputmap(int sizeof_y, int sizeof_x)
 			return (NULL);
 		}
 	}
-	set_vector2(-2147483648, -2147483648, out->maxpoint);
-	set_vector2(2147483647, 2147483647, out->minpoint);
+	set_vector3(-2147483648, -2147483648, -2147483648, out->maxpoint);
+	set_vector3(2147483647, 2147483647, 2147483647, out->minpoint);
 	return (out);
 }
 
@@ -78,6 +78,8 @@ int	convert_map(t_inputmap *in, t_33mat mat, t_outputmap *out)
 				return (FALSE);
 		}
 	}
+	out->maxpoint[Z] = in->altitude[0];
+	out->minpoint[Z] = in->altitude[1];
 	return (TRUE);
 }
 
@@ -112,10 +114,10 @@ int	set_offset_scaler_output(t_outputmap *out)
 		return (FALSE);
 	x = out->maxpoint[X] - out->minpoint[X];
 	y = out->maxpoint[Y] - out->minpoint[Y];
-	out->scaler = fmin((WIN_WIDTH / x), (WIN_HEIGHT / y));
-	out->offset[X] = (WIN_WIDTH - x * out->scaler) / 2;
-	out->offset[Y] = (WIN_HEIGHT - y * out->scaler) / 2;
-	out->offset[X] -= out->minpoint[X] * out->scaler;
-	out->offset[Y] -= out->minpoint[Y] * out->scaler;
+	out->offset[2] = fmin((WIN_WIDTH / x), (WIN_HEIGHT / y));
+	out->offset[X] = (WIN_WIDTH - x * out->offset[2]) / 2;
+	out->offset[Y] = (WIN_HEIGHT - y * out->offset[2]) / 2;
+	out->offset[X] -= out->minpoint[X] * out->offset[2];
+	out->offset[Y] -= out->minpoint[Y] * out->offset[2];
 	return (TRUE);
 }

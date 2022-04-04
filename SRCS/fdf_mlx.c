@@ -33,6 +33,7 @@ t_mlx	*creat_mlx(t_inputmap *in)
 									&(mlx->image->line), &(mlx->image->endian));
 	set_outputmap_size(mlx->out);
 	mlx->onclick = 0;
+	mlx->color_mode = 0;
 	return (mlx);
 }
 
@@ -57,7 +58,7 @@ int	mlx_renew_image(t_mlx	*mlx)
 	mlx->image->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	mlx->image->addr = mlx_get_data_addr(mlx->image->img, &(mlx->image->bpp), \
 									&(mlx->image->line), &(mlx->image->endian));
-	my_mlx_print_map(mlx->image, mlx->out);
+	my_mlx_print_map(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->img, 0, 0);
 	return (TRUE);
 }

@@ -20,10 +20,11 @@
 # define Z 2
 # define W 3
 
-# define WIN_WIDTH 1600
-# define WIN_HEIGHT 900
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 600
 /*FOR PROCESS INPUT MAP*/
 typedef int	t_ivec2[2];
+typedef int	t_ivec3[3];
 
 typedef struct s_qnode
 {
@@ -42,6 +43,7 @@ typedef struct s_inputmap
 {
 	int		sizeof_y;
 	int		sizeof_x;
+	t_ivec2	altitude;
 	t_ivec2	**arr;
 }	t_inputmap;
 
@@ -54,10 +56,9 @@ typedef struct s_ouputmap
 {
 	int		sizeof_y;
 	int		sizeof_x;
-	double	scaler;
-	t_dvec2	maxpoint;
-	t_dvec2	minpoint;
-	t_ivec2	offset;
+	t_dvec3	maxpoint;
+	t_dvec3	minpoint;
+	t_dvec3	offset;
 	t_dvec3	**map;
 }			t_outputmap;
 
@@ -81,6 +82,7 @@ typedef struct	s_mlx
 	t_ivec2		last;
 	t_ivec2		curr;
 	int			onclick;
+	int			color_mode;
 }				t_mlx;
 
 #endif

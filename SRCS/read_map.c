@@ -84,7 +84,8 @@ void	set_origin_map(t_inputmap *map, t_queue *queue)
 	int		x;
 	int		y;
 	t_qnode	*node;
-
+	
+	set_ivector2(-2147483648, 2147483647, map->altitude);
 	x = -1;
 	while (++x < map->sizeof_x)
 	{
@@ -94,6 +95,10 @@ void	set_origin_map(t_inputmap *map, t_queue *queue)
 			node = ft_dequeue(queue);
 			map->arr[x][y][0] = node->data[0];
 			map->arr[x][y][1] = node->data[1];
+			if (node->data[0] > map->altitude[0])
+				map->altitude[0] = node->data[0];
+			if (node->data[0] < map->altitude[1])
+				map->altitude[1] = node->data[0];
 			free(node);
 		}
 	}

@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 		delete_map_org(in);
 		return (0);
 	}
-	my_mlx_print_map(mlx->image, mlx->out);
+	my_mlx_print_map(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->img, 0, 0);
 	mlx_hook(mlx->win, 2, 1L << 0, keydown, mlx);
 	mlx_hook(mlx->win, 4, 1L << 2, mousedown, mlx);

@@ -23,12 +23,17 @@ int	keydown(int keycode, t_mlx *mlx)
 	}
 	else if (keycode == 0 || keycode == 1 || keycode == 2)
 		rotate_global(mlx, M_PI / 24, keycode);
-	else if (keycode == 6 || keycode == 7 || keycode == 8)
-		rotate_global(mlx, -M_PI / 24, keycode - 6);
+	else if (keycode == 12 || keycode == 13 || keycode == 14)
+		rotate_global(mlx, -M_PI / 24, keycode - 12);
 	else if (keycode == 4)
 	{
 		isometric_view(mlx->trans);
 		convert_map(mlx->in, mlx->trans, mlx->out);
+		mlx_renew_image(mlx);
+	}
+	else if (keycode == 8)
+	{
+		mlx->color_mode ^= 0b1;
 		mlx_renew_image(mlx);
 	}
 	else
@@ -43,9 +48,9 @@ int	mousedown(int button, int x, int y, t_mlx *mlx)
 	set_ivector2(x, y, mlx->last);
 	mlx->onclick = button;
 	if (button == 4)
-		mlx->out->scaler *= 1.05;
+		mlx->out->offset[2] *= 1.05;
 	else if (button == 5)
-		mlx->out->scaler /= 1.05;
+		mlx->out->offset[2] /= 1.05;
 	else
 		return (0);
 	mlx_renew_image(mlx);

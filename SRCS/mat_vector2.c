@@ -1,30 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat_view.c                                         :+:      :+:    :+:   */
+/*   mat_vector2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 22:13:22 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/03 02:47:13 by dkim2            ###   ########.fr       */
+/*   Created: 2022/04/04 16:15:32 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/04 16:15:34 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/fdf.h"
 
-int	isometric_view(t_33mat mat)
+int	scale_dvec(double *v1, int size, double scaler)
 {
-	t_dvec3	u;
-	t_dvec3	v;
-	t_dvec3	w;
+	int	i;
 
-	if (!get_unitvector(-1, 1, 0, u))
+	if (!v1)
 		return (FALSE);
-	if (!get_unitvector(1, 1, -2, v))
+	i = -1;
+	while (++i < size)
+		v1[i] *= scaler;
+	return (TRUE);
+}
+
+int	sum_dvec(double *v1, double *v2, int size)
+{
+	int	i;
+
+	if (!v1 || !v2)
 		return (FALSE);
-	if (!get_unitvector(-1, -1, -1, w))
+	i = -1;
+	while (++i < size)
+		v1[i] += v2[i];
+	return (TRUE);
+}
+
+int	diff_dvec(double *result, double *v1, double *v2, int size)
+{
+	int	i;
+
+	if (!v1 || !v2)
 		return (FALSE);
-	if (!tranformation_33mat(mat, u, v, w))
-		return (FALSE);
+	i = -1;
+	while (++i < size)
+		result[i] = v2[i] - v1[i];
 	return (TRUE);
 }
