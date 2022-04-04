@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:21:34 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/03 02:38:45 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/05 00:48:29 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int	keydown(int keycode, t_mlx *mlx)
 		convert_map(mlx->in, mlx->trans, mlx->out);
 		mlx_renew_image(mlx);
 	}
-	else if (keycode == 8)
+	else if (keycode == 'c')
 	{
+		printf("old color mode : %d\n",mlx->color_mode);
 		mlx->color_mode ^= 0b1;
+		printf("new color mode : %d\n",mlx->color_mode);
 		mlx_renew_image(mlx);
 	}
 	else

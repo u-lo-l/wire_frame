@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 00:37:26 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/02 20:50:07 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/05 00:49:51 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,12 @@ int			mlx_renew_image(t_mlx *mlx);
 int			rotate_view(t_mlx *mlx, double rad, int dx, int dy);
 int			rotate_global(t_mlx *mlx, double rad, char axis_name);
 /*draw*/
-// static void	dvec3_to_color(t_dvec3 color_vec);
-// static void	color_to_dvec3(int color, t_dvec3 color_vec);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void		my_mlx_draw_line(t_image *image, t_dvec3 A, t_dvec3 B, t_dvec3 offset);
+void		my_mlx_draw_line(t_mlx *mlx, t_outputmap *out, t_ivec2 p1, t_ivec2 p2);
 void		my_mlx_print_map(t_mlx *mlx);
+/*color*/
+void		color_to_dvec3(int color, t_dvec3 color_vec);
+int			dvec3_to_color(t_dvec3 color_vec);
+void	get_color_vector(t_mlx *mlx, t_ivec2 pos, t_dvec3 color_vec);
 
 #endif

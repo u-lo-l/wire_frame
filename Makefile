@@ -24,7 +24,8 @@ OBJS_FILE= read_map.o \
 		fdf_mlx.o \
 		fdf_mlx_draw.o \
 		fdf_main.o \
-		fdf_mlx_event.o
+		fdf_mlx_event.o \
+		fdf_mlx_color.o
 
 OBJS = $(addprefix $(OBJ_DIR), $(OBJS_FILE))
 
@@ -43,9 +44,9 @@ re : fclean all
 .PHONY : all clean fclean re
 
 $(TARGET) : $(OBJS)
-	# $(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib \
-	# -Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
+	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib \
+	-Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
+	# $(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
 .c.o :
-	# $(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g
-	$(CC) $(CFLAGS) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g
+	# $(CC) $(CFLAGS) -Wall -Wextra -Werror -Imlx -c $< -o $@
