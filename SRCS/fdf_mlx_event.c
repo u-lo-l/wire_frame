@@ -16,16 +16,16 @@ int	keydown(int keycode, t_mlx *mlx)
 {
 	if (!mlx)
 		return (0);
-	if (keycode == 65307)
+	if (keycode == 53)
 	{
 		delete_mlx(mlx);
 		exit(0);
 	}
-	else if (keycode == 'x' || keycode == 'y' || keycode == 'z')
+	else if (keycode == 0 || keycode == 1 || keycode == 2)
 		rotate_global(mlx, M_PI / 24, keycode);
-	else if (keycode == 'u' || keycode == 'v' || keycode == 'w')
-		rotate_global(mlx, -M_PI / 24, keycode + ('x' - 'u'));
-	else if (keycode == 'h')
+	else if (keycode == 6 || keycode == 7 || keycode == 8)
+		rotate_global(mlx, -M_PI / 24, keycode - 6);
+	else if (keycode == 4)
 	{
 		isometric_view(mlx->trans);
 		convert_map(mlx->in, mlx->trans, mlx->out);
@@ -73,9 +73,9 @@ int	mousemove(int x, int y, t_mlx *mlx)
 		set_ivector2(x, y, mlx->last);
 		mlx_renew_image(mlx);
 	}
-	else if (mlx-> onclick == 3)
+	else if (mlx-> onclick == 2)
 	{
-		rad = M_PI / 45;
+		rad = M_PI / 30;
 		set_ivector2(x, y, mlx->curr);
 		dx = mlx->last[X] - mlx->curr[X];
 		dy = mlx->last[Y] - mlx->curr[Y];

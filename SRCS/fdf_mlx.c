@@ -32,6 +32,7 @@ t_mlx	*creat_mlx(t_inputmap *in)
 	mlx->image->addr = mlx_get_data_addr(mlx->image->img, &(mlx->image->bpp), \
 									&(mlx->image->line), &(mlx->image->endian));
 	set_outputmap_size(mlx->out);
+	mlx->onclick = 0;
 	return (mlx);
 }
 
@@ -41,8 +42,6 @@ void	delete_mlx(t_mlx *mlx)
 		return ;
 	mlx_destroy_image(mlx->mlx, mlx->image->img);
 	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx_destroy_display(mlx->mlx);
-	mlx_loop_end(mlx->mlx);
 	delete_map_org(mlx->in);
 	delete_outputmap(mlx->out);
 	free(mlx->image);
@@ -89,11 +88,11 @@ int	rotate_global(t_mlx *mlx, double rad, char axis_name)
 	t_33mat	temp;
 	t_33mat	rot;
 
-	if (axis_name == 'x')
+	if (axis_name == 0)
 		set_vector3(1, 0, 0, axis);
-	else if (axis_name == 'y')
+	else if (axis_name == 1)
 		set_vector3(0, 1, 0, axis);
-	else if (axis_name == 'z')
+	else if (axis_name == 2)
 		set_vector3(0, 0, 1, axis);
 	else
 		return (FALSE);

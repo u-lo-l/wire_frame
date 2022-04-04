@@ -43,8 +43,9 @@ re : fclean all
 .PHONY : all clean fclean re
 
 $(TARGET) : $(OBJS)
-	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib \
-	-Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
-
+	# $(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib \
+	# -Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
+	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
 .c.o :
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g
+	# $(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@ -g
+	$(CC) $(CFLAGS) -Wall -Wextra -Werror -Imlx -c $< -o $@
