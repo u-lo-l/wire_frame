@@ -6,10 +6,10 @@ int	dvec3_to_color(t_dvec3 color_vec)
 
 	if (!color_vec)
 		return (FALSE);
-	res = ((int)color_vec[0] & 0xff) << 16;
-	res += ((int)color_vec[1] & 0xff) << 8;
-	res += (int)color_vec[2] & 0xff;
-	return (res);
+	res = ((int)color_vec[0] & 0x000000ff) << 16;
+	res += ((int)color_vec[1] & 0x000000ff) << 8;
+	res += (int)color_vec[2] & 0x000000ff;
+	return (res & 0x00ffffff);
 }
 
 void	color_to_dvec3(int color, t_dvec3 color_vec)
@@ -23,17 +23,18 @@ void	color_to_dvec3(int color, t_dvec3 color_vec)
 
 void	convert_to_altitude_color(t_mlx *mlx, t_ivec2 pos, t_dvec3 color_vec)
 {
-	long	gap;
+	double	gap;
 	int		z_value;
 
-	printf("max : %d\n min %d\n", mlx->in->altitude[0], mlx->in->altitude[1]);
 	gap = mlx->in->altitude[0] - mlx->in->altitude[1];
 	z_value = mlx->in->arr[pos[X]][pos[Y]][0];
-	color_vec[1] = (mlx->in->altitude[0] - z_value) / gap;
+	color_vec[0] = (mlx->in->altitude[0] - z_value) / gap;
 	color_vec[2] = (z_value - mlx->in->altitude[1]) / gap;
-	color_vec[1] *= 0xff;
-	color_vec[2] *= 0xff;
-	color_vec[0] = 0;
+	color_vec[0] *= 255;
+	color_vec[2] *= 255;
+	color_vec[0] = 255 - color_vec[0];
+	color_vec[2] = 255 - color_vec[2];
+	color_vec[1] = 255;
 }
 
 void	get_color_vector(t_mlx *mlx, t_ivec2 pos, t_dvec3 color_vec)
