@@ -20,24 +20,24 @@
 # define Z 2
 # define W 3
 
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 600
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 /*FOR PROCESS INPUT MAP*/
-typedef int	t_ivec2[2];
-typedef int	t_ivec3[3];
+typedef int		t_ivec2[2];
+typedef int		t_ivec3[3];
 
 typedef struct s_qnode
 {
 	t_ivec2			data;
 	struct s_qnode	*next;
-}		t_qnode;
+}				t_qnode;
 
 typedef struct s_queue_type
 {
 	int		queue_size;
 	t_qnode	*pfront;
 	t_qnode	*prear;
-}			t_queue;
+}				t_queue;
 
 typedef struct s_inputmap
 {
@@ -45,8 +45,7 @@ typedef struct s_inputmap
 	int		sizeof_x;
 	t_ivec2	altitude;
 	t_ivec2	**arr;
-}	t_inputmap;
-
+}				t_inputmap;
 /*FOR MATRIX AND OUTPUT MAP*/
 typedef double	t_dvec2[2];
 typedef double	t_dvec3[3];
@@ -60,18 +59,19 @@ typedef struct s_ouputmap
 	t_dvec3	minpoint;
 	t_dvec3	offset;
 	t_dvec3	**map;
-}			t_outputmap;
+}				t_outputmap;
 
 /*FOR MiniLibX*/
-typedef struct	s_image {
+typedef struct s_image
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line;
 	int		endian;
-}			t_image;
+}				t_image;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;

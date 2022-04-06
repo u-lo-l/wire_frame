@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mat_view.c                                         :+:      :+:    :+:   */
+/*   mat_parrallel_view.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 22:13:22 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/03 02:47:13 by dkim2            ###   ########.fr       */
+/*   Created: 2022/04/05 14:39:39 by dkim2             #+#    #+#             */
+/*   Updated: 2022/04/05 14:39:41 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INC/fdf.h"
 
-int	isometric_view(t_33mat mat)
+void	xy_plane_view(t_dvec3 u, t_dvec3 v, t_dvec3 w)
 {
-	t_dvec3	u;
-	t_dvec3	v;
-	t_dvec3	w;
+	set_vector3(0, 1, 0, u);
+	set_vector3(1, 0, 0, v);
+	set_vector3(0, 0, -1, w);
+}
 
-	if (!get_unitvector(-1, 1, 0, u))
-		return (FALSE);
-	if (!get_unitvector(1, 1, -2, v))
-		return (FALSE);
-	if (!get_unitvector(-1, -1, -1, w))
-		return (FALSE);
-	if (!tranformation_33mat(mat, u, v, w))
-		return (FALSE);
-	return (TRUE);
+void	yz_plane_view(t_dvec3 u, t_dvec3 v, t_dvec3 w)
+{
+	set_vector3(0, 1, 0, u);
+	set_vector3(0, 0, -1, v);
+	set_vector3(-1, 0, 0, w);
+}
+
+void	zx_plane_view(t_dvec3 u, t_dvec3 v, t_dvec3 w)
+{
+	set_vector3(-1, 0, 0, u);
+	set_vector3(0, 0, -1, v);
+	set_vector3(0, -1, 0, w);
 }

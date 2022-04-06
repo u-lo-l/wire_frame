@@ -21,11 +21,11 @@ t_mlx	*creat_mlx(t_inputmap *in)
 		return (NULL);
 	mlx->image = malloc(sizeof(t_image));
 	mlx->in = in;
-	if (!isometric_view(mlx->trans))
-		return (0);
+	if (!isometric_view(mlx->trans, 18))
+		return (NULL);
 	mlx->out = create_ouputmap(in->sizeof_y, in->sizeof_x);
 	if (!convert_map(in, mlx->trans, mlx->out))
-		return (0);
+		return (NULL);
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	mlx->image->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);

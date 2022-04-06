@@ -84,7 +84,7 @@ void	set_origin_map(t_inputmap *map, t_queue *queue)
 	int		x;
 	int		y;
 	t_qnode	*node;
-	
+
 	set_ivector2(-2147483648, 2147483647, map->altitude);
 	x = -1;
 	while (++x < map->sizeof_x)

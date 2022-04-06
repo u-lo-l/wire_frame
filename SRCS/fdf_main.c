@@ -6,7 +6,7 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:16:45 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/02 23:01:42 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/05 15:51:42 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main(int argc, char **argv)
 	}
 	my_mlx_print_map(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->img, 0, 0);
-	mlx_hook(mlx->win, 2, 1L << 0, keydown, mlx);
-	mlx_hook(mlx->win, 4, 1L << 2, mousedown, mlx);
-	mlx_hook(mlx->win, 5, 1L << 3, mouseup, mlx);
-	mlx_hook(mlx->win, 6, 1L << 6, mousemove, mlx);
+	mlx_hook(mlx->win, 2, 0, keydown, mlx);
+	mlx_hook(mlx->win, 4, 0, mousedown, mlx);
+	mlx_hook(mlx->win, 5, 0, mouseup, mlx);
+	mlx_hook(mlx->win, 6, 0, mousemove, mlx);
 	mlx_hook(mlx->win, 17, 0, destroy, mlx);
 	mlx_loop(mlx->mlx);
 	return (0);

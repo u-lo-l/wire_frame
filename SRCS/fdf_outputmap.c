@@ -58,8 +58,8 @@ int	convert_map(t_inputmap *in, t_33mat mat, t_outputmap *out)
 {
 	int			x;
 	int			y;
-	t_dvec3		v_in;
-	t_dvec3		v_out;
+	t_dvec3		v_i;
+	t_dvec3		v_o;
 
 	if (!in || !out)
 		return (FALSE);
@@ -69,12 +69,12 @@ int	convert_map(t_inputmap *in, t_33mat mat, t_outputmap *out)
 		y = -1;
 		while (++y < in->sizeof_y)
 		{
-			if (!set_vector3(x, y, (double)(in->arr[x][y][0]), v_out))
+			if (!set_vector3(x - in->sizeof_x / 2, y - in->sizeof_y / 2, \
+				(double)(in->arr[x][y][0]), v_o))
 				return (FALSE);
-			if (!transform(v_out, mat, v_in))
+			if (!transform(v_o, mat, v_i))
 				return (FALSE);
-			if (!set_vector3(v_in[0], v_in[1], in->arr[x][y][1], \
-				out->map[x][y]))
+			if (!set_vector3(v_i[0], v_i[1], in->arr[x][y][1], out->map[x][y]))
 				return (FALSE);
 		}
 	}
