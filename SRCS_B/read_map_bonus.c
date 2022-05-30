@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../INC/fdf.h"
+#include "../INC_B/fdf_bonus.h"
 #include <fcntl.h>
 
 t_inputmap	*init_map(int sizeof_y, int sizeof_x)
@@ -130,3 +130,14 @@ t_inputmap	*get_origin_map(char *filepath)
 	close(fd);
 	return (origin_map);
 }
+/*
+int 	main(int argc, char ** argv)
+{
+	t_inputmap *map = get_origin_map(argv[argc - 1]);
+	if (map == NULL)
+		printf("ERROR\n");
+	else
+		print_orgmap(map);
+	delete_map_org(map);
+}
+*/

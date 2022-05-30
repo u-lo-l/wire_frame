@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../INC/fdf.h"
+#include "../INC_B/fdf_bonus.h"
 
 #define BUFFER_SIZE 101
 
@@ -114,3 +114,26 @@ int	parse_line(t_queue *queue, char *line, int *sizeof_y)
 	delete_splited_charset(argset, *sizeof_y);
 	return (res);
 }
+
+/*
+int		main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = 0;
+	(void)argc;
+	fd = open((argv[1]), O_RDONLY);
+	while (TRUE)
+	{
+		line = get_next_line(fd);
+		if (line)
+			printf("%s\n", line);
+		else
+			break;
+		free(line);
+	}
+	free(line);
+	return(0);
+}*/

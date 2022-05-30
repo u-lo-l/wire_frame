@@ -6,11 +6,11 @@
 /*   By: dkim2 <dkim2@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 22:16:45 by dkim2             #+#    #+#             */
-/*   Updated: 2022/04/05 16:18:11 by dkim2            ###   ########.fr       */
+/*   Updated: 2022/04/05 15:40:02 by dkim2            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../INC/fdf.h"
+#include "../INC_B/fdf_bonus.h"
 
 int	main(int argc, char **argv)
 {
