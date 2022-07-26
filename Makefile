@@ -1,5 +1,7 @@
 .SUFFIXES : .c .o
 
+UNAME_S = ${shell uname -s}
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
@@ -56,6 +58,21 @@ re : fclean all
 .PHONY : all clean fclean re bonus
 
 $(TARGET) : $(OBJS)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
+# 	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
+# 	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
+ifeq (${UNAME_S},Linux)
+	${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${TARGET}
+else
+	${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o ${TARGET}
+endif
+
+
 .c.o :
-	$(CC) $(CFLAGS) -Wall -Wextra -Werror -Imlx -c $< -o $@
+# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+# 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+ifeq (${UNAME_S},Linux)
+	${CC} ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+else
+	${CC} ${CFLAGS} -Imlx -c $< -o $@
+endif
+
