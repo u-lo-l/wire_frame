@@ -1,7 +1,5 @@
 .SUFFIXES : .c .o
 
-UNAME_S = ${shell uname -s}
-
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
@@ -9,7 +7,6 @@ RM = rm -f
 TARGET  = fdf
 
 OBJ_M_DIR = ./SRCS/
-OBJ_B_DIR = ./SRCS_B/
 OBJS_FILE= read_map \
 		ft_queue \
 		get_next_line \
@@ -31,48 +28,28 @@ OBJS_FILE= read_map \
 		fdf_mlx_color
 
 OBJS_M = $(addprefix $(OBJ_M_DIR), $(addsuffix .o, $(OBJS_FILE)))
-OBJS_B = $(addprefix $(OBJ_B_DIR), $(addsuffix _bonus.o, $(OBJS_FILE)))
 
 SRCS_M = $(OBJS_M.o=.c)
-SRCS_B = $(OBJS_B.o=.c)
 
-ifdef WITH_BONUS
-	OBJS = $(OBJS_B)
-else
-	OBJS = $(OBJS_M)
-endif
+LIBMLX = ./mlx/libmlx.a
 
 all : $(TARGET)
 
-bonus :
-		@make WITH_BONUS=1 all
-
 clean :
-	$(RM) $(OBJS_M) $(OBJS_B)
+	$(RM) $(OBJS_M)
 
 fclean : clean
 	$(RM) $(TARGET)
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
 
-$(TARGET) : $(OBJS)
-# 	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(TARGET) -lm
-# 	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(TARGET)
-ifeq (${UNAME_S},Linux)
-	${CC} ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${TARGET}
-else
-	${CC} ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o ${TARGET}
-endif
-
+$(TARGET) : $(OBJS_M)
+	${CC} ${OBJS_M} -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o ${TARGET}
 
 .c.o :
-# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
-# 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
-ifeq (${UNAME_S},Linux)
-	${CC} ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
-else
 	${CC} ${CFLAGS} -Imlx -c $< -o $@
-endif
 
+${LIBMLX} :
+	@make -C ./mlx all
