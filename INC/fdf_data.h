@@ -20,8 +20,8 @@
 # define Z 2
 # define W 3
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 800
 /*FOR PROCESS INPUT MAP*/
 typedef int		t_ivec2[2];
 typedef int		t_ivec3[3];
