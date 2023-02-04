@@ -7,5 +7,5 @@
 <img src=".images/elem2.png" width="48%"></img>
 <img src=".images/pyramid.png" width="48%"></img>
 <img src=".images/mars.png" width="48%"></img>
-<img src=".images/demo.gif" width="90%"></img>
+<img src=".images/Demo.gif" width="90%"></img>
 
